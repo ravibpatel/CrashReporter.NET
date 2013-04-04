@@ -53,7 +53,6 @@ namespace CrashReporterDotNET
         /// Sends exception report directly to receiver email address provided in ToEmail.
         /// </summary>
         /// <param name="exception">Exception object that contains details of the exception.</param>
-
         public void Send(Exception exception)
         {
             try
