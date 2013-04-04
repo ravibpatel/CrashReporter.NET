@@ -13,7 +13,7 @@ using CrashReporterDotNET.Properties;
 
 namespace CrashReporterDotNET
 {
-    public partial class CrashReport : Form
+    internal partial class CrashReport : Form
     {
         private readonly String _appTitle;
 

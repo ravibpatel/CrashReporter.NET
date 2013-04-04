@@ -2,7 +2,7 @@
 
 namespace CrashReporterDotNET
 {
-    public partial class ProgressDialog : Form
+    internal partial class ProgressDialog : Form
     {
         public ProgressDialog()
         {

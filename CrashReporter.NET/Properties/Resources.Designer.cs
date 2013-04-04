@@ -65,7 +65,7 @@ namespace CrashReporterDotNET.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap ajax_loader {
             get {
-                object obj = ResourceManager.GetObject("ajax-loader", resourceCulture);
+                object obj = ResourceManager.GetObject("ajax_loader", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
