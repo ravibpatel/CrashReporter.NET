@@ -2,8 +2,6 @@
 using System.Diagnostics;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Net;
-using System.Net.Mail;
 using System.Reflection;
 using System.Threading;
 
@@ -50,17 +48,46 @@ namespace CrashReporterDotNET
         public String FromEmail;
 
         /// <summary>
+        /// Gets or Sets exception that occur during application execution.
+        /// </summary>
+        public Exception Exception;
+
+        internal string ApplicationTitle;
+
+        internal string ApplicationVersion;
+
+        internal string ScreenShot;
+
+        /// <summary>
+        /// Sends exception report directly to receiver email address provided in ToEmail.
+        /// </summary>
+        public void Send()
+        {
+            if (Exception != null)
+            {
+                Send(Exception);
+            }
+        }
+
+        /// <summary>
         /// Sends exception report directly to receiver email address provided in ToEmail.
         /// </summary>
         /// <param name="exception">Exception object that contains details of the exception.</param>
         public void Send(Exception exception)
         {
+            Exception = exception;
+
+            var mainAssembly = Assembly.GetEntryAssembly();
+            var titleAttribute = (AssemblyTitleAttribute)mainAssembly.GetAttribute(typeof(AssemblyTitleAttribute));
+            ApplicationTitle = titleAttribute != null ? titleAttribute.Title : mainAssembly.GetName().Name;
+            ApplicationVersion = mainAssembly.GetName().Version.ToString();
+
             try
             {
                 var captureScreenshot = new CaptureScreenshot();
-                captureScreenshot.CaptureScreenToFile(
-                    string.Format(@"{0}\{1}CrashScreenshot.png", Path.GetTempPath(),
-                                  Assembly.GetEntryAssembly().GetName().Name), ImageFormat.Png);
+                ScreenShot = string.Format(@"{0}\{1} Crash Screenshot.png", Path.GetTempPath(),
+                                           ApplicationTitle);
+                captureScreenshot.CaptureScreenToFile(ScreenShot, ImageFormat.Png);
             }
             catch (Exception e)
             {
@@ -68,23 +95,11 @@ namespace CrashReporterDotNET
             }
             if (String.IsNullOrEmpty(FromEmail) || String.IsNullOrEmpty(ToEmail) || String.IsNullOrEmpty(SmtpHost))
                 return;
-            var fromAddress = new MailAddress(FromEmail);
-            var toAddress = new MailAddress(ToEmail);
 
-            var smtp = new SmtpClient
-                {
-                    Host = SmtpHost,
-                    Port = Port,
-                    EnableSsl = EnableSSL,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential(UserName, Password),
-                };
-
-            var crashReport = new CrashReport(exception, fromAddress, toAddress, smtp);
+            var crashReport = new CrashReport(this);
 
             var parameterizedThreadStart = new ParameterizedThreadStart(ShowUI);
-            var thread = new Thread(parameterizedThreadStart);
+            var thread = new Thread(parameterizedThreadStart) {IsBackground = false};
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start(crashReport);
             thread.Join();

@@ -12,7 +12,6 @@ namespace CrashReporterTest
         [STAThread]
         static void Main()
         {
-            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             Application.ThreadException += (sender, args) => SendCrashReport(args.Exception);
             AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
                 {
@@ -28,14 +27,15 @@ namespace CrashReporterTest
         {
             var reportCrash = new ReportCrash
             {
-                FromEmail = "mysmtpmail@gmail.com",
-                ToEmail = "support@rbsoft.org",
+                FromEmail = "your gmail",
+                ToEmail = "email where you want to recieve crash reports.",
                 SmtpHost = "smtp.gmail.com",
                 Port = 587,
-                UserName = "mysmtpmail@gmail.com",
-                Password = "mypass",
+                UserName = "your gmail",
+                Password = "your gmail password",
                 EnableSSL = true,
             };
+
             reportCrash.Send(exception);
         }
     }

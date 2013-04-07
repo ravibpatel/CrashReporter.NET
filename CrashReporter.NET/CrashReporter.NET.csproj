@@ -46,6 +46,7 @@
     <Compile Include="CrashReport.Designer.cs">
       <DependentUpon>CrashReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="HelperMethods.cs" />
     <Compile Include="ProgressDialog.cs">
       <SubType>Form</SubType>
     </Compile>

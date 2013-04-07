@@ -3,9 +3,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Net;
 using System.Net.Mail;
-using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Windows.Forms;
@@ -15,93 +14,21 @@ namespace CrashReporterDotNET
 {
     internal partial class CrashReport : Form
     {
-        private readonly String _appTitle;
-
-        private readonly String _appVersion;
-        private readonly Exception _exception;
-
-        private readonly SmtpClient _smtpClient;
-
-        private readonly MailAddress _toAddress;
-        private readonly String _windowsVersion;
-        private MailAddress _fromAddress;
-
+        private readonly ReportCrash _reportCrash;
         private ProgressDialog _progressDialog;
 
-        public CrashReport(Exception exception, MailAddress fromAddress, MailAddress toAddress, SmtpClient smtpClient)
+        public CrashReport(ReportCrash reportCrashObject)
         {
             InitializeComponent();
+            _reportCrash = reportCrashObject;
+            Text = string.Format("{0} {1} crashed.", _reportCrash.ApplicationTitle, _reportCrash.ApplicationVersion);
+            saveFileDialog.FileName = string.Format("{0} {1} Crash Report", _reportCrash.ApplicationTitle,
+                                                    _reportCrash.ApplicationVersion);
 
-            _exception = exception;
-            _smtpClient = smtpClient;
-            _fromAddress = fromAddress;
-            _toAddress = toAddress;
-
-            _appTitle = Assembly.GetEntryAssembly().GetName().Name;
-            _appVersion = Assembly.GetEntryAssembly().GetName().Version.ToString();
-
-            Text = string.Format("{0} {1} crashed.", _appTitle, _appVersion);
-            textBoxException.Text = exception.GetType().ToString();
-            saveFileDialog.FileName = string.Format("{0} {1} Crash Report", _appTitle, _appVersion);
-
-            string osArchitecture;
-            try
+            if (File.Exists(_reportCrash.ScreenShot))
             {
-                osArchitecture = IsOS64Bit() ? "64" : "32";
-            }
-            catch (Exception)
-            {
-                osArchitecture = "32/64 bit (Undetermine)";
-            }
-            if (File.Exists(string.Format("{0}\\{1}CrashScreenshot.png", Path.GetTempPath(), _appTitle)))
-            {
-                pictureBoxScreenshot.ImageLocation = string.Format("{0}\\{1}CrashScreenshot.png", Path.GetTempPath(),
-                                                                   _appTitle);
+                pictureBoxScreenshot.ImageLocation = _reportCrash.ScreenShot;
                 pictureBoxScreenshot.Show();
-            }
-            switch (Environment.OSVersion.Version.Major)
-            {
-                case 5:
-                    switch (Environment.OSVersion.Version.Minor)
-                    {
-                        case 0:
-                            _windowsVersion = string.Format("Windows 2000 {0} {1} Version {2}",
-                                                            Environment.OSVersion.ServicePack, osArchitecture,
-                                                            Environment.OSVersion.Version);
-                            break;
-                        case 1:
-                            _windowsVersion = string.Format("Windows XP {0} {1} Version {2}",
-                                                            Environment.OSVersion.ServicePack, osArchitecture,
-                                                            Environment.OSVersion.Version);
-                            break;
-                        case 2:
-                            _windowsVersion =
-                                string.Format(
-                                    "Windows XP x64 Professional Edition / Windows Server 2003 {0} {1} Version {2}",
-                                    Environment.OSVersion.ServicePack, osArchitecture, Environment.OSVersion.Version);
-                            break;
-                    }
-                    break;
-                case 6:
-                    switch (Environment.OSVersion.Version.Minor)
-                    {
-                        case 0:
-                            _windowsVersion = string.Format("Windows Vista {0} {1} bit Version {2}",
-                                                            Environment.OSVersion.ServicePack, osArchitecture,
-                                                            Environment.OSVersion.Version);
-                            break;
-                        case 1:
-                            _windowsVersion = string.Format("Windows 7 {0} {1} bit Version {2}",
-                                                            Environment.OSVersion.ServicePack, osArchitecture,
-                                                            Environment.OSVersion.Version);
-                            break;
-                        case 2:
-                            _windowsVersion = string.Format("Windows 8 {0} {1} bit Version {2}",
-                                                            Environment.OSVersion.ServicePack, osArchitecture,
-                                                            Environment.OSVersion.Version);
-                            break;
-                    }
-                    break;
             }
         }
 
@@ -113,32 +40,55 @@ namespace CrashReporterDotNET
 
         private void ButtonSendReportClick(object sender, EventArgs e)
         {
-            var regex = new Regex(@"^(([\w-]+\.)+[\w-]+|([a-zA-Z]{1}|[\w-]{2,}))@"
-                                  + @"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?
+            var fromAddress = new MailAddress(_reportCrash.FromEmail);
+            var toAddress = new MailAddress(_reportCrash.ToEmail);
+
+            var regexEmail = new Regex(@"^(([\w-]+\.)+[\w-]+|([a-zA-Z]{1}|[\w-]{2,}))@"
+                                       + @"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?
 				                            [0-9]{1,2}|25[0-5]|2[0-4][0-9])\."
-                                  + @"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?
+                                       + @"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?
 				                            [0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
-                                  + @"([a-zA-Z]+[\w-]+\.)+[a-zA-Z]{2,4})$");
+                                       + @"([a-zA-Z]+[\w-]+\.)+[a-zA-Z]{2,4})$");
             string subject;
-            if (!String.IsNullOrEmpty(textBoxEmail.Text) && regex.IsMatch(textBoxEmail.Text))
+
+
+            if (!String.IsNullOrEmpty(textBoxEmail.Text) && regexEmail.IsMatch(textBoxEmail.Text))
             {
-                _fromAddress = new MailAddress(textBoxEmail.Text);
-                subject = string.Format("{0} {1} Crash Report by {2}", _appTitle, _appVersion, textBoxEmail.Text);
+                fromAddress = new MailAddress(textBoxEmail.Text);
+                subject = string.Format("{0} {1} Crash Report by {2}", _reportCrash.ApplicationTitle,
+                                        _reportCrash.ApplicationVersion, textBoxEmail.Text);
             }
             else
-                subject = string.Format("{0} {1} Crash Report", _appTitle, _appVersion);
-            var message = new MailMessage(_fromAddress, _toAddress)
+            {
+                subject = string.Format("{0} {1} Crash Report", _reportCrash.ApplicationTitle,
+                                        _reportCrash.ApplicationVersion);
+            }
+
+            var smtpClient = new SmtpClient
+                {
+                    Host = _reportCrash.SmtpHost,
+                    Port = _reportCrash.Port,
+                    EnableSsl = _reportCrash.EnableSSL,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(_reportCrash.UserName, _reportCrash.Password),
+                };
+
+            var message = new MailMessage(fromAddress, toAddress)
                 {
                     IsBodyHtml = true,
                     Subject = subject,
-                    Body = HtmlReport()
+                    Body = HtmlReport(),
                 };
-            if (File.Exists(string.Format("{0}\\{1}CrashScreenshot.png", Path.GetTempPath(), _appTitle)) &&
-                checkBoxIncludeScreenshot.Checked)
-                message.Attachments.Add(
-                    new Attachment(string.Format("{0}\\{1}CrashScreenshot.png", Path.GetTempPath(), _appTitle)));
-            _smtpClient.SendCompleted += SmtpClientSendCompleted;
-            _smtpClient.SendAsync(message, "Crash Report");
+
+            if (File.Exists(_reportCrash.ScreenShot) && checkBoxIncludeScreenshot.Checked)
+            {
+                message.Attachments.Add(new Attachment(_reportCrash.ScreenShot));
+            }
+
+            smtpClient.SendCompleted += SmtpClientSendCompleted;
+            smtpClient.SendAsync(message, "Crash Report");
+
             _progressDialog = new ProgressDialog();
             _progressDialog.ShowDialog();
         }
@@ -204,9 +154,11 @@ namespace CrashReporterDotNET
                     <div class=""message"">
                     {4}
                     </div>
-                    </div>", HttpUtility.HtmlEncode(_appTitle), HttpUtility.HtmlEncode(_appVersion),
-                              HttpUtility.HtmlEncode(_windowsVersion),
-                              HttpUtility.HtmlEncode(Environment.Version.ToString()), CreateReport(_exception));
+                    </div>", HttpUtility.HtmlEncode(_reportCrash.ApplicationTitle),
+                              HttpUtility.HtmlEncode(_reportCrash.ApplicationVersion),
+                              HttpUtility.HtmlEncode(HelperMethods.GetWindowsVersion()),
+                              HttpUtility.HtmlEncode(Environment.Version.ToString()),
+                              CreateReport(_reportCrash.Exception));
             if (!String.IsNullOrEmpty(textBoxUserMessage.Text.Trim()))
             {
                 report += string.Format(@"<br/>
@@ -287,8 +239,9 @@ namespace CrashReporterDotNET
             else
             {
                 MessageBox.Show(
-                    string.Format("Crassh report of {0} {1} is sent to the developer. Thanks for your support.",
-                                  _appTitle, _appVersion), Resources.CrashReport_Crash_report_sent, MessageBoxButtons.OK,
+                    string.Format("Crash report of {0} {1} is sent to the developer. Thanks for your support.",
+                                  _reportCrash.ApplicationTitle, _reportCrash.ApplicationVersion),
+                    Resources.CrashReport_Crash_report_sent, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
             }
@@ -296,13 +249,15 @@ namespace CrashReporterDotNET
 
         private void CrashReportLoad(object sender, EventArgs e)
         {
-            textBoxApplicationName.Text = _appTitle;
-            textBoxApplicationVersion.Text = _appVersion;
-            textBoxExceptionMessage.Text = _exception.Message;
-            textBoxMessage.Text = _exception.Message;
+            textBoxException.Text = _reportCrash.Exception.GetType().ToString();
+            textBoxApplicationName.Text = _reportCrash.ApplicationTitle;
+            textBoxApplicationVersion.Text = _reportCrash.ApplicationVersion;
+            textBoxExceptionMessage.Text = _reportCrash.Exception.Message;
+            textBoxMessage.Text = _reportCrash.Exception.Message;
             textBoxTime.Text = DateTime.Now.ToString(CultureInfo.InvariantCulture);
-            textBoxSource.Text = _exception.Source;
-            textBoxStackTrace.Text = string.Format("{0}\n{1}", _exception.InnerException, _exception.StackTrace);
+            textBoxSource.Text = _reportCrash.Exception.Source;
+            textBoxStackTrace.Text = string.Format("{0}\n{1}", _reportCrash.Exception.InnerException,
+                                                   _reportCrash.Exception.StackTrace);
         }
 
         private void ButtonSaveClick(object sender, EventArgs e)
@@ -315,26 +270,11 @@ namespace CrashReporterDotNET
             File.WriteAllText(saveFileDialog.FileName, HtmlReport());
         }
 
-        private void ButtonCancelClick(object sender, EventArgs e)
-        {
-            if (File.Exists(string.Format(@"{0}\{1}CrashScreenshot.png", Path.GetTempPath(), _appTitle)))
-            {
-                try
-                {
-                    File.Delete(string.Format(@"{0}\{1}CrashScreenshot.png", Path.GetTempPath(), _appTitle));
-                }
-                catch (Exception exception)
-                {
-                    Debug.Write(exception.Message);
-                }
-            }
-        }
-
         private void LinkLabelViewLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
             {
-                Process.Start(string.Format(@"{0}\{1}CrashScreenshot.png", Path.GetTempPath(), _appTitle));
+                Process.Start(_reportCrash.ScreenShot);
             }
             catch (FileNotFoundException)
             {
@@ -350,58 +290,24 @@ namespace CrashReporterDotNET
             }
         }
 
-        //Detect Architecture of Operating System
-
-        [DllImport("kernel32", SetLastError = true, CallingConvention = CallingConvention.Winapi)]
-        public static extern IntPtr LoadLibrary(string libraryName);
-
-        [DllImport("kernel32", SetLastError = true, CallingConvention = CallingConvention.Winapi)]
-        public static extern IntPtr GetProcAddress(IntPtr hwnd, string procedureName);
-
-        public static bool IsOS64Bit()
+        private void CrashReport_FormClosing(object sender, FormClosingEventArgs e)
         {
-            return IntPtr.Size == 8 || (IntPtr.Size == 4 && Is32BitProcessOn64BitProcessor());
-        }
-
-        private static IsWow64ProcessDelegate GetIsWow64ProcessDelegate()
-        {
-            IntPtr handle = LoadLibrary("kernel32");
-
-            if (handle != IntPtr.Zero)
+            if (File.Exists(_reportCrash.ScreenShot))
             {
-                IntPtr fnPtr = GetProcAddress(handle, "IsWow64Process");
-
-                if (fnPtr != IntPtr.Zero)
+                try
                 {
-                    return
-                        (IsWow64ProcessDelegate)
-                        Marshal.GetDelegateForFunctionPointer(fnPtr, typeof (IsWow64ProcessDelegate));
+                    File.Delete(_reportCrash.ScreenShot);
+                }
+                catch (Exception exception)
+                {
+                    Debug.Write(exception.Message);
                 }
             }
-
-            return null;
         }
 
-        private static bool Is32BitProcessOn64BitProcessor()
+        private void CrashReport_Shown(object sender, EventArgs e)
         {
-            IsWow64ProcessDelegate fnDelegate = GetIsWow64ProcessDelegate();
-
-            if (fnDelegate == null)
-            {
-                return false;
-            }
-
-            bool isWow64;
-            bool retVal = fnDelegate.Invoke(Process.GetCurrentProcess().Handle, out isWow64);
-
-            if (retVal == false)
-            {
-                return false;
-            }
-
-            return isWow64;
+            Activate();
         }
-
-        private delegate bool IsWow64ProcessDelegate([In] IntPtr handle, [Out] out bool isWow64Process);
     }
 }

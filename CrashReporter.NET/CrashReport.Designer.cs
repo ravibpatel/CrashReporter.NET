@@ -415,7 +415,6 @@
             this.buttonCacel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonCacel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonCacel.UseVisualStyleBackColor = true;
-            this.buttonCacel.Click += new System.EventHandler(this.ButtonCancelClick);
             // 
             // buttonSendReport
             // 
@@ -467,7 +466,9 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CrashReport";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CrashReport_FormClosing);
             this.Load += new System.EventHandler(this.CrashReportLoad);
+            this.Shown += new System.EventHandler(this.CrashReport_Shown);
             this.tabControl.ResumeLayout(false);
             this.tabPageGeneral.ResumeLayout(false);
             this.tabPageGeneral.PerformLayout();
