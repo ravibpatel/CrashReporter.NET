@@ -1,23 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
-using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace CrashReporterDotNET
 {
     internal static class HelperMethods
     {
-        public static Attribute GetAttribute(this Assembly assembly, Type attributeType)
-        {
-            var attributes = assembly.GetCustomAttributes(attributeType, false);
-            if (attributes.Length == 0)
-            {
-                return null;
-            }
-            return (Attribute)attributes[0];
-        }
-
         [DllImport("kernel32", SetLastError = true, CallingConvention = CallingConvention.Winapi)]
         private static extern IntPtr LoadLibrary(string libraryName);
 
@@ -124,11 +112,4 @@ namespace CrashReporterDotNET
                                          windowsVersion);
         }
     }
-}
-
-namespace System.Runtime.CompilerServices
-{
-    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class
-         | AttributeTargets.Method)]
-    public sealed class ExtensionAttribute : Attribute { }
 }

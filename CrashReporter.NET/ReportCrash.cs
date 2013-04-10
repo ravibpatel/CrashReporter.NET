@@ -78,8 +78,13 @@ namespace CrashReporterDotNET
             Exception = exception;
 
             var mainAssembly = Assembly.GetEntryAssembly();
-            var titleAttribute = (AssemblyTitleAttribute)mainAssembly.GetAttribute(typeof(AssemblyTitleAttribute));
-            ApplicationTitle = titleAttribute != null ? titleAttribute.Title : mainAssembly.GetName().Name;
+            string appTitle = null;
+            var attributes = mainAssembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), true);
+            if (attributes.Length > 0)
+            {
+                appTitle = ((AssemblyTitleAttribute) attributes[0]).Title;
+            }
+            ApplicationTitle = !string.IsNullOrEmpty(appTitle) ? appTitle : mainAssembly.GetName().Name;
             ApplicationVersion = mainAssembly.GetName().Version.ToString();
 
             try
