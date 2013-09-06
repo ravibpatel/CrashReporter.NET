@@ -52,6 +52,11 @@ namespace CrashReporterDotNET
         /// </summary>
         public Exception Exception;
 
+        /// <summary>
+        /// Gets or Sets custom message developer wants to send. It can be something like value of variables or other details you want to send.
+        /// </summary>
+        public String DeveloperMessage;
+
         internal string ApplicationTitle;
 
         internal string ApplicationVersion;

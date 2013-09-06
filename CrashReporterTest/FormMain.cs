@@ -29,12 +29,20 @@ namespace CrashReporterTest
             {
                 throw new ArgumentException();
             }
-            catch (ArgumentException exception)
+            catch (ArgumentException argumentException)
             {
-                if (!File.Exists("test.txt"))
+                const string path = "test.txt";
+                try
                 {
-                    throw new FileNotFoundException(
-                        "File Not found when trying to write argument exception to the file", exception);
+                    if (!File.Exists(path))
+                    {
+                        throw new FileNotFoundException(
+                            "File Not found when trying to write argument exception to the file", argumentException);
+                    }
+                }
+                catch (Exception exception)
+                {
+                    Program.SendCrashReport(exception, "Value of path variable is " + path);
                 }
             }
         }

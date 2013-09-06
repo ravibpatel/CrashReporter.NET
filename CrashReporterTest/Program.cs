@@ -23,7 +23,7 @@ namespace CrashReporterTest
             Application.Run(new FormMain());
         }
 
-        public static void SendCrashReport(Exception exception)
+        public static void SendCrashReport(Exception exception, string developerMessage = "")
         {
             var reportCrash = new ReportCrash
             {
@@ -34,6 +34,7 @@ namespace CrashReporterTest
                 UserName = "your gmail",
                 Password = "your gmail password",
                 EnableSSL = true,
+                DeveloperMessage = developerMessage
             };
 
             reportCrash.Send(exception);
