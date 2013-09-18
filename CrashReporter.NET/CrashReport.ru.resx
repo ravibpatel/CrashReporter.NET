@@ -145,7 +145,7 @@
     <value>10</value>
   </data>
   <data name="labelEmail.Text" xml:space="preserve">
-    <value>Email</value>
+    <value>E-mail</value>
   </data>
   <data name="textBoxUserMessage.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 251</value>
@@ -178,7 +178,7 @@
     <value>8</value>
   </data>
   <data name="labelMessage.Text" xml:space="preserve">
-    <value>Please tell us how application crashed so we can fix it.</value>
+    <value>Расскажите, пожалуйста, каким приложением разбился, чтобы мы могли исправить.</value>
   </data>
   <data name="textBoxTime.Location" type="System.Drawing.Point, System.Drawing">
     <value>341, 153</value>
@@ -208,7 +208,7 @@
     <value>6</value>
   </data>
   <data name="labelTime.Text" xml:space="preserve">
-    <value>Time</value>
+    <value>Время</value>
   </data>
   <data name="textBoxApplicationVersion.Location" type="System.Drawing.Point, System.Drawing">
     <value>105, 153</value>
@@ -238,7 +238,7 @@
     <value>4</value>
   </data>
   <data name="labelVersion.Text" xml:space="preserve">
-    <value>Version</value>
+    <value>Версия</value>
   </data>
   <data name="textBoxApplicationName.Location" type="System.Drawing.Point, System.Drawing">
     <value>105, 115</value>
@@ -268,7 +268,7 @@
     <value>2</value>
   </data>
   <data name="labelApplication.Text" xml:space="preserve">
-    <value>Application</value>
+    <value>Применение</value>
   </data>
   <data name="textBoxExceptionMessage.Location" type="System.Drawing.Point, System.Drawing">
     <value>105, 7</value>
@@ -319,7 +319,7 @@
     <value>0</value>
   </data>
   <data name="tabPageGeneral.Text" xml:space="preserve">
-    <value>General</value>
+    <value>Общий</value>
   </data>
   <data name="textBoxException.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 30</value>
@@ -346,7 +346,7 @@
     <value>7</value>
   </data>
   <data name="labelExceptionType.Text" xml:space="preserve">
-    <value>Exception Type</value>
+    <value>Тип исключения</value>
   </data>
   <data name="textBoxSource.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 170</value>
@@ -373,7 +373,7 @@
     <value>5</value>
   </data>
   <data name="labelSource.Text" xml:space="preserve">
-    <value>Source</value>
+    <value>Источник</value>
   </data>
   <data name="textBoxStackTrace.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 222</value>
@@ -406,7 +406,7 @@
     <value>3</value>
   </data>
   <data name="labelStackTrace.Text" xml:space="preserve">
-    <value>Stack Trace</value>
+    <value>Трассировка стека</value>
   </data>
   <data name="textBoxMessage.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 82</value>
@@ -439,7 +439,7 @@
     <value>0</value>
   </data>
   <data name="labelExceptionMessage.Text" xml:space="preserve">
-    <value>Message</value>
+    <value>Сообщение</value>
   </data>
   <data name="tabPageExceptions.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 26</value>
@@ -457,7 +457,7 @@
     <value>1</value>
   </data>
   <data name="tabPageExceptions.Text" xml:space="preserve">
-    <value>Exceptions</value>
+    <value>Исключения</value>
   </data>
   <data name="linkLabelView.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -472,7 +472,7 @@
     <value>3</value>
   </data>
   <data name="linkLabelView.Text" xml:space="preserve">
-    <value>View Full Screenshot</value>
+    <value>Просмотр полной Скриншот</value>
   </data>
   <data name="pictureBoxScreenshot.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -508,7 +508,7 @@
     <value>2</value>
   </data>
   <data name="groupBoxScreenshot.Text" xml:space="preserve">
-    <value>Screenshot</value>
+    <value>Скриншот</value>
   </data>
   <data name="checkBoxIncludeScreenshot.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -529,13 +529,13 @@
     <value>1</value>
   </data>
   <data name="checkBoxIncludeScreenshot.Text" xml:space="preserve">
-    <value>Include Screenshot</value>
+    <value>Включите Скриншот</value>
   </data>
   <data name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>146, 17</value>
   </data>
   <data name="checkBoxIncludeScreenshot.ToolTip" xml:space="preserve">
-    <value>Add screenshot of error screen in your crash report.</value>
+    <value>Добавить скриншот экран с ошибкой в ​​вашей отчет об ошибке.</value>
   </data>
   <data name="tabPageScreenshot.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 26</value>
@@ -553,7 +553,7 @@
     <value>2</value>
   </data>
   <data name="tabPageScreenshot.Text" xml:space="preserve">
-    <value>Screenshot</value>
+    <value>Скриншот</value>
   </data>
   <data name="tabControl.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 14</value>
@@ -580,7 +580,7 @@
     <value>3</value>
   </data>
   <data name="buttonSave.Text" xml:space="preserve">
-    <value>Save</value>
+    <value>Экономить</value>
   </data>
   <data name="buttonSave.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -601,7 +601,7 @@
     <value>2</value>
   </data>
   <data name="buttonCancel.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Отменить</value>
   </data>
   <data name="buttonCancel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -622,7 +622,7 @@
     <value>1</value>
   </data>
   <data name="buttonSendReport.Text" xml:space="preserve">
-    <value>Send Report</value>
+    <value>Отправить сообщение</value>
   </data>
   <data name="buttonSendReport.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -658,39 +658,39 @@
     <value>True</value>
   </data>
   <data name="EmailRequiredError" xml:space="preserve">
-    <value>A valid Email address is required in order to send the crash report. This ensures that you will be notified by the developer when bug is fixed</value>
+    <value>Действительный адрес эл почты требуется для того, чтобы отправить отчет об ошибке. Это гарантирует, что вы будете уведомлены разработчиком, когда ошибка будет исправлена</value>
   </data>
   <data name="ErrorCapturingImageCaption" xml:space="preserve">
-    <value>No image captured</value>
+    <value>Нет изображения, снятого</value>
   </data>
   <data name="ErrorCapturingImageMessage" xml:space="preserve">
-    <value>There is an error while capturing image. You can submit report report without screenshot.</value>
+    <value>Существует ошибка во время захвата изображения. Вы можете представить отчет отчет без скриншота.</value>
   </data>
   <data name="InvalidEmailAddressError" xml:space="preserve">
-    <value>Email address is not valid. Please provide valid email address</value>
+    <value>Адрес электронной почты не является допустимым. Пожалуйста, укажите правильный адрес электронной почты</value>
   </data>
   <data name="MessageSentCaption" xml:space="preserve">
-    <value>Crash report sent</value>
+    <value>Авария докладе, направленном</value>
   </data>
   <data name="MessageSentMessage" xml:space="preserve">
-    <value>Crash report of {0} {1} is sent to the developer. Thanks for your support.</value>
+    <value>Крэш доклада {0} {1} отправляется на разработчика. Спасибо за вашу поддержку.</value>
   </data>
   <data name="NoImageShownCaption" xml:space="preserve">
-    <value>Error opening image</value>
+    <value>Ошибка при открытии изображения</value>
   </data>
   <data name="NoImageShownMessage" xml:space="preserve">
-    <value>Error occured, no image will be shown.</value>
+    <value>Произошла ошибка, изображение не будет показано.</value>
   </data>
   <data name="ReportFileName" xml:space="preserve">
-    <value>{0} {1} Crash Report</value>
+    <value>{0} {1} отчета об ошибке</value>
   </data>
   <data name="SubjectWithEmail" xml:space="preserve">
-    <value>{0} {1} Crash Report by {2}</value>
+    <value>{0} {1} Авария Доклад {2}</value>
   </data>
   <data name="SubjectWithoutEmail" xml:space="preserve">
-    <value>{0} {1} Crash Report</value>
+    <value>{0} {1} отчета об ошибке</value>
   </data>
   <data name="TitleText" xml:space="preserve">
-    <value>{0} {1} crashed.</value>
+    <value>{0} {1} разбился.</value>
   </data>
 </root>

@@ -8,21 +8,22 @@ using System.Net.Mail;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Windows.Forms;
-using CrashReporterDotNET.Properties;
 
 namespace CrashReporterDotNET
 {
     internal partial class CrashReport : Form
     {
         private readonly ReportCrash _reportCrash;
+        private readonly ComponentResourceManager _resources = new ComponentResourceManager(typeof (CrashReport));
         private ProgressDialog _progressDialog;
 
         public CrashReport(ReportCrash reportCrashObject)
         {
             InitializeComponent();
             _reportCrash = reportCrashObject;
-            Text = string.Format("{0} {1} crashed.", _reportCrash.ApplicationTitle, _reportCrash.ApplicationVersion);
-            saveFileDialog.FileName = string.Format("{0} {1} Crash Report", _reportCrash.ApplicationTitle,
+            Text = string.Format(_resources.GetString("TitleText"), _reportCrash.ApplicationTitle,
+                                 _reportCrash.ApplicationVersion);
+            saveFileDialog.FileName = string.Format(_resources.GetString("ReportFileName"), _reportCrash.ApplicationTitle,
                                                     _reportCrash.ApplicationVersion);
 
             if (File.Exists(_reportCrash.ScreenShot))
@@ -49,18 +50,38 @@ namespace CrashReporterDotNET
                                        + @"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?
 				                            [0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
                                        + @"([a-zA-Z]+[\w-]+\.)+[a-zA-Z]{2,4})$");
-            string subject;
+            var subject = "";
 
-
-            if (!String.IsNullOrEmpty(textBoxEmail.Text) && regexEmail.IsMatch(textBoxEmail.Text))
+            if (string.IsNullOrEmpty(textBoxEmail.Text.Trim()))
             {
-                fromAddress = new MailAddress(textBoxEmail.Text);
-                subject = string.Format("{0} {1} Crash Report by {2}", _reportCrash.ApplicationTitle,
-                                        _reportCrash.ApplicationVersion, textBoxEmail.Text);
+                if (_reportCrash.EmailRequired)
+                {
+                    errorProviderEmail.SetError(textBoxEmail, _resources.GetString("EmailRequiredError"));
+                    return;
+                }
             }
             else
             {
-                subject = string.Format("{0} {1} Crash Report", _reportCrash.ApplicationTitle,
+                errorProviderEmail.SetError(textBoxEmail, "");
+                if (!regexEmail.IsMatch(textBoxEmail.Text.Trim()))
+                {
+                    if (_reportCrash.EmailRequired)
+                    {
+                        errorProviderEmail.SetError(textBoxEmail, _resources.GetString("InvalidEmailAddressError"));
+                        return;
+                    }
+                }
+                else
+                {
+                    errorProviderEmail.SetError(textBoxEmail, "");
+                    fromAddress = new MailAddress(textBoxEmail.Text.Trim());
+                    subject = string.Format(_resources.GetString("SubjectWithEmail"), _reportCrash.ApplicationTitle,
+                                            _reportCrash.ApplicationVersion, textBoxEmail.Text.Trim());
+                }
+            }
+            if (string.IsNullOrEmpty(subject.Trim()))
+            {
+                subject = string.Format(_resources.GetString("SubjectWithoutEmail"), _reportCrash.ApplicationTitle,
                                         _reportCrash.ApplicationVersion);
             }
 
@@ -159,7 +180,7 @@ namespace CrashReporterDotNET
                               HttpUtility.HtmlEncode(HelperMethods.GetWindowsVersion()),
                               HttpUtility.HtmlEncode(Environment.Version.ToString()),
                               CreateReport(_reportCrash.Exception));
-            string message = textBoxUserMessage.Text.Trim() + _reportCrash.DeveloperMessage;
+            string message = textBoxUserMessage.Text.Trim() + _reportCrash.DeveloperMessage.Trim();
             if (!String.IsNullOrEmpty(message))
             {
                 report += string.Format(@"<br/>
@@ -240,9 +261,9 @@ namespace CrashReporterDotNET
             else
             {
                 MessageBox.Show(
-                    string.Format("Crash report of {0} {1} is sent to the developer. Thanks for your support.",
+                    string.Format(_resources.GetString("MessageSentMessage"),
                                   _reportCrash.ApplicationTitle, _reportCrash.ApplicationVersion),
-                    Resources.CrashReport_Crash_report_sent, MessageBoxButtons.OK,
+                    _resources.GetString("MessageSentCaption"), MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
             }
@@ -280,14 +301,14 @@ namespace CrashReporterDotNET
             catch (FileNotFoundException)
             {
                 MessageBox.Show(
-                    Resources.CrashReport_error_while_capturing_image,
-                    Resources.CrashReport_No_image_captured, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _resources.GetString("ErrorCapturingImageMessage"),
+                    _resources.GetString("ErrorCapturingImageCaption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
             {
                 MessageBox.Show(
-                    Resources.CrashReport_no_image_will_be_shown,
-                    Resources.CrashReport_Error_opening_image, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _resources.GetString("NoImageShownMessage"),
+                    _resources.GetString("NoImageShownCaption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

@@ -62,12 +62,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CrashReport.es.resx" />
+    <EmbeddedResource Include="CrashReport.fr.resx" />
+    <EmbeddedResource Include="CrashReport.it.resx" />
     <EmbeddedResource Include="CrashReport.resx">
       <DependentUpon>CrashReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CrashReport.ru.resx" />
+    <EmbeddedResource Include="ProgressDialog.es.resx" />
+    <EmbeddedResource Include="ProgressDialog.fr.resx" />
+    <EmbeddedResource Include="ProgressDialog.it.resx" />
     <EmbeddedResource Include="ProgressDialog.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProgressDialog.ru.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

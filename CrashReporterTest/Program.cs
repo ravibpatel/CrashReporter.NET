@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows.Forms;
 using CrashReporterDotNET;
 
@@ -34,6 +35,8 @@ namespace CrashReporterTest
                 UserName = "your gmail",
                 Password = "your gmail password",
                 EnableSSL = true,
+                EmailRequired = true,
+                CurrentCulture = CultureInfo.CreateSpecificCulture("es"),
                 DeveloperMessage = developerMessage
             };
 

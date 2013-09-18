@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing.Imaging;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Threading;
@@ -57,6 +58,16 @@ namespace CrashReporterDotNET
         /// </summary>
         public String DeveloperMessage;
 
+        /// <summary>
+        ///  Gets or Sets if email is required to send the crash report.
+        /// </summary>
+        public bool EmailRequired;
+
+        /// <summary>
+        /// Gets or Sets the current culture to use by the library.
+        /// </summary>
+        public CultureInfo CurrentCulture =  CultureInfo.CreateSpecificCulture("en-US");
+
         internal string ApplicationTitle;
 
         internal string ApplicationVersion;
@@ -106,18 +117,18 @@ namespace CrashReporterDotNET
             if (String.IsNullOrEmpty(FromEmail) || String.IsNullOrEmpty(ToEmail) || String.IsNullOrEmpty(SmtpHost))
                 return;
 
-            var crashReport = new CrashReport(this);
-
             var parameterizedThreadStart = new ParameterizedThreadStart(ShowUI);
             var thread = new Thread(parameterizedThreadStart) {IsBackground = false};
+            thread.CurrentCulture = thread.CurrentUICulture = CurrentCulture ?? System.Windows.Forms.Application.CurrentCulture;
             thread.SetApartmentState(ApartmentState.STA);
-            thread.Start(crashReport);
+            thread.Start(this);
             thread.Join();
         }
 
-        private static void ShowUI(object crashReportDialog)
+        private static void ShowUI(object reportCrash)
         {
-            ((CrashReport) crashReportDialog).ShowDialog();
+            var crashReport = new CrashReport((ReportCrash) reportCrash);
+            crashReport.ShowDialog();
         }
     }
 }
