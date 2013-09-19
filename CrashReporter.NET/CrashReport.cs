@@ -75,13 +75,13 @@ namespace CrashReporterDotNET
                 {
                     errorProviderEmail.SetError(textBoxEmail, "");
                     fromAddress = new MailAddress(textBoxEmail.Text.Trim());
-                    subject = string.Format(_resources.GetString("SubjectWithEmail"), _reportCrash.ApplicationTitle,
+                    subject = string.Format("{0} {1} Crash Report by {2}", _reportCrash.ApplicationTitle,
                                             _reportCrash.ApplicationVersion, textBoxEmail.Text.Trim());
                 }
             }
             if (string.IsNullOrEmpty(subject.Trim()))
             {
-                subject = string.Format(_resources.GetString("SubjectWithoutEmail"), _reportCrash.ApplicationTitle,
+                subject = string.Format("{0} {1} Crash Report", _reportCrash.ApplicationTitle,
                                         _reportCrash.ApplicationVersion);
             }
 

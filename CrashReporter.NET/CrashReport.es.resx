@@ -684,12 +684,6 @@
   <data name="ReportFileName" xml:space="preserve">
     <value>{0} {1} Informe Crash</value>
   </data>
-  <data name="SubjectWithEmail" xml:space="preserve">
-    <value>{0} {1} Informe Crash por {2}</value>
-  </data>
-  <data name="SubjectWithoutEmail" xml:space="preserve">
-    <value>{0} {1} Informe Crash</value>
-  </data>
   <data name="TitleText" xml:space="preserve">
     <value>{0} {1} se estrelló.</value>
   </data>

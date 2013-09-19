@@ -675,12 +675,6 @@
   <data name="ReportFileName" xml:space="preserve">
     <value>{0} {1} Crash Report</value>
   </data>
-  <data name="SubjectWithEmail" xml:space="preserve">
-    <value>{0} {1} Crash Report by {2}</value>
-  </data>
-  <data name="SubjectWithoutEmail" xml:space="preserve">
-    <value>{0} {1} Crash Report</value>
-  </data>
   <data name="tabPageExceptions.Text" xml:space="preserve">
     <value>Exceptions</value>
   </data>
