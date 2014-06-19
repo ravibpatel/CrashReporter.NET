@@ -62,6 +62,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CrashReport.de.resx">
+      <DependentUpon>CrashReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrashReport.es.resx" />
     <EmbeddedResource Include="CrashReport.fr.resx" />
     <EmbeddedResource Include="CrashReport.it.resx" />
@@ -69,6 +72,9 @@
       <DependentUpon>CrashReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CrashReport.ru.resx" />
+    <EmbeddedResource Include="ProgressDialog.de.resx">
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProgressDialog.es.resx" />
     <EmbeddedResource Include="ProgressDialog.fr.resx" />
     <EmbeddedResource Include="ProgressDialog.it.resx" />

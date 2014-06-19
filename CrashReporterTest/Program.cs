@@ -28,15 +28,15 @@ namespace CrashReporterTest
         {
             var reportCrash = new ReportCrash
             {
-                FromEmail = "your gmail",
-                ToEmail = "email where you want to recieve crash reports.",
+                FromEmail = "Your Gmail Address",
+                ToEmail = "Email where you want to recieve crash reports.",
                 SmtpHost = "smtp.gmail.com",
                 Port = 587,
-                UserName = "your gmail",
-                Password = "your gmail password",
+                UserName = "Your Gmail Address",
+                Password = "Your Gmail Password",
                 EnableSSL = true,
                 EmailRequired = true,
-                CurrentCulture = CultureInfo.CreateSpecificCulture("es"),
+                CurrentCulture = CultureInfo.CreateSpecificCulture("de"),
                 DeveloperMessage = developerMessage
             };
 
