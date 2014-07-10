@@ -56,7 +56,7 @@ namespace CrashReporterDotNET
         /// <summary>
         /// Gets or Sets custom message developer wants to send. It can be something like value of variables or other details you want to send.
         /// </summary>
-        public String DeveloperMessage;
+        public String DeveloperMessage = "";
 
         /// <summary>
         ///  Gets or Sets if email is required to send the crash report.
