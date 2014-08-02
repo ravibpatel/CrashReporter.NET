@@ -299,7 +299,6 @@
             // saveFileDialog
             // 
             this.saveFileDialog.DefaultExt = "html";
-            saveFileDialog.Filter = "HTML Files|*.html";
             resources.ApplyResources(this.saveFileDialog, "saveFileDialog");
             this.saveFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.SaveFileDialogFileOk);
             // 
@@ -328,12 +327,10 @@
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSendReport);
             this.Controls.Add(this.tabControl);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CrashReport";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CrashReport_FormClosing);
             this.Load += new System.EventHandler(this.CrashReportLoad);
             this.Shown += new System.EventHandler(this.CrashReport_Shown);

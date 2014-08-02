@@ -32,6 +32,12 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\CrashReporter.NET.XML</DocumentationFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>CrashReporter.NET.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -90,6 +96,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="CrashReporter.NET.pfx" />
     <None Include="Resources\email_go.png" />
   </ItemGroup>
   <ItemGroup>

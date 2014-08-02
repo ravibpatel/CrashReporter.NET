@@ -147,9 +147,6 @@
   <data name="labelMessage.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="labelMessage.Text" xml:space="preserve">
-    <value>Sending crash report. Please wait...</value>
-  </data>
   <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -157,7 +154,7 @@
     <value>7, 17</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>338, 70</value>
+    <value>464, 70</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 13px</value>
@@ -167,5 +164,8 @@
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>
+  </data>
+  <data name="labelMessage.Text" xml:space="preserve">
+    <value>Sending crash report. Please wait...</value>
   </data>
 </root>

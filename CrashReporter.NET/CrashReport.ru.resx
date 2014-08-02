@@ -117,545 +117,62 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="textBoxEmail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 192</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="textBoxEmail.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="textBoxEmail.Size" type="System.Drawing.Size, System.Drawing">
-    <value>480, 25</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="textBoxEmail.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="labelEmail.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelEmail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 195</value>
-  </data>
-  <data name="labelEmail.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 17</value>
-  </data>
-  <data name="labelEmail.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
   <data name="labelEmail.Text" xml:space="preserve">
     <value>E-mail</value>
-  </data>
-  <data name="textBoxUserMessage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 251</value>
-  </data>
-  <data name="textBoxUserMessage.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="textBoxUserMessage.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="textBoxUserMessage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>579, 161</value>
-  </data>
-  <data name="textBoxUserMessage.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="labelMessage.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelMessage.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 13px</value>
-  </data>
-  <data name="labelMessage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 230</value>
-  </data>
-  <data name="labelMessage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>322, 17</value>
-  </data>
-  <data name="labelMessage.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
   </data>
   <data name="labelMessage.Text" xml:space="preserve">
     <value>Расскажите, пожалуйста, каким приложением разбился, чтобы мы могли исправить.</value>
   </data>
-  <data name="textBoxTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>341, 153</value>
-  </data>
-  <data name="textBoxTime.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="textBoxTime.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 25</value>
-  </data>
-  <data name="textBoxTime.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="labelTime.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelTime.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 13px</value>
-  </data>
-  <data name="labelTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>299, 156</value>
-  </data>
-  <data name="labelTime.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 17</value>
-  </data>
-  <data name="labelTime.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
   <data name="labelTime.Text" xml:space="preserve">
     <value>Время</value>
-  </data>
-  <data name="textBoxApplicationVersion.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 153</value>
-  </data>
-  <data name="textBoxApplicationVersion.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="textBoxApplicationVersion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 25</value>
-  </data>
-  <data name="textBoxApplicationVersion.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="labelVersion.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelVersion.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 13px</value>
-  </data>
-  <data name="labelVersion.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 157</value>
-  </data>
-  <data name="labelVersion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 17</value>
-  </data>
-  <data name="labelVersion.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
   </data>
   <data name="labelVersion.Text" xml:space="preserve">
     <value>Версия</value>
   </data>
-  <data name="textBoxApplicationName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 115</value>
-  </data>
-  <data name="textBoxApplicationName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="textBoxApplicationName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>480, 25</value>
-  </data>
-  <data name="textBoxApplicationName.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="labelApplication.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelApplication.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 13px</value>
-  </data>
-  <data name="labelApplication.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 118</value>
-  </data>
-  <data name="labelApplication.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 17</value>
-  </data>
-  <data name="labelApplication.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
   <data name="labelApplication.Text" xml:space="preserve">
     <value>Применение</value>
-  </data>
-  <data name="textBoxExceptionMessage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 7</value>
-  </data>
-  <data name="textBoxExceptionMessage.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="textBoxExceptionMessage.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="textBoxExceptionMessage.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
-    <value>Vertical</value>
-  </data>
-  <data name="textBoxExceptionMessage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>480, 101</value>
-  </data>
-  <data name="textBoxExceptionMessage.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="pictureBoxError.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 7</value>
-  </data>
-  <data name="pictureBoxError.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="pictureBoxError.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 84</value>
-  </data>
-  <data name="pictureBoxError.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>CenterImage</value>
-  </data>
-  <data name="pictureBoxError.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="tabPageGeneral.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 26</value>
-  </data>
-  <data name="tabPageGeneral.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="tabPageGeneral.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="tabPageGeneral.Size" type="System.Drawing.Size, System.Drawing">
-    <value>591, 420</value>
-  </data>
-  <data name="tabPageGeneral.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
   </data>
   <data name="tabPageGeneral.Text" xml:space="preserve">
     <value>Общий</value>
   </data>
-  <data name="textBoxException.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 30</value>
-  </data>
-  <data name="textBoxException.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="textBoxException.Size" type="System.Drawing.Size, System.Drawing">
-    <value>579, 25</value>
-  </data>
-  <data name="textBoxException.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="labelExceptionType.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelExceptionType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 7</value>
-  </data>
-  <data name="labelExceptionType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 17</value>
-  </data>
-  <data name="labelExceptionType.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
   <data name="labelExceptionType.Text" xml:space="preserve">
     <value>Тип исключения</value>
-  </data>
-  <data name="textBoxSource.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 170</value>
-  </data>
-  <data name="textBoxSource.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="textBoxSource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>579, 25</value>
-  </data>
-  <data name="textBoxSource.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="labelSource.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelSource.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 147</value>
-  </data>
-  <data name="labelSource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 17</value>
-  </data>
-  <data name="labelSource.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
   </data>
   <data name="labelSource.Text" xml:space="preserve">
     <value>Источник</value>
   </data>
-  <data name="textBoxStackTrace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 222</value>
-  </data>
-  <data name="textBoxStackTrace.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="textBoxStackTrace.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="textBoxStackTrace.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
-    <value>Vertical</value>
-  </data>
-  <data name="textBoxStackTrace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>579, 190</value>
-  </data>
-  <data name="textBoxStackTrace.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="labelStackTrace.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelStackTrace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 199</value>
-  </data>
-  <data name="labelStackTrace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 17</value>
-  </data>
-  <data name="labelStackTrace.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
   <data name="labelStackTrace.Text" xml:space="preserve">
     <value>Трассировка стека</value>
-  </data>
-  <data name="textBoxMessage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 82</value>
-  </data>
-  <data name="textBoxMessage.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="textBoxMessage.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="textBoxMessage.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
-    <value>Vertical</value>
-  </data>
-  <data name="textBoxMessage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>579, 61</value>
-  </data>
-  <data name="textBoxMessage.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="labelExceptionMessage.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelExceptionMessage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 59</value>
-  </data>
-  <data name="labelExceptionMessage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 17</value>
-  </data>
-  <data name="labelExceptionMessage.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
   </data>
   <data name="labelExceptionMessage.Text" xml:space="preserve">
     <value>Сообщение</value>
   </data>
-  <data name="tabPageExceptions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 26</value>
-  </data>
-  <data name="tabPageExceptions.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="tabPageExceptions.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="tabPageExceptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>591, 420</value>
-  </data>
-  <data name="tabPageExceptions.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
   <data name="tabPageExceptions.Text" xml:space="preserve">
     <value>Исключения</value>
-  </data>
-  <data name="linkLabelView.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="linkLabelView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>451, 14</value>
-  </data>
-  <data name="linkLabelView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 17</value>
-  </data>
-  <data name="linkLabelView.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
   </data>
   <data name="linkLabelView.Text" xml:space="preserve">
     <value>Просмотр полной Скриншот</value>
   </data>
-  <data name="pictureBoxScreenshot.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="pictureBoxScreenshot.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 22</value>
-  </data>
-  <data name="pictureBoxScreenshot.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="pictureBoxScreenshot.Size" type="System.Drawing.Size, System.Drawing">
-    <value>573, 345</value>
-  </data>
-  <data name="pictureBoxScreenshot.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>StretchImage</value>
-  </data>
-  <data name="pictureBoxScreenshot.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="groupBoxScreenshot.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 41</value>
-  </data>
-  <data name="groupBoxScreenshot.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="groupBoxScreenshot.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="groupBoxScreenshot.Size" type="System.Drawing.Size, System.Drawing">
-    <value>579, 371</value>
-  </data>
-  <data name="groupBoxScreenshot.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
   <data name="groupBoxScreenshot.Text" xml:space="preserve">
     <value>Скриншот</value>
-  </data>
-  <data name="checkBoxIncludeScreenshot.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="checkBoxIncludeScreenshot.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="checkBoxIncludeScreenshot.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 12</value>
-  </data>
-  <data name="checkBoxIncludeScreenshot.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="checkBoxIncludeScreenshot.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 21</value>
-  </data>
-  <data name="checkBoxIncludeScreenshot.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
   </data>
   <data name="checkBoxIncludeScreenshot.Text" xml:space="preserve">
     <value>Включите Скриншот</value>
   </data>
-  <data name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing">
-    <value>146, 17</value>
-  </data>
   <data name="checkBoxIncludeScreenshot.ToolTip" xml:space="preserve">
     <value>Добавить скриншот экран с ошибкой в ​​вашей отчет об ошибке.</value>
-  </data>
-  <data name="tabPageScreenshot.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 26</value>
-  </data>
-  <data name="tabPageScreenshot.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="tabPageScreenshot.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="tabPageScreenshot.Size" type="System.Drawing.Size, System.Drawing">
-    <value>591, 420</value>
-  </data>
-  <data name="tabPageScreenshot.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
   </data>
   <data name="tabPageScreenshot.Text" xml:space="preserve">
     <value>Скриншот</value>
   </data>
-  <data name="tabControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 14</value>
-  </data>
-  <data name="tabControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="tabControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>599, 450</value>
-  </data>
-  <data name="tabControl.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="buttonSave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>328, 472</value>
-  </data>
-  <data name="buttonSave.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="buttonSave.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 56</value>
-  </data>
-  <data name="buttonSave.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
   <data name="buttonSave.Text" xml:space="preserve">
     <value>Экономить</value>
-  </data>
-  <data name="buttonSave.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="buttonSave.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageBeforeText</value>
-  </data>
-  <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>473, 472</value>
-  </data>
-  <data name="buttonCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 56</value>
-  </data>
-  <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
   </data>
   <data name="buttonCancel.Text" xml:space="preserve">
     <value>Отменить</value>
   </data>
-  <data name="buttonCancel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="buttonCancel.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageBeforeText</value>
-  </data>
-  <data name="buttonSendReport.Location" type="System.Drawing.Point, System.Drawing">
-    <value>183, 472</value>
-  </data>
-  <data name="buttonSendReport.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="buttonSendReport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 56</value>
-  </data>
-  <data name="buttonSendReport.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
   <data name="buttonSendReport.Text" xml:space="preserve">
     <value>Отправить сообщение</value>
-  </data>
-  <data name="buttonSendReport.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="buttonSendReport.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageBeforeText</value>
-  </data>
-  <data name="saveFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing">
-    <value>17, 17</value>
-  </data>
-  <data name="errorProviderEmail.TrayLocation" type="System.Drawing.Point, System.Drawing">
-    <value>236, 17</value>
-  </data>
-  <data name="$this.Localizable" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>7, 17</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>624, 539</value>
-  </data>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 13px</value>
-  </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
-  </data>
-  <data name="errorProviderEmail.RightToLeft" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="EmailRequiredError" xml:space="preserve">
     <value>Действительный адрес эл почты требуется для того, чтобы отправить отчет об ошибке. Это гарантирует, что вы будете уведомлены разработчиком, когда ошибка будет исправлена</value>
