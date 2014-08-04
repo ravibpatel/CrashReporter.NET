@@ -36,6 +36,7 @@ namespace CrashReporterTest
                 Password = "Your Gmail Password",
                 EnableSSL = true,
                 EmailRequired = true,
+                CaptureScreen = false,
                 CurrentCulture = CultureInfo.CreateSpecificCulture("en"),
                 DeveloperMessage = developerMessage
             };

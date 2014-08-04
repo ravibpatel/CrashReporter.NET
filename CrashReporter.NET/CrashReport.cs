@@ -23,8 +23,7 @@ namespace CrashReporterDotNET
             _reportCrash = reportCrashObject;
             Text = string.Format(_resources.GetString("TitleText"), _reportCrash.ApplicationTitle,
                                  _reportCrash.ApplicationVersion);
-            saveFileDialog.FileName = string.Format(_resources.GetString("ReportFileName"), _reportCrash.ApplicationTitle,
-                                                    _reportCrash.ApplicationVersion);
+            saveFileDialog.FileName = string.Format(_resources.GetString("ReportFileName"), _reportCrash.ApplicationTitle, _reportCrash.ApplicationVersion);
 
             if (File.Exists(_reportCrash.ScreenShot))
             {
@@ -114,7 +113,7 @@ namespace CrashReporterDotNET
             _progressDialog.ShowDialog();
         }
 
-        public string HtmlReport()
+        private string HtmlReport()
         {
             string report =
                 string.Format(@"<!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 1.0 Transitional//EN"" ""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"">
@@ -180,8 +179,7 @@ namespace CrashReporterDotNET
                               HttpUtility.HtmlEncode(HelperMethods.GetWindowsVersion()),
                               HttpUtility.HtmlEncode(Environment.Version.ToString()),
                               CreateReport(_reportCrash.Exception));
-            string message = string.Format("{0} {1}", textBoxUserMessage.Text.Trim(), _reportCrash.DeveloperMessage.Trim());
-            if (!String.IsNullOrEmpty(message.Trim()))
+            if (!String.IsNullOrEmpty(textBoxMessage.Text.Trim()))
             {
                 report += string.Format(@"<br/>
                             <div class=""content"">
@@ -191,7 +189,19 @@ namespace CrashReporterDotNET
                             <div class=""message"">
                             <p>{0}</p>
                             </div>
-                            </div>", HttpUtility.HtmlEncode(message.Trim()));
+                            </div>", HttpUtility.HtmlEncode(textBoxMessage.Text.Trim()));
+            }
+            if (!String.IsNullOrEmpty(_reportCrash.DeveloperMessage.Trim()))
+            {
+                report += string.Format(@"<br/>
+                            <div class=""content"">
+                            <div class=""title"" style=""background-color: #66FF99;"">
+                            <h3>Developer Message</h3>
+                            </div>
+                            <div class=""message"">
+                            <p>{0}</p>
+                            </div>
+                            </div>", HttpUtility.HtmlEncode(_reportCrash.DeveloperMessage.Trim()));
             }
             report += "</body></html>";
             return report;
@@ -233,8 +243,8 @@ namespace CrashReporterDotNET
                         </div>
                         </div>", HttpUtility.HtmlEncode(exception.GetType().ToString()),
                                           HttpUtility.HtmlEncode(exception.Message),
-                                          HttpUtility.HtmlEncode(exception.Source),
-                                          HttpUtility.HtmlEncode(exception.StackTrace).Replace("\r\n", "<br/>"));
+                                          HttpUtility.HtmlEncode(exception.Source ?? String.Empty),
+                                          HttpUtility.HtmlEncode(exception.StackTrace ?? String.Empty).Replace("\r\n", "<br/>"));
             if (exception.InnerException != null)
             {
                 report += string.Format(@"<br/>
@@ -330,6 +340,7 @@ namespace CrashReporterDotNET
         private void CrashReport_Shown(object sender, EventArgs e)
         {
             Activate();
+            textBoxEmail.Select();
         }
     }
 }

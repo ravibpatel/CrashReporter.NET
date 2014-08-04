@@ -54,6 +54,11 @@ namespace CrashReporterDotNET
         public Exception Exception;
 
         /// <summary>
+        /// Specify whether CrashReporter.NET should take screen shot of whole screen or not.
+        /// </summary>
+        public bool CaptureScreen = false;
+
+        /// <summary>
         /// Gets or Sets custom message developer wants to send. It can be something like value of variables or other details you want to send.
         /// </summary>
         public String DeveloperMessage = "";
@@ -105,10 +110,12 @@ namespace CrashReporterDotNET
 
             try
             {
-                var captureScreenshot = new CaptureScreenshot();
                 ScreenShot = string.Format(@"{0}\{1} Crash Screenshot.png", Path.GetTempPath(),
                                            ApplicationTitle);
-                captureScreenshot.CaptureScreenToFile(ScreenShot, ImageFormat.Png);
+                if (CaptureScreen)
+                    CaptureScreenshot.CaptureScreen(ScreenShot, ImageFormat.Png);
+                else
+                    CaptureScreenshot.CaptureActiveWindow(ScreenShot, ImageFormat.Png);
             }
             catch (Exception e)
             {

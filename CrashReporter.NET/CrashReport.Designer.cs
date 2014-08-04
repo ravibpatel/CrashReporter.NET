@@ -299,7 +299,6 @@
             // saveFileDialog
             // 
             this.saveFileDialog.DefaultExt = "html";
-            resources.ApplyResources(this.saveFileDialog, "saveFileDialog");
             this.saveFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.SaveFileDialogFileOk);
             // 
             // toolTip
