@@ -309,7 +309,7 @@
             this.toolTip.IsBalloon = true;
             this.toolTip.ReshowDelay = 0;
             this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTip.ToolTipTitle = "Include application screenshot";
+            resources.ApplyResources(this.toolTip, "toolTip"); ;
             // 
             // errorProviderEmail
             // 

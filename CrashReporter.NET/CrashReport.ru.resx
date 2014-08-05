@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="labelEmail.Text" xml:space="preserve">
-    <value>E-mail</value>
+    <value>Email</value>
   </data>
   <data name="labelMessage.Text" xml:space="preserve">
     <value>Расскажите, пожалуйста, каким приложением разбился, чтобы мы могли исправить.</value>
@@ -203,5 +203,8 @@
   </data>
   <data name="TitleText" xml:space="preserve">
     <value>{0} {1} разбился.</value>
+  </data>
+  <data name="toolTip.ToolTipTitle" xml:space="preserve">
+    <value>Включите скриншот приложения</value>
   </data>
 </root>

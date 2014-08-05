@@ -70,26 +70,34 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CrashReport.da.resx" />
     <EmbeddedResource Include="CrashReport.de.resx">
       <DependentUpon>CrashReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CrashReport.es.resx" />
     <EmbeddedResource Include="CrashReport.fr.resx" />
     <EmbeddedResource Include="CrashReport.it.resx" />
+    <EmbeddedResource Include="CrashReport.nl.resx" />
+    <EmbeddedResource Include="CrashReport.pl.resx" />
     <EmbeddedResource Include="CrashReport.resx">
       <DependentUpon>CrashReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CrashReport.ru.resx" />
+    <EmbeddedResource Include="CrashReport.sv.resx" />
+    <EmbeddedResource Include="ProgressDialog.da.resx" />
     <EmbeddedResource Include="ProgressDialog.de.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgressDialog.es.resx" />
     <EmbeddedResource Include="ProgressDialog.fr.resx" />
     <EmbeddedResource Include="ProgressDialog.it.resx" />
+    <EmbeddedResource Include="ProgressDialog.nl.resx" />
+    <EmbeddedResource Include="ProgressDialog.pl.resx" />
     <EmbeddedResource Include="ProgressDialog.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgressDialog.ru.resx" />
+    <EmbeddedResource Include="ProgressDialog.sv.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

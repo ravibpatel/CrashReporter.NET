@@ -37,7 +37,7 @@ namespace CrashReporterTest
                 EnableSSL = true,
                 EmailRequired = true,
                 CaptureScreen = false,
-                CurrentCulture = CultureInfo.CreateSpecificCulture("en"),
+                CurrentCulture = CultureInfo.CreateSpecificCulture("nl"),
                 DeveloperMessage = developerMessage
             };
 

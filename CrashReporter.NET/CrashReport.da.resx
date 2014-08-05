@@ -117,94 +117,94 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="buttonCancel.Text" xml:space="preserve">
+    <value>Annuller</value>
+  </data>
+  <data name="buttonSave.Text" xml:space="preserve">
+    <value>Gem</value>
+  </data>
+  <data name="buttonSendReport.Text" xml:space="preserve">
+    <value>Send rapport</value>
+  </data>
+  <data name="checkBoxIncludeScreenshot.Text" xml:space="preserve">
+    <value>Medtag Screenshot</value>
+  </data>
+  <data name="checkBoxIncludeScreenshot.ToolTip" xml:space="preserve">
+    <value>Tilføj screenshot af fejl skærm i styrt rapport.</value>
+  </data>
+  <data name="EmailRequiredError" xml:space="preserve">
+    <value>En gyldig e-mail-adresse er nødvendig for at sende styrtet rapporten. Dette sikrer, at du vil blive underrettet af bygherren, når fejlen er fast</value>
+  </data>
+  <data name="ErrorCapturingImageCaption" xml:space="preserve">
+    <value>Intet billede fanget</value>
+  </data>
+  <data name="ErrorCapturingImageMessage" xml:space="preserve">
+    <value>Der er en fejl, mens indfange billedet. Du kan indsende rapport rapport uden skærmbillede.</value>
+  </data>
+  <data name="groupBoxScreenshot.Text" xml:space="preserve">
+    <value>Skærmbillede</value>
+  </data>
+  <data name="InvalidEmailAddressError" xml:space="preserve">
+    <value>E-mail-adresse er ikke gyldig. Oplys venligst gyldig e-mail-adresse</value>
+  </data>
+  <data name="labelApplication.Text" xml:space="preserve">
+    <value>Ansøgning</value>
+  </data>
   <data name="labelEmail.Text" xml:space="preserve">
     <value>Email</value>
   </data>
-  <data name="labelMessage.Text" xml:space="preserve">
-    <value>Si prega di dirci in che modo l'applicazione si è schiantato in modo che possiamo risolvere il problema.</value>
-  </data>
-  <data name="labelTime.Text" xml:space="preserve">
-    <value>Volta</value>
-  </data>
-  <data name="labelVersion.Text" xml:space="preserve">
-    <value>Versione</value>
-  </data>
-  <data name="labelApplication.Text" xml:space="preserve">
-    <value>Applicazione</value>
-  </data>
-  <data name="tabPageGeneral.Text" xml:space="preserve">
-    <value>Generale</value>
+  <data name="labelExceptionMessage.Text" xml:space="preserve">
+    <value>Besked</value>
   </data>
   <data name="labelExceptionType.Text" xml:space="preserve">
-    <value>Tipo di eccezione</value>
+    <value>Undtagelse Type</value>
+  </data>
+  <data name="labelMessage.Text" xml:space="preserve">
+    <value>Fortæl os, hvordan ansøgning styrtede så vi kan ordne det.</value>
   </data>
   <data name="labelSource.Text" xml:space="preserve">
-    <value>Fonte</value>
+    <value>Kilde</value>
   </data>
   <data name="labelStackTrace.Text" xml:space="preserve">
-    <value>Analisi dello stack</value>
+    <value>Stack Trace</value>
   </data>
-  <data name="labelExceptionMessage.Text" xml:space="preserve">
-    <value>Messaggio</value>
+  <data name="labelTime.Text" xml:space="preserve">
+    <value>Tid</value>
   </data>
-  <data name="tabPageExceptions.Text" xml:space="preserve">
-    <value>Eccezioni</value>
+  <data name="labelVersion.Text" xml:space="preserve">
+    <value>Version</value>
   </data>
   <data name="linkLabelView.Text" xml:space="preserve">
-    <value>Visualizza miniatura completa</value>
-  </data>
-  <data name="groupBoxScreenshot.Text" xml:space="preserve">
-    <value>Screenshot</value>
-  </data>
-  <data name="checkBoxIncludeScreenshot.Text" xml:space="preserve">
-    <value>Includi Screenshot</value>
-  </data>
-  <data name="checkBoxIncludeScreenshot.ToolTip" xml:space="preserve">
-    <value>Aggiungi screenshot della schermata di errore nel vostro rapporto di crash.</value>
-  </data>
-  <data name="tabPageScreenshot.Text" xml:space="preserve">
-    <value>Screenshot</value>
-  </data>
-  <data name="buttonSave.Text" xml:space="preserve">
-    <value>Salva</value>
-  </data>
-  <data name="buttonCancel.Text" xml:space="preserve">
-    <value>Annullare</value>
-  </data>
-  <data name="buttonSendReport.Text" xml:space="preserve">
-    <value>Invia segnalazione</value>
-  </data>
-  <data name="EmailRequiredError" xml:space="preserve">
-    <value>Un indirizzo email valido è necessario per inviare il crash report. Questo assicura che ti verrà comunicato dallo sviluppatore quando bug è stato risolto</value>
-  </data>
-  <data name="ErrorCapturingImageCaption" xml:space="preserve">
-    <value>Nessuna immagine catturata</value>
-  </data>
-  <data name="ErrorCapturingImageMessage" xml:space="preserve">
-    <value>C'è un errore durante la cattura dell'immagine. È possibile inviare il rapporto report senza screenshot.</value>
-  </data>
-  <data name="InvalidEmailAddressError" xml:space="preserve">
-    <value>Indirizzo e-mail non valido. Si prega di fornire indirizzo email valido</value>
+    <value>View Full Screenshot</value>
   </data>
   <data name="MessageSentCaption" xml:space="preserve">
-    <value>Crash report inviati</value>
+    <value>Crash rapport sendt</value>
   </data>
   <data name="MessageSentMessage" xml:space="preserve">
-    <value>Crash Report di {0} {1} viene inviato allo sviluppatore. Grazie per il vostro supporto.</value>
+    <value>Crash rapport fra {0} {1} er sendt til udvikleren. Tak for din støtte.</value>
   </data>
   <data name="NoImageShownCaption" xml:space="preserve">
-    <value>Immagine di apertura di errore</value>
+    <value>Fejl ved åbning af billede</value>
   </data>
   <data name="NoImageShownMessage" xml:space="preserve">
-    <value>Errore, nessuna immagine viene visualizzata.</value>
+    <value>Der opstod en fejl, intet billede vil blive vist.</value>
   </data>
   <data name="ReportFileName" xml:space="preserve">
     <value>{0} {1} Crash Report</value>
   </data>
+  <data name="tabPageExceptions.Text" xml:space="preserve">
+    <value>Undtagelser</value>
+  </data>
+  <data name="tabPageGeneral.Text" xml:space="preserve">
+    <value>Generelt</value>
+  </data>
+  <data name="tabPageScreenshot.Text" xml:space="preserve">
+    <value>Skærmbillede</value>
+  </data>
   <data name="TitleText" xml:space="preserve">
-    <value>{0} {1} schiantato.</value>
+    <value>{0} {1} styrtede ned.</value>
   </data>
   <data name="toolTip.ToolTipTitle" xml:space="preserve">
-    <value>Includi applicazione screenshot</value>
+    <value>Medtag ansøgning screenshot</value>
   </data>
 </root>

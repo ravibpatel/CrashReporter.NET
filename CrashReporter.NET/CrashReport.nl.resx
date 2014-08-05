@@ -117,94 +117,94 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="labelEmail.Text" xml:space="preserve">
-    <value>Email</value>
+  <data name="buttonCancel.Text" xml:space="preserve">
+    <value>Annuleren</value>
   </data>
-  <data name="labelMessage.Text" xml:space="preserve">
-    <value>Si prega di dirci in che modo l'applicazione si è schiantato in modo che possiamo risolvere il problema.</value>
+  <data name="buttonSave.Text" xml:space="preserve">
+    <value>Opslaan</value>
   </data>
-  <data name="labelTime.Text" xml:space="preserve">
-    <value>Volta</value>
+  <data name="buttonSendReport.Text" xml:space="preserve">
+    <value>Rapport verzenden</value>
   </data>
-  <data name="labelVersion.Text" xml:space="preserve">
-    <value>Versione</value>
+  <data name="checkBoxIncludeScreenshot.Text" xml:space="preserve">
+    <value>Onder Schermafbeelding</value>
   </data>
-  <data name="labelApplication.Text" xml:space="preserve">
-    <value>Applicazione</value>
+  <data name="checkBoxIncludeScreenshot.ToolTip" xml:space="preserve">
+    <value>Screenshot van de fout scherm toe te voegen in uw crash rapport.</value>
   </data>
-  <data name="tabPageGeneral.Text" xml:space="preserve">
-    <value>Generale</value>
+  <data name="EmailRequiredError" xml:space="preserve">
+    <value>Een geldig e-mailadres nodig om de crash rapport sturen. Dit zorgt ervoor dat je door de ontwikkelaar wordt verwittigd wanneer bug is opgelost</value>
   </data>
-  <data name="labelExceptionType.Text" xml:space="preserve">
-    <value>Tipo di eccezione</value>
+  <data name="ErrorCapturingImageCaption" xml:space="preserve">
+    <value>Geen afbeelding gevangen</value>
   </data>
-  <data name="labelSource.Text" xml:space="preserve">
-    <value>Fonte</value>
-  </data>
-  <data name="labelStackTrace.Text" xml:space="preserve">
-    <value>Analisi dello stack</value>
-  </data>
-  <data name="labelExceptionMessage.Text" xml:space="preserve">
-    <value>Messaggio</value>
-  </data>
-  <data name="tabPageExceptions.Text" xml:space="preserve">
-    <value>Eccezioni</value>
-  </data>
-  <data name="linkLabelView.Text" xml:space="preserve">
-    <value>Visualizza miniatura completa</value>
+  <data name="ErrorCapturingImageMessage" xml:space="preserve">
+    <value>Er is een fout opgetreden tijdens het maken van opnamen. U kunt rapport verslag uit zonder screenshot.</value>
   </data>
   <data name="groupBoxScreenshot.Text" xml:space="preserve">
     <value>Screenshot</value>
   </data>
-  <data name="checkBoxIncludeScreenshot.Text" xml:space="preserve">
-    <value>Includi Screenshot</value>
-  </data>
-  <data name="checkBoxIncludeScreenshot.ToolTip" xml:space="preserve">
-    <value>Aggiungi screenshot della schermata di errore nel vostro rapporto di crash.</value>
-  </data>
-  <data name="tabPageScreenshot.Text" xml:space="preserve">
-    <value>Screenshot</value>
-  </data>
-  <data name="buttonSave.Text" xml:space="preserve">
-    <value>Salva</value>
-  </data>
-  <data name="buttonCancel.Text" xml:space="preserve">
-    <value>Annullare</value>
-  </data>
-  <data name="buttonSendReport.Text" xml:space="preserve">
-    <value>Invia segnalazione</value>
-  </data>
-  <data name="EmailRequiredError" xml:space="preserve">
-    <value>Un indirizzo email valido è necessario per inviare il crash report. Questo assicura che ti verrà comunicato dallo sviluppatore quando bug è stato risolto</value>
-  </data>
-  <data name="ErrorCapturingImageCaption" xml:space="preserve">
-    <value>Nessuna immagine catturata</value>
-  </data>
-  <data name="ErrorCapturingImageMessage" xml:space="preserve">
-    <value>C'è un errore durante la cattura dell'immagine. È possibile inviare il rapporto report senza screenshot.</value>
-  </data>
   <data name="InvalidEmailAddressError" xml:space="preserve">
-    <value>Indirizzo e-mail non valido. Si prega di fornire indirizzo email valido</value>
+    <value>E-mailadres is niet geldig. Geef geldig e-mailadres</value>
+  </data>
+  <data name="labelApplication.Text" xml:space="preserve">
+    <value>Toepassing</value>
+  </data>
+  <data name="labelEmail.Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="labelExceptionMessage.Text" xml:space="preserve">
+    <value>Bericht</value>
+  </data>
+  <data name="labelExceptionType.Text" xml:space="preserve">
+    <value>Uitzondering Type</value>
+  </data>
+  <data name="labelMessage.Text" xml:space="preserve">
+    <value>Gelieve ons te vertellen hoe applicatie crashte zodat we het kunnen repareren.</value>
+  </data>
+  <data name="labelSource.Text" xml:space="preserve">
+    <value>Bron</value>
+  </data>
+  <data name="labelStackTrace.Text" xml:space="preserve">
+    <value>Stack Trace</value>
+  </data>
+  <data name="labelTime.Text" xml:space="preserve">
+    <value>Tijd</value>
+  </data>
+  <data name="labelVersion.Text" xml:space="preserve">
+    <value>Versie</value>
+  </data>
+  <data name="linkLabelView.Text" xml:space="preserve">
+    <value>View Full Schermafbeelding</value>
   </data>
   <data name="MessageSentCaption" xml:space="preserve">
-    <value>Crash report inviati</value>
+    <value>Crashrapport verzonden</value>
   </data>
   <data name="MessageSentMessage" xml:space="preserve">
-    <value>Crash Report di {0} {1} viene inviato allo sviluppatore. Grazie per il vostro supporto.</value>
+    <value>Crash rapport van {0} {1} is aan de ontwikkelaar gestuurd. Bedankt voor uw steun.</value>
   </data>
   <data name="NoImageShownCaption" xml:space="preserve">
-    <value>Immagine di apertura di errore</value>
+    <value>Afbeelding Error opening</value>
   </data>
   <data name="NoImageShownMessage" xml:space="preserve">
-    <value>Errore, nessuna immagine viene visualizzata.</value>
+    <value>Fout opgetreden, geen beeld wordt getoond.</value>
   </data>
   <data name="ReportFileName" xml:space="preserve">
     <value>{0} {1} Crash Report</value>
   </data>
+  <data name="tabPageExceptions.Text" xml:space="preserve">
+    <value>Uitzonderingen</value>
+  </data>
+  <data name="tabPageGeneral.Text" xml:space="preserve">
+    <value>Algemeen</value>
+  </data>
+  <data name="tabPageScreenshot.Text" xml:space="preserve">
+    <value>Screenshot</value>
+  </data>
   <data name="TitleText" xml:space="preserve">
-    <value>{0} {1} schiantato.</value>
+    <value>{0} {1} crashte.</value>
   </data>
   <data name="toolTip.ToolTipTitle" xml:space="preserve">
-    <value>Includi applicazione screenshot</value>
+    <value>Omvatten applicatie screenshot</value>
   </data>
 </root>
