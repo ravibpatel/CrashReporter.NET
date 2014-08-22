@@ -309,8 +309,7 @@
             this.toolTip.IsBalloon = true;
             this.toolTip.ReshowDelay = 0;
             this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            resources.ApplyResources(this.toolTip, "toolTip"); ;
-            // 
+            resources.ApplyResources(this.toolTip, "toolTip");
             // errorProviderEmail
             // 
             this.errorProviderEmail.ContainerControl = this;

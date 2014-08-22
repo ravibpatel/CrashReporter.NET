@@ -179,7 +179,7 @@ namespace CrashReporterDotNET
                               HttpUtility.HtmlEncode(HelperMethods.GetWindowsVersion()),
                               HttpUtility.HtmlEncode(Environment.Version.ToString()),
                               CreateReport(_reportCrash.Exception));
-            if (!String.IsNullOrEmpty(textBoxMessage.Text.Trim()))
+            if (!String.IsNullOrEmpty(textBoxUserMessage.Text.Trim()))
             {
                 report += string.Format(@"<br/>
                             <div class=""content"">
@@ -189,7 +189,7 @@ namespace CrashReporterDotNET
                             <div class=""message"">
                             <p>{0}</p>
                             </div>
-                            </div>", HttpUtility.HtmlEncode(textBoxMessage.Text.Trim()));
+                            </div>", HttpUtility.HtmlEncode(textBoxUserMessage.Text.Trim()));
             }
             if (!String.IsNullOrEmpty(_reportCrash.DeveloperMessage.Trim()))
             {
