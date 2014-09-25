@@ -42,7 +42,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -54,6 +56,10 @@
     <Compile Include="CrashReport.Designer.cs">
       <DependentUpon>CrashReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="DrDump\AnonymousData.cs" />
+    <Compile Include="DrDump\DrDumpService.cs" />
+    <Compile Include="DrDump\PrivateData.cs" />
+    <Compile Include="DrDump\SendRequestState.cs" />
     <Compile Include="HelperMethods.cs" />
     <Compile Include="ProgressDialog.cs">
       <SubType>Form</SubType>
@@ -66,8 +72,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="ReportCrash.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Web References\com.drdump\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CrashReport.da.resx" />
@@ -104,8 +120,27 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="CrashReporter.NET.pfx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Resources\email_go.png" />
+    <None Include="Web References\com.drdump\CrashReporterReportUploader.wsdl" />
+    <None Include="Web References\com.drdump\CrashReporterReportUploader.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\com.drdump\CrashReporterReportUploader0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\com.drdump\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\com.drdump\Response.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\stop.png" />
@@ -118,6 +153,25 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ajax-loader.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://drdump.com/Service/CrashReporterReportUploader.svc">
+      <UrlBehavior>Static</UrlBehavior>
+      <RelPath>Web References\com.drdump\</RelPath>
+      <UpdateFromURL>http://drdump.com/Service/CrashReporterReportUploader.svc</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CrashReporter_NET_com_drdump_CrashReporterReportUploader</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\com.drdump\CrashReporterReportUploader.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

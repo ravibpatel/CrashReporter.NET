@@ -8,28 +8,40 @@ using System.Net.Mail;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Windows.Forms;
+using CrashReporterDotNET.DrDump;
 
 namespace CrashReporterDotNET
 {
     internal partial class CrashReport : Form
     {
         private readonly ReportCrash _reportCrash;
+
         private readonly ComponentResourceManager _resources = new ComponentResourceManager(typeof (CrashReport));
+
         private ProgressDialog _progressDialog;
+
+        private DrDumpService _doctorDumpService;
+
+        #region Form Events
 
         public CrashReport(ReportCrash reportCrashObject)
         {
             InitializeComponent();
             _reportCrash = reportCrashObject;
             Text = string.Format(_resources.GetString("TitleText"), _reportCrash.ApplicationTitle,
-                                 _reportCrash.ApplicationVersion);
-            saveFileDialog.FileName = string.Format(_resources.GetString("ReportFileName"), _reportCrash.ApplicationTitle, _reportCrash.ApplicationVersion);
+                _reportCrash.ApplicationVersion);
+            saveFileDialog.FileName = string.Format(_resources.GetString("ReportFileName"),
+                _reportCrash.ApplicationTitle, _reportCrash.ApplicationVersion);
 
             if (File.Exists(_reportCrash.ScreenShot))
             {
+
                 pictureBoxScreenshot.ImageLocation = _reportCrash.ScreenShot;
                 pictureBoxScreenshot.Show();
             }
+
+            if (_reportCrash.DoctorDumpSettings != null && _reportCrash.DoctorDumpSettings.SendAnonymousReportSilently)
+                SendAnonymousReport();
         }
 
         public override sealed string Text
@@ -38,16 +50,52 @@ namespace CrashReporterDotNET
             set { base.Text = value; }
         }
 
+        private void CrashReportLoad(object sender, EventArgs e)
+        {
+            textBoxException.Text = _reportCrash.Exception.GetType().ToString();
+            textBoxApplicationName.Text = _reportCrash.ApplicationTitle;
+            textBoxApplicationVersion.Text = _reportCrash.ApplicationVersion;
+            textBoxExceptionMessage.Text = _reportCrash.Exception.Message;
+            textBoxMessage.Text = _reportCrash.Exception.Message;
+            textBoxTime.Text = DateTime.Now.ToString(CultureInfo.InvariantCulture);
+            textBoxSource.Text = _reportCrash.Exception.Source;
+            textBoxStackTrace.Text = string.Format("{0}\n{1}", _reportCrash.Exception.InnerException,
+                _reportCrash.Exception.StackTrace);
+        }
+
+        private void CrashReport_Shown(object sender, EventArgs e)
+        {
+            Activate();
+            textBoxEmail.Select();
+        }
+
+        private void CrashReport_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (File.Exists(_reportCrash.ScreenShot))
+            {
+                try
+                {
+                    File.Delete(_reportCrash.ScreenShot);
+                }
+                catch (Exception exception)
+                {
+                    Debug.Write(exception.Message);
+                }
+            }
+        }
+
+        #endregion
+
+        #region Control Events
+
         private void ButtonSendReportClick(object sender, EventArgs e)
         {
-            var fromAddress = new MailAddress(_reportCrash.FromEmail);
+            var fromAddress = !string.IsNullOrEmpty(_reportCrash.FromEmail) ? new MailAddress(_reportCrash.FromEmail) : null;
             var toAddress = new MailAddress(_reportCrash.ToEmail);
 
+            const string r0_255 = @"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])";
             var regexEmail = new Regex(@"^(([\w-]+\.)+[\w-]+|([a-zA-Z]{1}|[\w-]{2,}))@"
-                                       + @"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?
-				                            [0-9]{1,2}|25[0-5]|2[0-4][0-9])\."
-                                       + @"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?
-				                            [0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                                       + @"((" + r0_255 + @"\." + r0_255 + @"\." + r0_255 + @"\." + r0_255 + @"){1}|"
                                        + @"([a-zA-Z]+[\w-]+\.)+[a-zA-Z]{2,4})$");
             var subject = "";
 
@@ -75,16 +123,22 @@ namespace CrashReporterDotNET
                     errorProviderEmail.SetError(textBoxEmail, "");
                     fromAddress = new MailAddress(textBoxEmail.Text.Trim());
                     subject = string.Format("{0} {1} Crash Report by {2}", _reportCrash.ApplicationTitle,
-                                            _reportCrash.ApplicationVersion, textBoxEmail.Text.Trim());
+                        _reportCrash.ApplicationVersion, textBoxEmail.Text.Trim());
                 }
             }
             if (string.IsNullOrEmpty(subject.Trim()))
             {
                 subject = string.Format("{0} {1} Crash Report", _reportCrash.ApplicationTitle,
-                                        _reportCrash.ApplicationVersion);
+                    _reportCrash.ApplicationVersion);
             }
 
-            var smtpClient = new SmtpClient
+            if (_reportCrash.AnalyzeWithDoctorDump)
+            {
+                SendFullReport();
+            }
+            else
+            {
+                var smtpClient = new SmtpClient
                 {
                     Host = _reportCrash.SmtpHost,
                     Port = _reportCrash.Port,
@@ -94,24 +148,71 @@ namespace CrashReporterDotNET
                     Credentials = new NetworkCredential(_reportCrash.UserName, _reportCrash.Password),
                 };
 
-            var message = new MailMessage(fromAddress, toAddress)
+                var message = new MailMessage(fromAddress, toAddress)
                 {
                     IsBodyHtml = true,
                     Subject = subject,
                     Body = HtmlReport(),
                 };
 
-            if (File.Exists(_reportCrash.ScreenShot) && checkBoxIncludeScreenshot.Checked)
-            {
-                message.Attachments.Add(new Attachment(_reportCrash.ScreenShot));
-            }
+                if (File.Exists(_reportCrash.ScreenShot) && checkBoxIncludeScreenshot.Checked)
+                {
+                    message.Attachments.Add(new Attachment(_reportCrash.ScreenShot));
+                }
 
-            smtpClient.SendCompleted += SmtpClientSendCompleted;
-            smtpClient.SendAsync(message, "Crash Report");
+                smtpClient.SendCompleted += SmtpClientSendCompleted;
+                smtpClient.SendAsync(message, "Crash Report");
+            }
 
             _progressDialog = new ProgressDialog();
             _progressDialog.ShowDialog();
         }
+
+        private void SmtpClientSendCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                ReportFailure(e.Error);
+            }
+            else
+            {
+                ReportSuccess();
+            }
+        }
+
+        private void ButtonSaveClick(object sender, EventArgs e)
+        {
+            saveFileDialog.ShowDialog();
+        }
+
+        private void SaveFileDialogFileOk(object sender, CancelEventArgs e)
+        {
+            File.WriteAllText(saveFileDialog.FileName, HtmlReport());
+        }
+
+        private void LinkLabelViewLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                Process.Start(_reportCrash.ScreenShot);
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show(
+                    _resources.GetString("ErrorCapturingImageMessage"),
+                    _resources.GetString("ErrorCapturingImageCaption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(
+                    _resources.GetString("NoImageShownMessage"),
+                    _resources.GetString("NoImageShownCaption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        #endregion
+
+        #region HTML Report Generator
 
         private string HtmlReport()
         {
@@ -175,10 +276,10 @@ namespace CrashReporterDotNET
                     {4}
                     </div>
                     </div>", HttpUtility.HtmlEncode(_reportCrash.ApplicationTitle),
-                              HttpUtility.HtmlEncode(_reportCrash.ApplicationVersion),
-                              HttpUtility.HtmlEncode(HelperMethods.GetWindowsVersion()),
-                              HttpUtility.HtmlEncode(Environment.Version.ToString()),
-                              CreateReport(_reportCrash.Exception));
+                    HttpUtility.HtmlEncode(_reportCrash.ApplicationVersion),
+                    HttpUtility.HtmlEncode(HelperMethods.GetWindowsVersion()),
+                    HttpUtility.HtmlEncode(Environment.Version.ToString()),
+                    CreateReport(_reportCrash.Exception));
             if (!String.IsNullOrEmpty(textBoxUserMessage.Text.Trim()))
             {
                 report += string.Format(@"<br/>
@@ -242,9 +343,9 @@ namespace CrashReporterDotNET
                         <p>{3}</p>
                         </div>
                         </div>", HttpUtility.HtmlEncode(exception.GetType().ToString()),
-                                          HttpUtility.HtmlEncode(exception.Message),
-                                          HttpUtility.HtmlEncode(exception.Source ?? String.Empty),
-                                          HttpUtility.HtmlEncode(exception.StackTrace ?? String.Empty).Replace("\r\n", "<br/>"));
+                HttpUtility.HtmlEncode(exception.Message),
+                HttpUtility.HtmlEncode(exception.Source ?? String.Empty),
+                HttpUtility.HtmlEncode(exception.StackTrace ?? String.Empty).Replace("\r\n", "<br/>"));
             if (exception.InnerException != null)
             {
                 report += string.Format(@"<br/>
@@ -261,86 +362,68 @@ namespace CrashReporterDotNET
             return report;
         }
 
-        private void SmtpClientSendCompleted(object sender, AsyncCompletedEventArgs e)
+        #endregion
+
+        #region DrDump Functions
+
+        private void SendAnonymousReport()
         {
-            _progressDialog.Close();
+            _doctorDumpService = new DrDumpService();
+            _doctorDumpService.SendRequestCompleted += SendRequestCompleted;
+
+            _doctorDumpService.SendAnonymousReportAsync(
+                _reportCrash.Exception,
+                _reportCrash.ToEmail,
+                _reportCrash.DoctorDumpSettings != null ? _reportCrash.DoctorDumpSettings.ApplicationID : null);
+        }
+
+        private void SendFullReport()
+        {
+            var sendScreenshot = File.Exists(_reportCrash.ScreenShot) && checkBoxIncludeScreenshot.Checked;
+            var screenshot = sendScreenshot ? File.ReadAllBytes(_reportCrash.ScreenShot) : null;
+
+            if (_doctorDumpService == null)
+            {
+                SendAnonymousReport();
+            }
+            _doctorDumpService.SendAdditionalDataAsync(this, _reportCrash.DeveloperMessage, textBoxEmail.Text.Trim(),
+                    textBoxUserMessage.Text.Trim(), screenshot);
+        }
+        private void SendRequestCompleted(object sender, DrDumpService.SendRequestCompletedEventArgs e)
+        {
             if (e.Error != null)
             {
-                MessageBox.Show(e.Error.Message, e.Error.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ReportFailure(e.Error);
             }
             else
             {
-                MessageBox.Show(
-                    string.Format(_resources.GetString("MessageSentMessage"),
-                                  _reportCrash.ApplicationTitle, _reportCrash.ApplicationVersion),
-                    _resources.GetString("MessageSentCaption"), MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                DialogResult = DialogResult.OK;
-            }
-        }
+                ReportSuccess();
 
-        private void CrashReportLoad(object sender, EventArgs e)
-        {
-            textBoxException.Text = _reportCrash.Exception.GetType().ToString();
-            textBoxApplicationName.Text = _reportCrash.ApplicationTitle;
-            textBoxApplicationVersion.Text = _reportCrash.ApplicationVersion;
-            textBoxExceptionMessage.Text = _reportCrash.Exception.Message;
-            textBoxMessage.Text = _reportCrash.Exception.Message;
-            textBoxTime.Text = DateTime.Now.ToString(CultureInfo.InvariantCulture);
-            textBoxSource.Text = _reportCrash.Exception.Source;
-            textBoxStackTrace.Text = string.Format("{0}\n{1}", _reportCrash.Exception.InnerException,
-                                                   _reportCrash.Exception.StackTrace);
-        }
-
-        private void ButtonSaveClick(object sender, EventArgs e)
-        {
-            saveFileDialog.ShowDialog();
-        }
-
-        private void SaveFileDialogFileOk(object sender, CancelEventArgs e)
-        {
-            File.WriteAllText(saveFileDialog.FileName, HtmlReport());
-        }
-
-        private void LinkLabelViewLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            try
-            {
-                Process.Start(_reportCrash.ScreenShot);
-            }
-            catch (FileNotFoundException)
-            {
-                MessageBox.Show(
-                    _resources.GetString("ErrorCapturingImageMessage"),
-                    _resources.GetString("ErrorCapturingImageCaption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show(
-                    _resources.GetString("NoImageShownMessage"),
-                    _resources.GetString("NoImageShownCaption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        private void CrashReport_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (File.Exists(_reportCrash.ScreenShot))
-            {
-                try
+                if (_reportCrash.DoctorDumpSettings != null && _reportCrash.DoctorDumpSettings.OpenReportInBrowser)
                 {
-                    File.Delete(_reportCrash.ScreenShot);
-                }
-                catch (Exception exception)
-                {
-                    Debug.Write(exception.Message);
+                    if (!string.IsNullOrEmpty(e.Result.UrlToProblem))
+                        Process.Start(e.Result.UrlToProblem);
                 }
             }
         }
 
-        private void CrashReport_Shown(object sender, EventArgs e)
+        private void ReportSuccess()
         {
-            Activate();
-            textBoxEmail.Select();
+            _progressDialog.Close();
+            MessageBox.Show(
+                string.Format(_resources.GetString("MessageSentMessage"),
+                    _reportCrash.ApplicationTitle, _reportCrash.ApplicationVersion),
+                _resources.GetString("MessageSentCaption"), MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+            DialogResult = DialogResult.OK;
         }
+
+        private void ReportFailure(Exception exception)
+        {
+            _progressDialog.Close();
+            MessageBox.Show(exception.Message, exception.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        #endregion
     }
 }

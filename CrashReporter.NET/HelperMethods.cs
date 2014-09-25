@@ -68,7 +68,7 @@ namespace CrashReporterDotNET
             }
             catch (Exception)
             {
-                osArchitecture = "32/64 bit (Undetermine)";
+                osArchitecture = "32/64 bit (Undetermined)";
             }
             switch (windowsVersion.Major)
             {

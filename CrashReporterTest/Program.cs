@@ -28,17 +28,14 @@ namespace CrashReporterTest
         {
             var reportCrash = new ReportCrash
             {
-                FromEmail = "Your Gmail Address",
-                ToEmail = "Email where you want to recieve crash reports.",
-                SmtpHost = "smtp.gmail.com",
-                Port = 587,
-                UserName = "Your Gmail Address",
-                Password = "Your Gmail Password",
-                EnableSSL = true,
-                EmailRequired = true,
-                CaptureScreen = false,
-                CurrentCulture = CultureInfo.CreateSpecificCulture("nl"),
-                DeveloperMessage = developerMessage
+                AnalyzeWithDoctorDump = true,
+                DeveloperMessage = developerMessage,
+                ToEmail = "Email where you want to receive crash reports.",
+                DoctorDumpSettings = new DoctorDumpSettings
+                {
+                    ApplicationID = new Guid("Application ID you received from DrDump.com"),
+                    OpenReportInBrowser = true
+                },
             };
 
             reportCrash.Send(exception);

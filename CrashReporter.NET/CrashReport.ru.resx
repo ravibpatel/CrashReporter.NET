@@ -121,7 +121,7 @@
     <value>Email</value>
   </data>
   <data name="labelMessage.Text" xml:space="preserve">
-    <value>Расскажите, пожалуйста, каким приложением разбился, чтобы мы могли исправить.</value>
+    <value>Действия, которые привели к ошибке:</value>
   </data>
   <data name="labelTime.Text" xml:space="preserve">
     <value>Время</value>
@@ -130,10 +130,10 @@
     <value>Версия</value>
   </data>
   <data name="labelApplication.Text" xml:space="preserve">
-    <value>Применение</value>
+    <value>Приложение</value>
   </data>
   <data name="tabPageGeneral.Text" xml:space="preserve">
-    <value>Общий</value>
+    <value>Общее</value>
   </data>
   <data name="labelExceptionType.Text" xml:space="preserve">
     <value>Тип исключения</value>
@@ -142,69 +142,69 @@
     <value>Источник</value>
   </data>
   <data name="labelStackTrace.Text" xml:space="preserve">
-    <value>Трассировка стека</value>
+    <value>Стек</value>
   </data>
   <data name="labelExceptionMessage.Text" xml:space="preserve">
     <value>Сообщение</value>
   </data>
   <data name="tabPageExceptions.Text" xml:space="preserve">
-    <value>Исключения</value>
+    <value>Исключение</value>
   </data>
   <data name="linkLabelView.Text" xml:space="preserve">
-    <value>Просмотр полной Скриншот</value>
+    <value>Полный скриншот</value>
   </data>
   <data name="groupBoxScreenshot.Text" xml:space="preserve">
     <value>Скриншот</value>
   </data>
   <data name="checkBoxIncludeScreenshot.Text" xml:space="preserve">
-    <value>Включите Скриншот</value>
+    <value>Добавить скриншот</value>
   </data>
   <data name="checkBoxIncludeScreenshot.ToolTip" xml:space="preserve">
-    <value>Добавить скриншот экран с ошибкой в ​​вашей отчет об ошибке.</value>
+    <value>Добавить скриншот с ошибкой в отчет об ошибке.</value>
   </data>
   <data name="tabPageScreenshot.Text" xml:space="preserve">
     <value>Скриншот</value>
   </data>
   <data name="buttonSave.Text" xml:space="preserve">
-    <value>Экономить</value>
+    <value>Сохранить</value>
   </data>
   <data name="buttonCancel.Text" xml:space="preserve">
-    <value>Отменить</value>
+    <value>Отмена</value>
   </data>
   <data name="buttonSendReport.Text" xml:space="preserve">
-    <value>Отправить сообщение</value>
+    <value>Отправить отчёт</value>
   </data>
   <data name="EmailRequiredError" xml:space="preserve">
-    <value>Действительный адрес эл почты требуется для того, чтобы отправить отчет об ошибке. Это гарантирует, что вы будете уведомлены разработчиком, когда ошибка будет исправлена</value>
+    <value>Для того, чтобы отправить отчет об ошибке требуется действующий адрес электронной почты. Когда ошибка будет исправлена вы будете уведомлены разработчиком</value>
   </data>
   <data name="ErrorCapturingImageCaption" xml:space="preserve">
-    <value>Нет изображения, снятого</value>
+    <value>Не удалось сделать скриншот</value>
   </data>
   <data name="ErrorCapturingImageMessage" xml:space="preserve">
-    <value>Существует ошибка во время захвата изображения. Вы можете представить отчет отчет без скриншота.</value>
+    <value>Произошла ошибка во время снятия скриншота. Вы можете отправить отчет без него.</value>
   </data>
   <data name="InvalidEmailAddressError" xml:space="preserve">
     <value>Адрес электронной почты не является допустимым. Пожалуйста, укажите правильный адрес электронной почты</value>
   </data>
   <data name="MessageSentCaption" xml:space="preserve">
-    <value>Авария докладе, направленном</value>
+    <value>Отчёт об ошибке был отправлен</value>
   </data>
   <data name="MessageSentMessage" xml:space="preserve">
-    <value>Крэш доклада {0} {1} отправляется на разработчика. Спасибо за вашу поддержку.</value>
+    <value>Отчёт об ошибке {0} {1} был отправлен разработчику. Спасибо за вашу помощь!</value>
   </data>
   <data name="NoImageShownCaption" xml:space="preserve">
-    <value>Ошибка при открытии изображения</value>
+    <value>Ошибка при открытии скриншота</value>
   </data>
   <data name="NoImageShownMessage" xml:space="preserve">
-    <value>Произошла ошибка, изображение не будет показано.</value>
+    <value>Произошла ошибка, скриншот не будет показан.</value>
   </data>
   <data name="ReportFileName" xml:space="preserve">
-    <value>{0} {1} отчета об ошибке</value>
+    <value>Отчет об ошибке {0} {1}</value>
   </data>
   <data name="TitleText" xml:space="preserve">
-    <value>{0} {1} разбился.</value>
+    <value>{0} {1}: произошла ошибка</value>
   </data>
   <data name="toolTip.ToolTipTitle" xml:space="preserve">
-    <value>Включите скриншот приложения</value>
+    <value>Добавить скриншот приложения</value>
   </data>
 </root>

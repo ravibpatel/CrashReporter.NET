@@ -9,7 +9,7 @@ using System.Threading;
 namespace CrashReporterDotNET
 {
     /// <summary>
-    /// Set SMTP server details and receiver email fieds of this class instance to send crash reports directly in your inbox.
+    /// Set SMTP server details and receiver email fields of this class instance to send crash reports directly in your inbox.
     /// </summary>
     public class ReportCrash
     {
@@ -66,12 +66,21 @@ namespace CrashReporterDotNET
         /// <summary>
         ///  Gets or Sets if email is required to send the crash report.
         /// </summary>
-        public bool EmailRequired;
+        public bool EmailRequired = false;
 
         /// <summary>
         /// Gets or Sets the current culture to use by the library.
         /// </summary>
-        public CultureInfo CurrentCulture =  CultureInfo.CreateSpecificCulture("en-US");
+        public CultureInfo CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
+        
+        /// Specify whether CrashReporter.NET should send crash reports only for new problems (duplicates detected by Doctor Dump free cloud service).
+        /// </summary>
+        public bool AnalyzeWithDoctorDump = true;
+
+        /// <summary>
+        /// Specify Doctor Dump processing settings. Used only when AnalyzeWithDoctorDump is true.
+        /// </summary>
+        public DoctorDumpSettings DoctorDumpSettings = new DoctorDumpSettings();
 
         internal string ApplicationTitle;
 
@@ -121,7 +130,7 @@ namespace CrashReporterDotNET
             {
                 Debug.Write(e.Message);
             }
-            if (String.IsNullOrEmpty(FromEmail) || String.IsNullOrEmpty(ToEmail) || String.IsNullOrEmpty(SmtpHost))
+            if (String.IsNullOrEmpty(ToEmail) || !AnalyzeWithDoctorDump && (String.IsNullOrEmpty(FromEmail) || String.IsNullOrEmpty(SmtpHost)))
                 return;
 
             var parameterizedThreadStart = new ParameterizedThreadStart(ShowUI);
@@ -137,5 +146,28 @@ namespace CrashReporterDotNET
             var crashReport = new CrashReport((ReportCrash) reportCrash);
             crashReport.ShowDialog();
         }
+    }
+    
+    /// <summary>
+    /// Set Doctor Dump processing settings.
+    /// </summary>
+    public class DoctorDumpSettings
+    {
+        /// <summary>
+        /// Gets or Sets application ID.
+        /// </summary>
+        public Guid? ApplicationID;
+
+        /// <summary>
+        /// Specify whether CrashReporter.NET should send anonymous crash report to Doctor Dump that doesn't contain private information.
+        /// Only about 1/10 of users press "Send" button on crash reporting dialogs. And even less if there are required fields to fill.
+        /// Without sending anonymous reports most of the problems are hidden from the developer.
+        /// </summary>
+        public bool SendAnonymousReportSilently = true;
+
+        /// <summary>
+        /// Specify whether CrashReporter.NET should open the web page in browser about crash report that contains report ID and may contain steps to fix the problem.
+        /// </summary>
+        public bool OpenReportInBrowser = true;
     }
 }

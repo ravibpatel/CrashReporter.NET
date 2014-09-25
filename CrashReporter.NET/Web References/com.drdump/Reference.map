@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://drdump.com/Service/CrashReporterReportUploader.svc?xsd=xsd0" filename="CrashReporterReportUploader.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://drdump.com/Service/CrashReporterReportUploader.svc?wsdl" filename="CrashReporterReportUploader.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://drdump.com/Service/CrashReporterReportUploader.svc?xsd=xsd1" filename="CrashReporterReportUploader0.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="http://drdump.com/Service/CrashReporterReportUploader.svc?disco" filename="CrashReporterReportUploader.disco" />
+  </Results>
+</DiscoveryClientResultsFile>
