@@ -35,7 +35,7 @@ namespace CrashReporterDotNET
 
             if (File.Exists(_reportCrash.ScreenShot))
             {
-
+                checkBoxIncludeScreenshot.Checked = _reportCrash.IncludeScreenshot;
                 pictureBoxScreenshot.ImageLocation = _reportCrash.ScreenShot;
                 pictureBoxScreenshot.Show();
             }
@@ -344,8 +344,8 @@ namespace CrashReporterDotNET
                         </div>
                         </div>", HttpUtility.HtmlEncode(exception.GetType().ToString()),
                 HttpUtility.HtmlEncode(exception.Message),
-                HttpUtility.HtmlEncode(exception.Source ?? String.Empty),
-                HttpUtility.HtmlEncode(exception.StackTrace ?? String.Empty).Replace("\r\n", "<br/>"));
+                HttpUtility.HtmlEncode(exception.Source ?? "No source"),
+                HttpUtility.HtmlEncode(exception.StackTrace ?? "No stack trace").Replace("\r\n", "<br/>"));
             if (exception.InnerException != null)
             {
                 report += string.Format(@"<br/>

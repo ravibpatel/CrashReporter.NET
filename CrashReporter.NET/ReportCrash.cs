@@ -69,10 +69,16 @@ namespace CrashReporterDotNET
         public bool EmailRequired = false;
 
         /// <summary>
+        /// Gets or Sets "Include screenshot" start value.
+        /// </summary>
+        public bool IncludeScreenshot = true;
+
+        /// <summary>
         /// Gets or Sets the current culture to use by the library.
         /// </summary>
         public CultureInfo CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
         
+        /// <summary>
         /// Specify whether CrashReporter.NET should send crash reports only for new problems (duplicates detected by Doctor Dump free cloud service).
         /// </summary>
         public bool AnalyzeWithDoctorDump = true;
