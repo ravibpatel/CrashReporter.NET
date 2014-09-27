@@ -33,6 +33,7 @@ namespace CrashReporterTest
                 ToEmail = "Email where you want to receive crash reports.",
                 DoctorDumpSettings = new DoctorDumpSettings
                 {
+                    ApplicationID = new Guid("Application ID you received from DrDump.com"),
                     OpenReportInBrowser = true
                 },
             };
