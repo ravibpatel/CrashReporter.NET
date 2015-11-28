@@ -28,6 +28,7 @@ namespace CrashReporterTest
         {
             var reportCrash = new ReportCrash
             {
+                CurrentCulture = new CultureInfo("en-US"),
                 AnalyzeWithDoctorDump = true,
                 DeveloperMessage = developerMessage,
                 ToEmail = "Email where you want to receive crash reports.",
