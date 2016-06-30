@@ -86,37 +86,69 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CrashReport.da.resx" />
+    <EmbeddedResource Include="CrashReport.da.resx">
+      <DependentUpon>CrashReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrashReport.de.resx">
       <DependentUpon>CrashReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrashReport.es.resx" />
-    <EmbeddedResource Include="CrashReport.fr.resx" />
-    <EmbeddedResource Include="CrashReport.it.resx" />
-    <EmbeddedResource Include="CrashReport.nl.resx" />
-    <EmbeddedResource Include="CrashReport.pl.resx" />
+    <EmbeddedResource Include="CrashReport.es.resx">
+      <DependentUpon>CrashReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrashReport.fr.resx">
+      <DependentUpon>CrashReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrashReport.it.resx">
+      <DependentUpon>CrashReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrashReport.nl.resx">
+      <DependentUpon>CrashReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrashReport.pl.resx">
+      <DependentUpon>CrashReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrashReport.resx">
       <DependentUpon>CrashReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrashReport.ru.resx" />
-    <EmbeddedResource Include="CrashReport.sv.resx" />
+    <EmbeddedResource Include="CrashReport.ru.resx">
+      <DependentUpon>CrashReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrashReport.sv.resx">
+      <DependentUpon>CrashReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrashReport.tr.resx">
       <DependentUpon>CrashReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProgressDialog.da.resx" />
+    <EmbeddedResource Include="ProgressDialog.da.resx">
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProgressDialog.de.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProgressDialog.es.resx" />
-    <EmbeddedResource Include="ProgressDialog.fr.resx" />
-    <EmbeddedResource Include="ProgressDialog.it.resx" />
-    <EmbeddedResource Include="ProgressDialog.nl.resx" />
-    <EmbeddedResource Include="ProgressDialog.pl.resx" />
+    <EmbeddedResource Include="ProgressDialog.es.resx">
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgressDialog.fr.resx">
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgressDialog.it.resx">
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgressDialog.nl.resx">
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgressDialog.pl.resx">
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProgressDialog.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProgressDialog.ru.resx" />
-    <EmbeddedResource Include="ProgressDialog.sv.resx" />
+    <EmbeddedResource Include="ProgressDialog.ru.resx">
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgressDialog.sv.resx">
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProgressDialog.tr.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
