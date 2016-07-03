@@ -32,7 +32,7 @@ namespace CrashReporterDotNET
                 _reportCrash.ApplicationVersion);
             saveFileDialog.FileName = string.Format(_resources.GetString("ReportFileName"),
                 _reportCrash.ApplicationTitle, _reportCrash.ApplicationVersion);
-
+            saveFileDialog.Filter = @"HTML files(*.html)|*.html";
             if (File.Exists(_reportCrash.ScreenShot))
             {
                 checkBoxIncludeScreenshot.Checked = _reportCrash.IncludeScreenshot;

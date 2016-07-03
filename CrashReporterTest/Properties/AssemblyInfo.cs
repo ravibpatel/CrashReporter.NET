@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("RBSoft")]
 [assembly: AssemblyProduct("CrashReporterTest")]
-[assembly: AssemblyCopyright("Copyright © 2012-2015  RBSoft")]
+[assembly: AssemblyCopyright("Copyright © 2012-2016  RBSoft")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

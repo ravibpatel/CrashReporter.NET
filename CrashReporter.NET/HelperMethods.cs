@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using Microsoft.Win32;
 
 namespace CrashReporterDotNET
 {
@@ -56,60 +57,38 @@ namespace CrashReporterDotNET
             return isWow64;
         }
 
+        private static string HKLM_GetString(string key, string value)
+        {
+            try
+            {
+                RegistryKey registryKey = Registry.LocalMachine.OpenSubKey(key);
+                if (registryKey == null) return "";
+                return (string)registryKey.GetValue(value);
+            }
+            catch { return ""; }
+        }
+
         private delegate bool IsWow64ProcessDelegate([In] IntPtr handle, [Out] out bool isWow64Process);
 
         public static string GetWindowsVersion()
         {
             string osArchitecture;
-            Version windowsVersion = Environment.OSVersion.Version;
             try
             {
-                osArchitecture = IsOS64Bit() ? "64" : "32";
+                osArchitecture = IsOS64Bit() ? "64-bit" : "32-bit";
             }
             catch (Exception)
             {
-                osArchitecture = "32/64 bit (Undetermined)";
+                osArchitecture = "32/64-bit (Undetermined)";
             }
-            switch (windowsVersion.Major)
+            string productName = HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName");
+            string csdVersion = HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CSDVersion");
+            string currentBuild = HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuild");
+            if (productName != "")
             {
-                case 5:
-                    switch (windowsVersion.Minor)
-                    {
-                        case 0:
-                            return string.Format("Windows 2000 {0} {1} Version {2}",
-                                                 Environment.OSVersion.ServicePack, osArchitecture,
-                                                 windowsVersion);
-                        case 1:
-                            return string.Format("Windows XP {0} {1} Version {2}",
-                                                 Environment.OSVersion.ServicePack, osArchitecture,
-                                                 windowsVersion);
-                        case 2:
-                            return string.Format(
-                                "Windows XP x64 Professional Edition / Windows Server 2003 {0} {1} Version {2}",
-                                Environment.OSVersion.ServicePack, osArchitecture, windowsVersion);
-                    }
-                    break;
-                case 6:
-                    switch (Environment.OSVersion.Version.Minor)
-                    {
-                        case 0:
-                            return string.Format("Windows Vista {0} {1} bit Version {2}",
-                                                 Environment.OSVersion.ServicePack, osArchitecture,
-                                                 windowsVersion);
-                        case 1:
-                            return string.Format("Windows 7 {0} {1} bit Version {2}",
-                                                 Environment.OSVersion.ServicePack, osArchitecture,
-                                                 windowsVersion);
-                        case 2:
-                            return string.Format("Windows 8 {0} {1} bit Version {2}",
-                                                 Environment.OSVersion.ServicePack, osArchitecture,
-                                                 windowsVersion);
-                    }
-                    break;
+                return string.Format("{0}{1}{2}{3} (OS Build {4})", (productName.StartsWith("Microsoft") ? "" : "Microsoft "), productName, (csdVersion != "" ? " " + csdVersion : ""), osArchitecture, currentBuild);
             }
-
-            return string.Format("Unknown {0} bit Version {1}", osArchitecture,
-                                         windowsVersion);
+            return "";
         }
     }
 }
