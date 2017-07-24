@@ -121,31 +121,31 @@
     <value>Stornieren</value>
   </data>
   <data name="buttonSave.Text" xml:space="preserve">
-    <value>Sparen</value>
+    <value>Speichern</value>
   </data>
   <data name="buttonSendReport.Text" xml:space="preserve">
     <value>Bericht absenden</value>
   </data>
   <data name="checkBoxIncludeScreenshot.Text" xml:space="preserve">
-    <value>Fügen Screenshot</value>
+    <value>Screenshot anfügen</value>
   </data>
   <data name="checkBoxIncludeScreenshot.ToolTip" xml:space="preserve">
-    <value>In Screenshot der Fehlerbildschirm in der Crash-Bericht.</value>
+    <value>Screenshot mit dem Fehlerbericht übermitteln</value>
   </data>
   <data name="EmailRequiredError" xml:space="preserve">
-    <value>Eine gültige E-Mail-Adresse ist, um die Absturzbericht senden erforderlich. Dies stellt sicher, dass Sie durch den Entwickler benachrichtigt, wenn Fehler behoben ist, werden</value>
+    <value>Bitte geben Sie eine gültige Emailadresse an. Dies stellt sicher, dass Sie durch den Entwickler benachrichtigt werden, wenn Fehler behoben ist.</value>
   </data>
   <data name="ErrorCapturingImageCaption" xml:space="preserve">
     <value>Kein Bild erfasst</value>
   </data>
   <data name="ErrorCapturingImageMessage" xml:space="preserve">
-    <value>Es ist ein Fehler während der Aufnahme Bild. Sie können Berichts Bericht ohne Screenshot einzusenden.</value>
+    <value>Es ist ein Fehler während der Bildaufnahme aufgetreten. Sie können den Bericht ohne Screenshot senden.</value>
   </data>
   <data name="groupBoxScreenshot.Text" xml:space="preserve">
     <value>Screenshot</value>
   </data>
   <data name="InvalidEmailAddressError" xml:space="preserve">
-    <value>E-Mail-Adresse ist nicht gültig. Bitte geben Sie gültige E-Mail-Adresse</value>
+    <value>E-Mail-Adresse ist nicht gültig. Bitte geben Sie eine gültige E-Mail-Adresse</value>
   </data>
   <data name="labelApplication.Text" xml:space="preserve">
     <value>Anwendung</value>
@@ -160,7 +160,7 @@
     <value>Ausnahmetyp</value>
   </data>
   <data name="labelMessage.Text" xml:space="preserve">
-    <value>Bitte sagen Sie uns, wie Anwendung abgestürzt, so dass wir es zu beheben.</value>
+    <value>Bitte sagen Sie uns, wie die Anwendung abgestürztist, so dass wir den Fehler beheben können.</value>
   </data>
   <data name="labelSource.Text" xml:space="preserve">
     <value>Quelle</value>
@@ -181,13 +181,13 @@
     <value>Crash-Bericht gesendet</value>
   </data>
   <data name="MessageSentMessage" xml:space="preserve">
-    <value>Crash-Bericht von {0} {1} wird auf die Entwickler geschickt. Vielen Dank für Ihre Unterstützung.</value>
+    <value>Crash-Bericht von {0} {1} wird an den Entwickler geschickt. Vielen Dank für Ihre Unterstützung.</value>
   </data>
   <data name="NoImageShownCaption" xml:space="preserve">
-    <value>Fehler beim Öffnen der Bild</value>
+    <value>Fehler beim Öffnen der Bilddatei</value>
   </data>
   <data name="NoImageShownMessage" xml:space="preserve">
-    <value>Fehler aufgetreten, wird kein Bild angezeigt.</value>
+    <value>Fehler aufgetreten, es wird kein Bild angezeigt.</value>
   </data>
   <data name="ReportFileName" xml:space="preserve">
     <value>{0} {1} Crash Report</value>
@@ -196,15 +196,15 @@
     <value>Ausnahmen</value>
   </data>
   <data name="tabPageGeneral.Text" xml:space="preserve">
-    <value>General</value>
+    <value>Allgemein</value>
   </data>
   <data name="tabPageScreenshot.Text" xml:space="preserve">
     <value>Screenshot</value>
   </data>
   <data name="TitleText" xml:space="preserve">
-    <value>{0} {1} abgestürzt.</value>
+    <value>{0} {1} ist abgestürzt.</value>
   </data>
   <data name="toolTip.ToolTipTitle" xml:space="preserve">
-    <value>Fügen Anwendung Screenshot</value>
+    <value>Anwendungs-Screenshot hinzufügen</value>
   </data>
 </root>
