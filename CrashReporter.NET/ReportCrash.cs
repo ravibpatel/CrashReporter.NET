@@ -77,7 +77,7 @@ namespace CrashReporterDotNET
         /// Gets or Sets the current culture to use by the library.
         /// </summary>
         public CultureInfo CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
-        
+
         /// <summary>
         /// Specify whether CrashReporter.NET should send crash reports only for new problems (duplicates detected by Doctor Dump free cloud service).
         /// </summary>
@@ -125,8 +125,7 @@ namespace CrashReporterDotNET
 
             try
             {
-                ScreenShot = string.Format(@"{0}\{1} Crash Screenshot.png", Path.GetTempPath(),
-                                           ApplicationTitle);
+                ScreenShot = $@"{Path.GetTempPath()}\{ApplicationTitle} Crash Screenshot.png";
                 if (CaptureScreen)
                     CaptureScreenshot.CaptureScreen(ScreenShot, ImageFormat.Png);
                 else
@@ -139,18 +138,15 @@ namespace CrashReporterDotNET
             if (String.IsNullOrEmpty(ToEmail) || !AnalyzeWithDoctorDump && (String.IsNullOrEmpty(FromEmail) || String.IsNullOrEmpty(SmtpHost)))
                 return;
 
-            var parameterizedThreadStart = new ParameterizedThreadStart(ShowUI);
-            var thread = new Thread(parameterizedThreadStart) {IsBackground = false};
-            thread.CurrentCulture = thread.CurrentUICulture = CurrentCulture ?? System.Windows.Forms.Application.CurrentCulture;
+            var parameterizedThreadStart = new ParameterizedThreadStart(delegate
+            {
+                new CrashReport(this).ShowDialog();
+            });
+            var thread = new Thread(parameterizedThreadStart) { IsBackground = false };
+            thread.CurrentCulture = thread.CurrentUICulture = CurrentCulture ?? Thread.CurrentThread.CurrentCulture;
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start(this);
             thread.Join();
-        }
-
-        private static void ShowUI(object reportCrash)
-        {
-            var crashReport = new CrashReport((ReportCrash) reportCrash);
-            crashReport.ShowDialog();
         }
     }
     

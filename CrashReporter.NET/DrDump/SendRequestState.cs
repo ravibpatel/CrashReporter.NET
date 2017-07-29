@@ -13,7 +13,7 @@ namespace CrashReporterDotNET.DrDump
 
         public SendAnonymousReportCompletedEventArgs SendAnonymousReportResult { get; set; }
 
-        static private ExceptionInfo ConvertToExceptionInfo(Exception e, bool anonymous)
+        private static ExceptionInfo ConvertToExceptionInfo(Exception e, bool anonymous)
         {
             if (e == null)
                 return null;
@@ -28,7 +28,7 @@ namespace CrashReporterDotNET.DrDump
             };
         }
 
-        static private System.Net.NetworkInformation.PhysicalAddress GetMacAddress()
+        private static System.Net.NetworkInformation.PhysicalAddress GetMacAddress()
         {
             var googleDns = new System.Net.Sockets.UdpClient("8.8.8.8", 53);
             IPAddress localAddress = ((IPEndPoint)googleDns.Client.LocalEndPoint).Address;
@@ -62,6 +62,8 @@ namespace CrashReporterDotNET.DrDump
             };
         }
 
+
+
         internal ExceptionDescription GetExceptionDescription(bool anonymous)
         {
             var oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
@@ -70,7 +72,7 @@ namespace CrashReporterDotNET.DrDump
             System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
 
             var osVersion = Environment.OSVersion;
-            var os = string.Format("os={0};v={1};spname={2}", osVersion.Platform, osVersion.Version, osVersion.ServicePack);
+            var os = $"os={osVersion.Platform};v={HelperMethods.GetOSVersion()};spname={osVersion.ServicePack}";
 
             var exceptionDescription = new ExceptionDescription
             {
@@ -104,7 +106,7 @@ namespace CrashReporterDotNET.DrDump
 
             return new Application
             {
-                ApplicationGUID = AnonymousData.ApplicationID.HasValue ? AnonymousData.ApplicationID.Value.ToString("D") : null,
+                ApplicationGUID = AnonymousData.ApplicationID?.ToString("D"),
                 AppName = appTitle,
                 CompanyName = appCompany,
                 Email = AnonymousData.ToEmail,
@@ -116,7 +118,7 @@ namespace CrashReporterDotNET.DrDump
             };
         }
 
-        static internal ClientLib GetClientLib()
+        internal static ClientLib GetClientLib()
         {
             var clientVersion = typeof(CrashReport).Assembly.GetName().Version;
             return new ClientLib

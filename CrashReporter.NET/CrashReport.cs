@@ -44,7 +44,7 @@ namespace CrashReporterDotNET
                 SendAnonymousReport();
         }
 
-        public override sealed string Text
+        public sealed override string Text
         {
             get { return base.Text; }
             set { base.Text = value; }
@@ -59,8 +59,7 @@ namespace CrashReporterDotNET
             textBoxMessage.Text = _reportCrash.Exception.Message;
             textBoxTime.Text = DateTime.Now.ToString(CultureInfo.InvariantCulture);
             textBoxSource.Text = _reportCrash.Exception.Source;
-            textBoxStackTrace.Text = string.Format("{0}\n{1}", _reportCrash.Exception.InnerException,
-                _reportCrash.Exception.StackTrace);
+            textBoxStackTrace.Text = $@"{_reportCrash.Exception.InnerException}\n{_reportCrash.Exception.StackTrace}";
         }
 
         private void CrashReport_Shown(object sender, EventArgs e)
@@ -93,9 +92,9 @@ namespace CrashReporterDotNET
             var fromAddress = !string.IsNullOrEmpty(_reportCrash.FromEmail) ? new MailAddress(_reportCrash.FromEmail) : null;
             var toAddress = new MailAddress(_reportCrash.ToEmail);
 
-            const string r0_255 = @"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])";
+            const string r0To255 = @"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])";
             var regexEmail = new Regex(@"^(([\w-]+\.)+[\w-]+|([a-zA-Z]{1}|[\w-]{2,}))@"
-                                       + @"((" + r0_255 + @"\." + r0_255 + @"\." + r0_255 + @"\." + r0_255 + @"){1}|"
+                                       + @"((" + r0To255 + @"\." + r0To255 + @"\." + r0To255 + @"\." + r0To255 + @"){1}|"
                                        + @"([a-zA-Z]+[\w-]+\.)+[a-zA-Z]{2,4})$");
             var subject = "";
 
@@ -122,14 +121,13 @@ namespace CrashReporterDotNET
                 {
                     errorProviderEmail.SetError(textBoxEmail, "");
                     fromAddress = new MailAddress(textBoxEmail.Text.Trim());
-                    subject = string.Format("{0} {1} Crash Report by {2}", _reportCrash.ApplicationTitle,
-                        _reportCrash.ApplicationVersion, textBoxEmail.Text.Trim());
+                    subject =
+                        $"{_reportCrash.ApplicationTitle} {_reportCrash.ApplicationVersion} Crash Report by {textBoxEmail.Text.Trim()}";
                 }
             }
             if (string.IsNullOrEmpty(subject.Trim()))
             {
-                subject = string.Format("{0} {1} Crash Report", _reportCrash.ApplicationTitle,
-                    _reportCrash.ApplicationVersion);
+                subject = $"{_reportCrash.ApplicationTitle} {_reportCrash.ApplicationVersion} Crash Report";
             }
 
             if (_reportCrash.AnalyzeWithDoctorDump)
@@ -282,27 +280,27 @@ namespace CrashReporterDotNET
                     CreateReport(_reportCrash.Exception));
             if (!String.IsNullOrEmpty(textBoxUserMessage.Text.Trim()))
             {
-                report += string.Format(@"<br/>
+                report += $@"<br/>
                             <div class=""content"">
                             <div class=""title"" style=""background-color: #66FF99;"">
                             <h3>User Comment</h3>
                             </div>
                             <div class=""message"">
-                            <p>{0}</p>
+                            <p>{HttpUtility.HtmlEncode(textBoxUserMessage.Text.Trim())}</p>
                             </div>
-                            </div>", HttpUtility.HtmlEncode(textBoxUserMessage.Text.Trim()));
+                            </div>";
             }
             if (!String.IsNullOrEmpty(_reportCrash.DeveloperMessage.Trim()))
             {
-                report += string.Format(@"<br/>
+                report += $@"<br/>
                             <div class=""content"">
                             <div class=""title"" style=""background-color: #66FF99;"">
                             <h3>Developer Message</h3>
                             </div>
                             <div class=""message"">
-                            <p>{0}</p>
+                            <p>{HttpUtility.HtmlEncode(_reportCrash.DeveloperMessage.Trim())}</p>
                             </div>
-                            </div>", HttpUtility.HtmlEncode(_reportCrash.DeveloperMessage.Trim()));
+                            </div>";
             }
             report += "</body></html>";
             return report;
@@ -310,13 +308,13 @@ namespace CrashReporterDotNET
 
         private string CreateReport(Exception exception)
         {
-            string report = string.Format(@"<br/>
+            string report = $@"<br/>
                         <div class=""content"">
                         <div class=""title"" style=""background-color: #66CCFF;"">
                         <h3>Exception Type</h3>
                         </div>
                         <div class=""message"">
-                        <p>{0}</p>
+                        <p>{HttpUtility.HtmlEncode(exception.GetType().ToString())}</p>
                         </div>
                         </div><br/>
                         <div class=""content"">
@@ -324,7 +322,7 @@ namespace CrashReporterDotNET
                         <h3>Error Message</h3>
                         </div>
                         <div class=""message"">
-                        <p>{1}</p>
+                        <p>{HttpUtility.HtmlEncode(exception.Message)}</p>
                         </div>
                         </div><br/>
                         <div class=""content"">
@@ -332,7 +330,7 @@ namespace CrashReporterDotNET
                         <h3>Source</h3>
                         </div>
                         <div class=""message"">
-                        <p>{2}</p>
+                        <p>{HttpUtility.HtmlEncode(exception.Source ?? "No source")}</p>
                         </div>
                         </div><br/>
                         <div class=""content"">
@@ -340,23 +338,22 @@ namespace CrashReporterDotNET
                         <h3>Stack Trace</h3>
                         </div>
                         <div class=""message"">
-                        <p>{3}</p>
+                        <p>{
+                    HttpUtility.HtmlEncode(exception.StackTrace ?? "No stack trace").Replace("\r\n", "<br/>")
+                }</p>
                         </div>
-                        </div>", HttpUtility.HtmlEncode(exception.GetType().ToString()),
-                HttpUtility.HtmlEncode(exception.Message),
-                HttpUtility.HtmlEncode(exception.Source ?? "No source"),
-                HttpUtility.HtmlEncode(exception.StackTrace ?? "No stack trace").Replace("\r\n", "<br/>"));
+                        </div>";
             if (exception.InnerException != null)
             {
-                report += string.Format(@"<br/>
+                report += $@"<br/>
                         <div class=""content"">
                         <div class=""title"" style=""background-color: #66CCFF;"">
                         <h3>Inner Exception</h3>
                         </div>
                         <div class=""message"">
-                        {0}
+                        {CreateReport(exception.InnerException)}
                         </div>
-                        </div>", CreateReport(exception.InnerException));
+                        </div>";
             }
             report += "<br/>";
             return report;

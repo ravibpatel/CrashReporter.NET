@@ -63,9 +63,17 @@ namespace CrashReporterDotNET
             {
                 RegistryKey registryKey = Registry.LocalMachine.OpenSubKey(key);
                 if (registryKey == null) return "";
-                return (string)registryKey.GetValue(value);
+                return registryKey.GetValue(value).ToString();
             }
-            catch { return ""; }
+            catch
+            {
+                return "";
+            }
+        }
+
+        public static string GetOSVersion()
+        {
+            return $"{HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentMajorVersionNumber")}.{HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentMinorVersionNumber")}.{HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuildNumber")}.0";
         }
 
         private delegate bool IsWow64ProcessDelegate([In] IntPtr handle, [Out] out bool isWow64Process);
@@ -86,7 +94,8 @@ namespace CrashReporterDotNET
             string currentBuild = HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuild");
             if (productName != "")
             {
-                return string.Format("{0}{1}{2}{3} (OS Build {4})", (productName.StartsWith("Microsoft") ? "" : "Microsoft "), productName, (csdVersion != "" ? " " + csdVersion : ""), osArchitecture, currentBuild);
+                return
+                    $"{(productName.StartsWith("Microsoft") ? "" : "Microsoft ")}{productName}{(csdVersion != "" ? " " + csdVersion : "")} {osArchitecture} (OS Build {currentBuild})";
             }
             return "";
         }
