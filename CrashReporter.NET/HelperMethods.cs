@@ -7,54 +7,37 @@ namespace CrashReporterDotNET
 {
     internal static class HelperMethods
     {
-        [DllImport("kernel32", SetLastError = true, CallingConvention = CallingConvention.Winapi)]
-        private static extern IntPtr LoadLibrary(string libraryName);
+        [DllImport("kernel32.dll")]
+        static extern IntPtr GetCurrentProcess();
 
-        [DllImport("kernel32", SetLastError = true, CallingConvention = CallingConvention.Winapi)]
-        private static extern IntPtr GetProcAddress(IntPtr hwnd, string procedureName);
+        [DllImport("kernel32.dll")]
+        static extern IntPtr GetModuleHandle(string moduleName);
 
-        private static bool IsOS64Bit()
+        [DllImport("kernel32")]
+        static extern IntPtr GetProcAddress(IntPtr hModule, string procName);
+
+        [DllImport("kernel32.dll")]
+        static extern bool IsWow64Process(IntPtr hProcess, out bool wow64Process);
+
+        private static bool Is64BitOperatingSystem()
         {
-            return IntPtr.Size == 8 || (IntPtr.Size == 4 && Is32BitProcessOn64BitProcessor());
-        }
-
-        private static IsWow64ProcessDelegate GetIsWow64ProcessDelegate()
-        {
-            IntPtr handle = LoadLibrary("kernel32");
-
-            if (handle != IntPtr.Zero)
+            // Check if this process is natively an x64 process. If it is, it will only run on x64 environments, thus, the environment must be x64.
+            if (IntPtr.Size == 8)
+                return true;
+            // Check if this process is an x86 process running on an x64 environment.
+            IntPtr moduleHandle = GetModuleHandle("kernel32");
+            if (moduleHandle != IntPtr.Zero)
             {
-                IntPtr fnPtr = GetProcAddress(handle, "IsWow64Process");
-
-                if (fnPtr != IntPtr.Zero)
+                IntPtr processAddress = GetProcAddress(moduleHandle, "IsWow64Process");
+                if (processAddress != IntPtr.Zero)
                 {
-                    return
-                        (IsWow64ProcessDelegate)
-                        Marshal.GetDelegateForFunctionPointer(fnPtr, typeof(IsWow64ProcessDelegate));
+                    bool result;
+                    if (IsWow64Process(GetCurrentProcess(), out result) && result)
+                        return true;
                 }
             }
-
-            return null;
-        }
-
-        private static bool Is32BitProcessOn64BitProcessor()
-        {
-            IsWow64ProcessDelegate fnDelegate = GetIsWow64ProcessDelegate();
-
-            if (fnDelegate == null)
-            {
-                return false;
-            }
-
-            bool isWow64;
-            bool retVal = fnDelegate.Invoke(Process.GetCurrentProcess().Handle, out isWow64);
-
-            if (retVal == false)
-            {
-                return false;
-            }
-
-            return isWow64;
+            // The environment must be an x86 environment.
+            return false;
         }
 
         private static string HKLM_GetString(string key, string value)
@@ -62,28 +45,30 @@ namespace CrashReporterDotNET
             try
             {
                 RegistryKey registryKey = Registry.LocalMachine.OpenSubKey(key);
-                if (registryKey == null) return "";
-                return registryKey.GetValue(value).ToString();
+                return registryKey?.GetValue(value).ToString() ?? String.Empty;
             }
             catch
             {
-                return "";
+                return String.Empty;
             }
         }
 
         public static string GetOSVersion()
         {
-            return $"{HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentMajorVersionNumber")}.{HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentMinorVersionNumber")}.{HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuildNumber")}.0";
+            if (!string.IsNullOrEmpty(HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentMajorVersionNumber")))
+            {
+                return
+                    $"{HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentMajorVersionNumber")}.{HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentMinorVersionNumber")}.{HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuildNumber")}.0";
+            }
+            return $"{HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentVersion")}.{HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuildNumber")}.0";
         }
-
-        private delegate bool IsWow64ProcessDelegate([In] IntPtr handle, [Out] out bool isWow64Process);
 
         public static string GetWindowsVersion()
         {
             string osArchitecture;
             try
             {
-                osArchitecture = IsOS64Bit() ? "64-bit" : "32-bit";
+                osArchitecture = Is64BitOperatingSystem() ? "64-bit" : "32-bit";
             }
             catch (Exception)
             {
@@ -91,13 +76,13 @@ namespace CrashReporterDotNET
             }
             string productName = HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName");
             string csdVersion = HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CSDVersion");
-            string currentBuild = HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuild");
-            if (productName != "")
+            string currentBuild = HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuildNumber");
+            if (!string.IsNullOrEmpty(productName))
             {
                 return
-                    $"{(productName.StartsWith("Microsoft") ? "" : "Microsoft ")}{productName}{(csdVersion != "" ? " " + csdVersion : "")} {osArchitecture} (OS Build {currentBuild})";
+                    $"{(productName.StartsWith("Microsoft") ? "" : "Microsoft ")}{productName}{(!string.IsNullOrEmpty(csdVersion) ? " " + csdVersion : String.Empty)} {osArchitecture} (OS Build {currentBuild})";
             }
-            return "";
+            return String.Empty;
         }
     }
 }

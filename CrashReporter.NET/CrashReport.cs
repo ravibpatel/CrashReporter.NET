@@ -46,8 +46,8 @@ namespace CrashReporterDotNET
 
         public sealed override string Text
         {
-            get { return base.Text; }
-            set { base.Text = value; }
+            get => base.Text;
+            set => base.Text = value;
         }
 
         private void CrashReportLoad(object sender, EventArgs e)
