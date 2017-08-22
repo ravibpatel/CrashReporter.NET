@@ -112,60 +112,99 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pictureBoxIcon.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
+  <data name="buttonCancel.Text" xml:space="preserve">
+    <value>취소</value>
   </data>
-  <data name="pictureBoxIcon.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 46</value>
+  <data name="buttonSave.Text" xml:space="preserve">
+    <value>저장</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="pictureBoxIcon.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>CenterImage</value>
+  <data name="buttonSendReport.Text" xml:space="preserve">
+    <value>리포트 전송</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="pictureBoxIcon.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="checkBoxIncludeScreenshot.Text" xml:space="preserve">
+    <value>스크린샷 포함</value>
   </data>
-  <data name="labelMessage.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="checkBoxIncludeScreenshot.ToolTip" xml:space="preserve">
+    <value>에러 리포트에 에러 발생 당시의 화면을 첨부합니다.</value>
   </data>
-  <data name="labelMessage.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 12px</value>
+  <data name="EmailRequiredError" xml:space="preserve">
+    <value>에러 리포트 전송을 위해 올바른 메일 주소가 필요합니다. 또한 버그가 수정되면 개발자로부터 알림을 받으실 수 있습니다.</value>
   </data>
-  <data name="labelMessage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 27</value>
+  <data name="ErrorCapturingImageCaption" xml:space="preserve">
+    <value>캡쳐된 이미지 없음.</value>
   </data>
-  <data name="labelMessage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>199, 14</value>
+  <data name="ErrorCapturingImageMessage" xml:space="preserve">
+    <value>스크린샷을 찍는 도중에 에러가 발생하였습니다. 스크린샷 없이도 에러 리포트를 보낼 수 있습니다.</value>
   </data>
-  <data name="labelMessage.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="groupBoxScreenshot.Text" xml:space="preserve">
+    <value>스크린샷</value>
   </data>
-  <data name="$this.Localizable" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="InvalidEmailAddressError" xml:space="preserve">
+    <value>이메일이 올바르지 않습니다. 올바른 이메일을 적어주세요.</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>7, 17</value>
+  <data name="labelApplication.Text" xml:space="preserve">
+    <value>애플리케이션</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>464, 70</value>
+  <data name="labelEmail.Text" xml:space="preserve">
+    <value>메일</value>
   </data>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 13px</value>
+  <data name="labelExceptionMessage.Text" xml:space="preserve">
+    <value>메세지</value>
   </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterParent</value>
+  <data name="labelExceptionType.Text" xml:space="preserve">
+    <value>예외 유형</value>
   </data>
   <data name="labelMessage.Text" xml:space="preserve">
-    <value>에러 리포트 보내는중... 잠시만 기다려 주세요.</value>
+    <value>프로그램에서 오류가 발생한 경위를 작성해주세요. 이는 저희가 버그를 고칠때 큰 도움이 됩니다</value>
+  </data>
+  <data name="labelSource.Text" xml:space="preserve">
+    <value>근원</value>
+  </data>
+  <data name="labelStackTrace.Text" xml:space="preserve">
+    <value>스택 트레이스</value>
+  </data>
+  <data name="labelTime.Text" xml:space="preserve">
+    <value>시간</value>
+  </data>
+  <data name="labelVersion.Text" xml:space="preserve">
+    <value>버전</value>
+  </data>
+  <data name="linkLabelView.Text" xml:space="preserve">
+    <value>스크린샷 크게 보기</value>
+  </data>
+  <data name="MessageSentCaption" xml:space="preserve">
+    <value>에러 리포트가 전송되었습니다.</value>
+  </data>
+  <data name="MessageSentMessage" xml:space="preserve">
+    <value>에러리포트 {0} {1} 가 개발자에게 전송되었습니다. 도움을 주셔서 감사합니다.</value>
+  </data>
+  <data name="NoImageShownCaption" xml:space="preserve">
+    <value>이미지를 여는데 실패함.</value>
+  </data>
+  <data name="NoImageShownMessage" xml:space="preserve">
+    <value>에러 발생, 이미지가 표시되지 않습니다.</value>
+  </data>
+  <data name="ReportFileName" xml:space="preserve">
+    <value>{0} {1} 에러 리포트.</value>
+  </data>
+  <data name="tabPageExceptions.Text" xml:space="preserve">
+    <value>에러 내용</value>
+  </data>
+  <data name="tabPageGeneral.Text" xml:space="preserve">
+    <value>일반</value>
+  </data>
+  <data name="tabPageScreenshot.Text" xml:space="preserve">
+    <value>스크린샷</value>
+  </data>
+  <data name="TitleText" xml:space="preserve">
+    <value>{0} {1} 크래시 발생</value>
+  </data>
+  <data name="toolTip.ToolTipTitle" xml:space="preserve">
+    <value>애플리케이션 스크린샷 포함</value>
   </data>
 </root>
