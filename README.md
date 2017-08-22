@@ -12,6 +12,8 @@ CrashReporter.NET uses the exception information like stack trace, exception typ
 
 ## Using the code
 
+### Windows Forms Application
+
 First thing you need to do is subscribe to Application.ThreadException and AppDomain.CurrentDomain.UnhandledException in your Program.cs file as shown below.
 
 ````csharp
@@ -73,6 +75,71 @@ try
 catch (Exception exception)
 {
     Program.ReportCrash(exception, "Value of path variable is " + path);
+}
+````
+
+### WPF Application
+
+First thing you need to do is subscribe to AppDomain.CurrentDomain.UnhandledException in your App.xaml.cs file as shown below.
+
+````csharp
+public partial class App : Application
+{
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        base.OnStartup(e);
+        AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
+        Application.Current.DispatcherUnhandledException += DispatcherOnUnhandledException;
+        TaskScheduler.UnobservedTaskException += TaskSchedulerOnUnobservedTaskException;
+    }
+
+    private void TaskSchedulerOnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs unobservedTaskExceptionEventArgs)
+    {
+        ReportCrash(unobservedTaskExceptionEventArgs.Exception);
+        Environment.Exit(0);
+    }
+
+    private void DispatcherOnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs dispatcherUnhandledExceptionEventArgs)
+    {
+        ReportCrash(dispatcherUnhandledExceptionEventArgs.Exception);
+        Environment.Exit(0);
+    }
+
+    private static void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs)
+    {
+        ReportCrash((Exception)unhandledExceptionEventArgs.ExceptionObject);
+        Environment.Exit(0);
+    }
+
+    public static void ReportCrash(Exception exception, string developerMessage = "")
+    {
+        var reportCrash = new ReportCrash
+        {
+            DeveloperMessage = developerMessage,
+            ToEmail = "Email where you want to receive crash reports."
+        };
+        reportCrash.Send(exception);
+    }
+}
+````
+
+Just set the ToEmail in above example with your email to start receiving crash reports.
+
+If you want to handle exception report for individual exception with special message you can do it like shown below.
+
+````csharp
+const string path = "test.txt";
+try
+{
+    if (!File.Exists(path))
+    {
+        throw new FileNotFoundException(
+            "File Not found when trying to write argument exception to the file", argumentException);
+    }
+}
+catch (Exception exception)
+{
+    App.ReportCrash(exception, "Value of path variable is " + path);
 }
 ````
 

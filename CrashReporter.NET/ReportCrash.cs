@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace CrashReporterDotNET
 {
@@ -138,6 +139,10 @@ namespace CrashReporterDotNET
             if (String.IsNullOrEmpty(ToEmail) || !AnalyzeWithDoctorDump && (String.IsNullOrEmpty(FromEmail) || String.IsNullOrEmpty(SmtpHost)))
                 return;
 
+            if (!Application.MessageLoop)
+            {
+                Application.EnableVisualStyles();
+            }
             var parameterizedThreadStart = new ParameterizedThreadStart(delegate
             {
                 new CrashReport(this).ShowDialog();
