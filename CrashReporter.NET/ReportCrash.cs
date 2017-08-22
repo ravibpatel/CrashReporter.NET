@@ -77,7 +77,7 @@ namespace CrashReporterDotNET
         /// <summary>
         /// Gets or Sets the current culture to use by the library.
         /// </summary>
-        public CultureInfo CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
+        public CultureInfo CurrentCulture;
 
         /// <summary>
         /// Specify whether CrashReporter.NET should send crash reports only for new problems (duplicates detected by Doctor Dump free cloud service).
@@ -143,14 +143,10 @@ namespace CrashReporterDotNET
             {
                 Application.EnableVisualStyles();
             }
-            var parameterizedThreadStart = new ParameterizedThreadStart(delegate
-            {
-                new CrashReport(this).ShowDialog();
-            });
-            var thread = new Thread(parameterizedThreadStart) { IsBackground = false };
+            var thread = new Thread(() => new CrashReport(this).ShowDialog()) { IsBackground = false };
             thread.CurrentCulture = thread.CurrentUICulture = CurrentCulture ?? Thread.CurrentThread.CurrentCulture;
             thread.SetApartmentState(ApartmentState.STA);
-            thread.Start(this);
+            thread.Start();
             thread.Join();
         }
     }
