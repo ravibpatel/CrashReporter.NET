@@ -119,6 +119,9 @@
     <EmbeddedResource Include="CrashReport.tr.resx">
       <DependentUpon>CrashReport.cs</DependentUpon>
     </EmbeddedResource>
+	<EmbeddedResource Include="CrashReport.kr.resx">
+      <DependentUpon>CrashReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProgressDialog.da.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,6 +153,9 @@
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgressDialog.tr.resx">
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
+    </EmbeddedResource>
+	<EmbeddedResource Include="ProgressDialog.kr.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
