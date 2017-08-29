@@ -174,37 +174,4 @@
   <data name="buttonSendReport.Text" xml:space="preserve">
     <value>Raporu Gönder</value>
   </data>
-  <data name="EmailRequiredError" xml:space="preserve">
-    <value>E-Posta adresiniz gerekiyor</value>
-  </data>
-  <data name="ErrorCapturingImageCaption" xml:space="preserve">
-    <value>Resim alınamıyor</value>
-  </data>
-  <data name="ErrorCapturingImageMessage" xml:space="preserve">
-    <value>Resim alınırken hata oluştu. Raporu direkt gönderebilirsiniz.</value>
-  </data>
-  <data name="InvalidEmailAddressError" xml:space="preserve">
-    <value>Geçersiz e-posta adresi girdiniz</value>
-  </data>
-  <data name="MessageSentCaption" xml:space="preserve">
-    <value>Raporu gönder</value>
-  </data>
-  <data name="MessageSentMessage" xml:space="preserve">
-    <value>Hata Raporu {0} {1} uygulama ekibimize gönderildi. İlginiz için teşekkür ederiz.</value>
-  </data>
-  <data name="NoImageShownCaption" xml:space="preserve">
-    <value>Hata açılış ekran görüntüsü</value>
-  </data>
-  <data name="NoImageShownMessage" xml:space="preserve">
-    <value>Hata oluştu. Ekran görüntüsü gönderilemeyecek.</value>
-  </data>
-  <data name="ReportFileName" xml:space="preserve">
-    <value>Hata dosyası {0} {1}</value>
-  </data>
-  <data name="TitleText" xml:space="preserve">
-    <value>{0} {1}: Bir hata oluşturdu</value>
-  </data>
-  <data name="toolTip.ToolTipTitle" xml:space="preserve">
-    <value>Ekran görüntüsü ekle</value>
-  </data>
 </root>

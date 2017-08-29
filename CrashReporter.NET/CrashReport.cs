@@ -9,14 +9,13 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Windows.Forms;
 using CrashReporterDotNET.DrDump;
+using CrashReporterDotNET.Properties;
 
 namespace CrashReporterDotNET
 {
     internal partial class CrashReport : Form
     {
         private readonly ReportCrash _reportCrash;
-
-        private readonly ComponentResourceManager _resources = new ComponentResourceManager(typeof (CrashReport));
 
         private ProgressDialog _progressDialog;
 
@@ -27,10 +26,11 @@ namespace CrashReporterDotNET
         public CrashReport(ReportCrash reportCrashObject)
         {
             InitializeComponent();
+            toolTip.ToolTipTitle = Resources.ToolTipTitle;
             _reportCrash = reportCrashObject;
-            Text = string.Format(_resources.GetString("TitleText"), _reportCrash.ApplicationTitle,
+            Text = string.Format(Resources.TitleText, _reportCrash.ApplicationTitle,
                 _reportCrash.ApplicationVersion);
-            saveFileDialog.FileName = string.Format(_resources.GetString("ReportFileName"),
+            saveFileDialog.FileName = string.Format(Resources.ReportFileName,
                 _reportCrash.ApplicationTitle, _reportCrash.ApplicationVersion);
             saveFileDialog.Filter = @"HTML files(*.html)|*.html";
             if (File.Exists(_reportCrash.ScreenShot))
@@ -102,7 +102,7 @@ namespace CrashReporterDotNET
             {
                 if (_reportCrash.EmailRequired)
                 {
-                    errorProviderEmail.SetError(textBoxEmail, _resources.GetString("EmailRequiredError"));
+                    errorProviderEmail.SetError(textBoxEmail, Resources.EmailRequiredError);
                     return;
                 }
             }
@@ -113,7 +113,7 @@ namespace CrashReporterDotNET
                 {
                     if (_reportCrash.EmailRequired)
                     {
-                        errorProviderEmail.SetError(textBoxEmail, _resources.GetString("InvalidEmailAddressError"));
+                        errorProviderEmail.SetError(textBoxEmail, Resources.InvalidEmailAddressError);
                         return;
                     }
                 }
@@ -197,14 +197,14 @@ namespace CrashReporterDotNET
             catch (FileNotFoundException)
             {
                 MessageBox.Show(
-                    _resources.GetString("ErrorCapturingImageMessage"),
-                    _resources.GetString("ErrorCapturingImageCaption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Resources.ErrorCapturingImageMessage,
+                    Resources.ErrorCapturingImageCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
             {
                 MessageBox.Show(
-                    _resources.GetString("NoImageShownMessage"),
-                    _resources.GetString("NoImageShownCaption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Resources.NoImageShownMessage,
+                    Resources.NoImageShownCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -408,9 +408,9 @@ namespace CrashReporterDotNET
         {
             _progressDialog.Close();
             MessageBox.Show(
-                string.Format(_resources.GetString("MessageSentMessage"),
+                string.Format(Resources.MessageSentMessage,
                     _reportCrash.ApplicationTitle, _reportCrash.ApplicationVersion),
-                _resources.GetString("MessageSentCaption"), MessageBoxButtons.OK,
+                Resources.MessageSentCaption, MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
             DialogResult = DialogResult.OK;
         }

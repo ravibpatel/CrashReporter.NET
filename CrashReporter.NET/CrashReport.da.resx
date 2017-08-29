@@ -132,20 +132,8 @@
   <data name="checkBoxIncludeScreenshot.ToolTip" xml:space="preserve">
     <value>Tilføj screenshot af fejl skærm i styrt rapport.</value>
   </data>
-  <data name="EmailRequiredError" xml:space="preserve">
-    <value>En gyldig e-mail-adresse er nødvendig for at sende styrtet rapporten. Dette sikrer, at du vil blive underrettet af bygherren, når fejlen er fast</value>
-  </data>
-  <data name="ErrorCapturingImageCaption" xml:space="preserve">
-    <value>Intet billede fanget</value>
-  </data>
-  <data name="ErrorCapturingImageMessage" xml:space="preserve">
-    <value>Der er en fejl, mens indfange billedet. Du kan indsende rapport rapport uden skærmbillede.</value>
-  </data>
   <data name="groupBoxScreenshot.Text" xml:space="preserve">
     <value>Skærmbillede</value>
-  </data>
-  <data name="InvalidEmailAddressError" xml:space="preserve">
-    <value>E-mail-adresse er ikke gyldig. Oplys venligst gyldig e-mail-adresse</value>
   </data>
   <data name="labelApplication.Text" xml:space="preserve">
     <value>Ansøgning</value>
@@ -177,21 +165,6 @@
   <data name="linkLabelView.Text" xml:space="preserve">
     <value>View Full Screenshot</value>
   </data>
-  <data name="MessageSentCaption" xml:space="preserve">
-    <value>Crash rapport sendt</value>
-  </data>
-  <data name="MessageSentMessage" xml:space="preserve">
-    <value>Crash rapport fra {0} {1} er sendt til udvikleren. Tak for din støtte.</value>
-  </data>
-  <data name="NoImageShownCaption" xml:space="preserve">
-    <value>Fejl ved åbning af billede</value>
-  </data>
-  <data name="NoImageShownMessage" xml:space="preserve">
-    <value>Der opstod en fejl, intet billede vil blive vist.</value>
-  </data>
-  <data name="ReportFileName" xml:space="preserve">
-    <value>{0} {1} Crash Report</value>
-  </data>
   <data name="tabPageExceptions.Text" xml:space="preserve">
     <value>Undtagelser</value>
   </data>
@@ -200,11 +173,5 @@
   </data>
   <data name="tabPageScreenshot.Text" xml:space="preserve">
     <value>Skærmbillede</value>
-  </data>
-  <data name="TitleText" xml:space="preserve">
-    <value>{0} {1} styrtede ned.</value>
-  </data>
-  <data name="toolTip.ToolTipTitle" xml:space="preserve">
-    <value>Medtag ansøgning screenshot</value>
   </data>
 </root>

@@ -132,20 +132,8 @@
   <data name="checkBoxIncludeScreenshot.ToolTip" xml:space="preserve">
     <value>Screenshot van de fout scherm toe te voegen in uw crash rapport.</value>
   </data>
-  <data name="EmailRequiredError" xml:space="preserve">
-    <value>Een geldig e-mailadres nodig om de crash rapport sturen. Dit zorgt ervoor dat je door de ontwikkelaar wordt verwittigd wanneer bug is opgelost</value>
-  </data>
-  <data name="ErrorCapturingImageCaption" xml:space="preserve">
-    <value>Geen afbeelding gevangen</value>
-  </data>
-  <data name="ErrorCapturingImageMessage" xml:space="preserve">
-    <value>Er is een fout opgetreden tijdens het maken van opnamen. U kunt rapport verslag uit zonder screenshot.</value>
-  </data>
   <data name="groupBoxScreenshot.Text" xml:space="preserve">
     <value>Screenshot</value>
-  </data>
-  <data name="InvalidEmailAddressError" xml:space="preserve">
-    <value>E-mailadres is niet geldig. Geef geldig e-mailadres</value>
   </data>
   <data name="labelApplication.Text" xml:space="preserve">
     <value>Toepassing</value>
@@ -177,21 +165,6 @@
   <data name="linkLabelView.Text" xml:space="preserve">
     <value>View Full Schermafbeelding</value>
   </data>
-  <data name="MessageSentCaption" xml:space="preserve">
-    <value>Crashrapport verzonden</value>
-  </data>
-  <data name="MessageSentMessage" xml:space="preserve">
-    <value>Crash rapport van {0} {1} is aan de ontwikkelaar gestuurd. Bedankt voor uw steun.</value>
-  </data>
-  <data name="NoImageShownCaption" xml:space="preserve">
-    <value>Afbeelding Error opening</value>
-  </data>
-  <data name="NoImageShownMessage" xml:space="preserve">
-    <value>Fout opgetreden, geen beeld wordt getoond.</value>
-  </data>
-  <data name="ReportFileName" xml:space="preserve">
-    <value>{0} {1} Crash Report</value>
-  </data>
   <data name="tabPageExceptions.Text" xml:space="preserve">
     <value>Uitzonderingen</value>
   </data>
@@ -200,11 +173,5 @@
   </data>
   <data name="tabPageScreenshot.Text" xml:space="preserve">
     <value>Screenshot</value>
-  </data>
-  <data name="TitleText" xml:space="preserve">
-    <value>{0} {1} crashte.</value>
-  </data>
-  <data name="toolTip.ToolTipTitle" xml:space="preserve">
-    <value>Omvatten applicatie screenshot</value>
   </data>
 </root>

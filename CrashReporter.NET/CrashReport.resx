@@ -618,20 +618,8 @@
   <data name="checkBoxIncludeScreenshot.ToolTip" xml:space="preserve">
     <value>Add screenshot of error screen in your crash report.</value>
   </data>
-  <data name="EmailRequiredError" xml:space="preserve">
-    <value>A valid Email address is required in order to send the crash report. This ensures that you will be notified by the developer when bug is fixed</value>
-  </data>
-  <data name="ErrorCapturingImageCaption" xml:space="preserve">
-    <value>No image captured</value>
-  </data>
-  <data name="ErrorCapturingImageMessage" xml:space="preserve">
-    <value>There is an error while capturing image. You can submit report report without screenshot.</value>
-  </data>
   <data name="groupBoxScreenshot.Text" xml:space="preserve">
     <value>Screenshot</value>
-  </data>
-  <data name="InvalidEmailAddressError" xml:space="preserve">
-    <value>Email address is not valid. Please provide valid email address</value>
   </data>
   <data name="labelApplication.Text" xml:space="preserve">
     <value>Application</value>
@@ -663,21 +651,6 @@
   <data name="linkLabelView.Text" xml:space="preserve">
     <value>View Full Screenshot</value>
   </data>
-  <data name="MessageSentCaption" xml:space="preserve">
-    <value>Crash report sent</value>
-  </data>
-  <data name="MessageSentMessage" xml:space="preserve">
-    <value>Crash report of {0} {1} is sent to the developer. Thanks for your support.</value>
-  </data>
-  <data name="NoImageShownCaption" xml:space="preserve">
-    <value>Error opening image</value>
-  </data>
-  <data name="NoImageShownMessage" xml:space="preserve">
-    <value>Error occured, no image will be shown.</value>
-  </data>
-  <data name="ReportFileName" xml:space="preserve">
-    <value>{0} {1} Crash Report</value>
-  </data>
   <data name="tabPageExceptions.Text" xml:space="preserve">
     <value>Exceptions</value>
   </data>
@@ -686,11 +659,5 @@
   </data>
   <data name="tabPageScreenshot.Text" xml:space="preserve">
     <value>Screenshot</value>
-  </data>
-  <data name="TitleText" xml:space="preserve">
-    <value>{0} {1} crashed.</value>
-  </data>
-  <data name="toolTip.ToolTipTitle" xml:space="preserve">
-    <value>Include application screenshot</value>
   </data>
 </root>

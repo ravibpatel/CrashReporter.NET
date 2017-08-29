@@ -132,20 +132,8 @@
   <data name="checkBoxIncludeScreenshot.ToolTip" xml:space="preserve">
     <value>Screenshot mit dem Fehlerbericht übermitteln</value>
   </data>
-  <data name="EmailRequiredError" xml:space="preserve">
-    <value>Bitte geben Sie eine gültige Emailadresse an. Dies stellt sicher, dass Sie durch den Entwickler benachrichtigt werden, wenn Fehler behoben ist.</value>
-  </data>
-  <data name="ErrorCapturingImageCaption" xml:space="preserve">
-    <value>Kein Bild erfasst</value>
-  </data>
-  <data name="ErrorCapturingImageMessage" xml:space="preserve">
-    <value>Es ist ein Fehler während der Bildaufnahme aufgetreten. Sie können den Bericht ohne Screenshot senden.</value>
-  </data>
   <data name="groupBoxScreenshot.Text" xml:space="preserve">
     <value>Screenshot</value>
-  </data>
-  <data name="InvalidEmailAddressError" xml:space="preserve">
-    <value>E-Mail-Adresse ist nicht gültig. Bitte geben Sie eine gültige E-Mail-Adresse</value>
   </data>
   <data name="labelApplication.Text" xml:space="preserve">
     <value>Anwendung</value>
@@ -177,21 +165,6 @@
   <data name="linkLabelView.Text" xml:space="preserve">
     <value>Screenshot anzeigen</value>
   </data>
-  <data name="MessageSentCaption" xml:space="preserve">
-    <value>Crash-Bericht gesendet</value>
-  </data>
-  <data name="MessageSentMessage" xml:space="preserve">
-    <value>Crash-Bericht von {0} {1} wird an den Entwickler geschickt. Vielen Dank für Ihre Unterstützung.</value>
-  </data>
-  <data name="NoImageShownCaption" xml:space="preserve">
-    <value>Fehler beim Öffnen der Bilddatei</value>
-  </data>
-  <data name="NoImageShownMessage" xml:space="preserve">
-    <value>Fehler aufgetreten, es wird kein Bild angezeigt.</value>
-  </data>
-  <data name="ReportFileName" xml:space="preserve">
-    <value>{0} {1} Crash Report</value>
-  </data>
   <data name="tabPageExceptions.Text" xml:space="preserve">
     <value>Ausnahmen</value>
   </data>
@@ -200,11 +173,5 @@
   </data>
   <data name="tabPageScreenshot.Text" xml:space="preserve">
     <value>Screenshot</value>
-  </data>
-  <data name="TitleText" xml:space="preserve">
-    <value>{0} {1} ist abgestürzt.</value>
-  </data>
-  <data name="toolTip.ToolTipTitle" xml:space="preserve">
-    <value>Anwendungs-Screenshot hinzufügen</value>
   </data>
 </root>

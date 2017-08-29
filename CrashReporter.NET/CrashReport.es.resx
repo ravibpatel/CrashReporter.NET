@@ -174,37 +174,4 @@
   <data name="buttonSendReport.Text" xml:space="preserve">
     <value>Enviar informe</value>
   </data>
-  <data name="EmailRequiredError" xml:space="preserve">
-    <value>Una dirección de correo electrónico válida que se requiere con el fin de enviar el informe de errores. Esto garantiza que usted será notificado por el promotor al error se corrige</value>
-  </data>
-  <data name="ErrorCapturingImageCaption" xml:space="preserve">
-    <value>No hay imagen capturada</value>
-  </data>
-  <data name="ErrorCapturingImageMessage" xml:space="preserve">
-    <value>Hay un error durante la captura de la imagen. Puede enviar informe informe sin pantalla.</value>
-  </data>
-  <data name="InvalidEmailAddressError" xml:space="preserve">
-    <value>Dirección de correo electrónico no es válida. Por favor, indique la dirección e-mail válida</value>
-  </data>
-  <data name="MessageSentCaption" xml:space="preserve">
-    <value>Crash informe enviado</value>
-  </data>
-  <data name="MessageSentMessage" xml:space="preserve">
-    <value>Crash informe de {0} {1} es enviado a los desarrolladores. Gracias por tu apoyo.</value>
-  </data>
-  <data name="NoImageShownCaption" xml:space="preserve">
-    <value>Imagen de apertura Error</value>
-  </data>
-  <data name="NoImageShownMessage" xml:space="preserve">
-    <value>Ha ocurrido un error, ninguna imagen aparecerá.</value>
-  </data>
-  <data name="ReportFileName" xml:space="preserve">
-    <value>{0} {1} Informe Crash</value>
-  </data>
-  <data name="TitleText" xml:space="preserve">
-    <value>{0} {1} se estrelló.</value>
-  </data>
-  <data name="toolTip.ToolTipTitle" xml:space="preserve">
-    <value>Incluir la aplicación de pantalla</value>
-  </data>
 </root>
