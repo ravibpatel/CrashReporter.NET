@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
+using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 using Microsoft.Win32;
 
 namespace CrashReporterDotNET
@@ -82,6 +85,26 @@ namespace CrashReporterDotNET
                     $"{(productName.StartsWith("Microsoft") ? "" : "Microsoft ")}{productName}{(!string.IsNullOrEmpty(csdVersion) ? " " + csdVersion : String.Empty)} {osArchitecture} (OS Build {currentBuild})";
             }
             return String.Empty;
+        }
+
+        internal static void UseSystemFont(Form form)
+        {
+            form.Font = SystemFonts.MessageBoxFont;
+            SetFont(form.Controls);
+        }
+
+        private static void SetFont(IEnumerable controls)
+        {
+            foreach (Control control in controls)
+            {
+                var font = new Font(SystemFonts.MessageBoxFont.FontFamily, control.Font.SizeInPoints, control.Font.Style,
+                    GraphicsUnit.Point);
+                control.Font = font;
+                if (control.HasChildren)
+                {
+                    SetFont(control.Controls);
+                }
+            }
         }
     }
 }

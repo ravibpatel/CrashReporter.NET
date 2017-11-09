@@ -172,5 +172,5 @@ namespace CrashReporterDotNET
         /// Specify whether CrashReporter.NET should open the web page in browser about crash report that contains report ID and may contain steps to fix the problem.
         /// </summary>
         public bool OpenReportInBrowser = true;
-    }
+    } 
 }
