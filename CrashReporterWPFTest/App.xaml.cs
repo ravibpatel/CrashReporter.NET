@@ -39,10 +39,9 @@ namespace CrashReporterWPFTest
 
         public static void ReportCrash(Exception exception, string developerMessage = "")
         {
-            var reportCrash = new ReportCrash
+            var reportCrash = new ReportCrash("Email where you want to receive crash reports.")
             {
-                DeveloperMessage = developerMessage,
-                ToEmail = "Email where you want to receive crash reports."
+                DeveloperMessage = developerMessage
             };
             reportCrash.Send(exception);
         }

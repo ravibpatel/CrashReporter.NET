@@ -34,7 +34,7 @@
             // 
             // buttonTest
             // 
-            this.buttonTest.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.buttonTest.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonTest.Location = new System.Drawing.Point(12, 13);
             this.buttonTest.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonTest.Name = "buttonTest";
@@ -46,7 +46,7 @@
             // 
             // buttonThreadException
             // 
-            this.buttonThreadException.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.buttonThreadException.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonThreadException.Location = new System.Drawing.Point(12, 101);
             this.buttonThreadException.Name = "buttonThreadException";
             this.buttonThreadException.Size = new System.Drawing.Size(308, 81);
@@ -62,12 +62,13 @@
             this.ClientSize = new System.Drawing.Size(332, 194);
             this.Controls.Add(this.buttonThreadException);
             this.Controls.Add(this.buttonTest);
-            this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormMain";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CrashReportTest";
             this.ResumeLayout(false);

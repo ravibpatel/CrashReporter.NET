@@ -7,7 +7,6 @@ namespace CrashReporterDotNET
         public ProgressDialog()
         {
             InitializeComponent();
-            HelperMethods.UseSystemFont(this);
         }
     }
 }

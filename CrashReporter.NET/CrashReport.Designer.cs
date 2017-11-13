@@ -274,8 +274,8 @@
             // buttonSave
             // 
             this.buttonSave.AllowDrop = true;
-            this.buttonSave.Image = global::CrashReporterDotNET.Properties.Resources.save_as;
             resources.ApplyResources(this.buttonSave, "buttonSave");
+            this.buttonSave.Image = global::CrashReporterDotNET.Properties.Resources.save_as;
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.ButtonSaveClick);
@@ -283,15 +283,15 @@
             // buttonCancel
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Image = global::CrashReporterDotNET.Properties.Resources.stop;
             resources.ApplyResources(this.buttonCancel, "buttonCancel");
+            this.buttonCancel.Image = global::CrashReporterDotNET.Properties.Resources.stop;
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
             // buttonSendReport
             // 
-            this.buttonSendReport.Image = global::CrashReporterDotNET.Properties.Resources.email_go;
             resources.ApplyResources(this.buttonSendReport, "buttonSendReport");
+            this.buttonSendReport.Image = global::CrashReporterDotNET.Properties.Resources.email_go;
             this.buttonSendReport.Name = "buttonSendReport";
             this.buttonSendReport.UseVisualStyleBackColor = true;
             this.buttonSendReport.Click += new System.EventHandler(this.ButtonSendReportClick);

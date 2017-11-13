@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing.Imaging;
 using System.Globalization;
@@ -75,11 +76,6 @@ namespace CrashReporterDotNET
         public bool IncludeScreenshot = true;
 
         /// <summary>
-        /// Gets or Sets the current culture to use by the library.
-        /// </summary>
-        public CultureInfo CurrentCulture;
-
-        /// <summary>
         /// Specify whether CrashReporter.NET should send crash reports only for new problems (duplicates detected by Doctor Dump free cloud service).
         /// </summary>
         public bool AnalyzeWithDoctorDump = true;
@@ -96,14 +92,12 @@ namespace CrashReporterDotNET
         internal string ScreenShot;
 
         /// <summary>
-        /// Sends exception report directly to receiver email address provided in ToEmail.
+        /// Object use to send exception report to your Inbox.
         /// </summary>
-        public void Send()
+        /// <param name="toEmail">Email where you want to receive crash reports.</param>
+        public ReportCrash(string toEmail)
         {
-            if (Exception != null)
-            {
-                Send(Exception);
-            }
+            ToEmail = toEmail;
         }
 
         /// <summary>
@@ -143,11 +137,19 @@ namespace CrashReporterDotNET
             {
                 Application.EnableVisualStyles();
             }
-            var thread = new Thread(() => new CrashReport(this).ShowDialog()) { IsBackground = false };
-            thread.CurrentCulture = thread.CurrentUICulture = CurrentCulture ?? Thread.CurrentThread.CurrentCulture;
-            thread.SetApartmentState(ApartmentState.STA);
-            thread.Start();
-            thread.Join();
+            CrashReport crashReport = new CrashReport(this);
+            if (Thread.CurrentThread.GetApartmentState().Equals(ApartmentState.MTA))
+            {
+                var thread = new Thread(() => crashReport.ShowDialog()) {IsBackground = false};
+                thread.CurrentCulture = thread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
+                thread.SetApartmentState(ApartmentState.STA);
+                thread.Start();
+                thread.Join();
+            }
+            else
+            {
+                crashReport.ShowDialog();
+            }
         }
     }
     

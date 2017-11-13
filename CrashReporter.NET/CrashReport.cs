@@ -26,7 +26,6 @@ namespace CrashReporterDotNET
         public CrashReport(ReportCrash reportCrashObject)
         {
             InitializeComponent();
-            HelperMethods.UseSystemFont(this);
             toolTip.ToolTipTitle = Resources.ToolTipTitle;
             _reportCrash = reportCrashObject;
             Text = string.Format(Resources.TitleText, _reportCrash.ApplicationTitle,

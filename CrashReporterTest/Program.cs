@@ -26,17 +26,14 @@ namespace CrashReporterTest
 
         public static void SendCrashReport(Exception exception, string developerMessage = "")
         {
-            var reportCrash = new ReportCrash
+            var reportCrash = new ReportCrash("Email where you want to receive crash reports.")
             {
-                CurrentCulture = new CultureInfo("en-US"),
-                AnalyzeWithDoctorDump = true,
                 DeveloperMessage = developerMessage,
-                ToEmail = "Email where you want to receive crash reports.",
                 DoctorDumpSettings = new DoctorDumpSettings
                 {
                     ApplicationID = new Guid("Application ID you received from DrDump.com"),
                     OpenReportInBrowser = true
-                },
+                }
             };
 
             reportCrash.Send(exception);

@@ -117,252 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;tabPageGeneral.Name" xml:space="preserve">
-    <value>tabPageGeneral</value>
-  </data>
-  <data name="&gt;&gt;tabPageGeneral.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPageGeneral.Parent" xml:space="preserve">
-    <value>tabControl</value>
-  </data>
-  <data name="&gt;&gt;tabPageGeneral.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tabPageExceptions.Name" xml:space="preserve">
-    <value>tabPageExceptions</value>
-  </data>
-  <data name="&gt;&gt;tabPageExceptions.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPageExceptions.Parent" xml:space="preserve">
-    <value>tabControl</value>
-  </data>
-  <data name="&gt;&gt;tabPageExceptions.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;tabPageScreenshot.Name" xml:space="preserve">
-    <value>tabPageScreenshot</value>
-  </data>
-  <data name="&gt;&gt;tabPageScreenshot.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPageScreenshot.Parent" xml:space="preserve">
-    <value>tabControl</value>
-  </data>
-  <data name="&gt;&gt;tabPageScreenshot.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tabControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 14</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tabControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="tabControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>629, 450</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tabControl.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tabControl.Name" xml:space="preserve">
-    <value>tabControl</value>
-  </data>
-  <data name="&gt;&gt;tabControl.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabControl.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tabControl.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;textBoxEmail.Name" xml:space="preserve">
-    <value>textBoxEmail</value>
-  </data>
-  <data name="&gt;&gt;textBoxEmail.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxEmail.Parent" xml:space="preserve">
-    <value>tabPageGeneral</value>
-  </data>
-  <data name="&gt;&gt;textBoxEmail.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;labelEmail.Name" xml:space="preserve">
-    <value>labelEmail</value>
-  </data>
-  <data name="&gt;&gt;labelEmail.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelEmail.Parent" xml:space="preserve">
-    <value>tabPageGeneral</value>
-  </data>
-  <data name="&gt;&gt;labelEmail.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;textBoxUserMessage.Name" xml:space="preserve">
-    <value>textBoxUserMessage</value>
-  </data>
-  <data name="&gt;&gt;textBoxUserMessage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxUserMessage.Parent" xml:space="preserve">
-    <value>tabPageGeneral</value>
-  </data>
-  <data name="&gt;&gt;textBoxUserMessage.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;labelMessage.Name" xml:space="preserve">
-    <value>labelMessage</value>
-  </data>
-  <data name="&gt;&gt;labelMessage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelMessage.Parent" xml:space="preserve">
-    <value>tabPageGeneral</value>
-  </data>
-  <data name="&gt;&gt;labelMessage.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;textBoxTime.Name" xml:space="preserve">
-    <value>textBoxTime</value>
-  </data>
-  <data name="&gt;&gt;textBoxTime.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxTime.Parent" xml:space="preserve">
-    <value>tabPageGeneral</value>
-  </data>
-  <data name="&gt;&gt;textBoxTime.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;labelTime.Name" xml:space="preserve">
-    <value>labelTime</value>
-  </data>
-  <data name="&gt;&gt;labelTime.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelTime.Parent" xml:space="preserve">
-    <value>tabPageGeneral</value>
-  </data>
-  <data name="&gt;&gt;labelTime.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;textBoxApplicationVersion.Name" xml:space="preserve">
-    <value>textBoxApplicationVersion</value>
-  </data>
-  <data name="&gt;&gt;textBoxApplicationVersion.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxApplicationVersion.Parent" xml:space="preserve">
-    <value>tabPageGeneral</value>
-  </data>
-  <data name="&gt;&gt;textBoxApplicationVersion.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;labelVersion.Name" xml:space="preserve">
-    <value>labelVersion</value>
-  </data>
-  <data name="&gt;&gt;labelVersion.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelVersion.Parent" xml:space="preserve">
-    <value>tabPageGeneral</value>
-  </data>
-  <data name="&gt;&gt;labelVersion.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;textBoxApplicationName.Name" xml:space="preserve">
-    <value>textBoxApplicationName</value>
-  </data>
-  <data name="&gt;&gt;textBoxApplicationName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxApplicationName.Parent" xml:space="preserve">
-    <value>tabPageGeneral</value>
-  </data>
-  <data name="&gt;&gt;textBoxApplicationName.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;labelApplication.Name" xml:space="preserve">
-    <value>labelApplication</value>
-  </data>
-  <data name="&gt;&gt;labelApplication.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelApplication.Parent" xml:space="preserve">
-    <value>tabPageGeneral</value>
-  </data>
-  <data name="&gt;&gt;labelApplication.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;textBoxExceptionMessage.Name" xml:space="preserve">
-    <value>textBoxExceptionMessage</value>
-  </data>
-  <data name="&gt;&gt;textBoxExceptionMessage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxExceptionMessage.Parent" xml:space="preserve">
-    <value>tabPageGeneral</value>
-  </data>
-  <data name="&gt;&gt;textBoxExceptionMessage.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxError.Name" xml:space="preserve">
-    <value>pictureBoxError</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxError.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxError.Parent" xml:space="preserve">
-    <value>tabPageGeneral</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxError.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="tabPageGeneral.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 26</value>
-  </data>
-  <data name="tabPageGeneral.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="tabPageGeneral.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="tabPageGeneral.Size" type="System.Drawing.Size, System.Drawing">
-    <value>621, 420</value>
-  </data>
-  <data name="tabPageGeneral.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="tabPageGeneral.Text" xml:space="preserve">
-    <value>General</value>
-  </data>
-  <data name="&gt;&gt;tabPageGeneral.Name" xml:space="preserve">
-    <value>tabPageGeneral</value>
-  </data>
-  <data name="&gt;&gt;tabPageGeneral.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPageGeneral.Parent" xml:space="preserve">
-    <value>tabControl</value>
-  </data>
-  <data name="&gt;&gt;tabPageGeneral.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="textBoxEmail.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
   </data>
   <data name="textBoxEmail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 192</value>
+    <value>120, 227</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="textBoxEmail.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="textBoxEmail.Size" type="System.Drawing.Size, System.Drawing">
-    <value>510, 25</value>
+    <value>582, 27</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="textBoxEmail.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
@@ -381,11 +150,14 @@
   <data name="labelEmail.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="labelEmail.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="labelEmail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 195</value>
+    <value>3, 229</value>
   </data>
   <data name="labelEmail.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 17</value>
+    <value>46, 20</value>
   </data>
   <data name="labelEmail.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -405,17 +177,20 @@
   <data name="&gt;&gt;labelEmail.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="textBoxUserMessage.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="textBoxUserMessage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 251</value>
+    <value>7, 295</value>
   </data>
   <data name="textBoxUserMessage.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="textBoxUserMessage.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="textBoxUserMessage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>609, 161</value>
+    <value>695, 189</value>
   </data>
   <data name="textBoxUserMessage.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -436,13 +211,13 @@
     <value>True</value>
   </data>
   <data name="labelMessage.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 13px</value>
+    <value>Segoe UI, 9pt</value>
   </data>
   <data name="labelMessage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 230</value>
+    <value>3, 270</value>
   </data>
   <data name="labelMessage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>322, 17</value>
+    <value>365, 20</value>
   </data>
   <data name="labelMessage.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -462,14 +237,17 @@
   <data name="&gt;&gt;labelMessage.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="textBoxTime.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="textBoxTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>400, 154</value>
+    <value>457, 181</value>
   </data>
   <data name="textBoxTime.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="textBoxTime.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 25</value>
+    <value>245, 27</value>
   </data>
   <data name="textBoxTime.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -490,13 +268,13 @@
     <value>True</value>
   </data>
   <data name="labelTime.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 13px</value>
+    <value>Segoe UI, 9pt</value>
   </data>
   <data name="labelTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>338, 157</value>
+    <value>386, 185</value>
   </data>
   <data name="labelTime.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 17</value>
+    <value>42, 20</value>
   </data>
   <data name="labelTime.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -516,14 +294,17 @@
   <data name="&gt;&gt;labelTime.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="textBoxApplicationVersion.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="textBoxApplicationVersion.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 154</value>
+    <value>120, 181</value>
   </data>
   <data name="textBoxApplicationVersion.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="textBoxApplicationVersion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 25</value>
+    <value>245, 27</value>
   </data>
   <data name="textBoxApplicationVersion.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -544,13 +325,13 @@
     <value>True</value>
   </data>
   <data name="labelVersion.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 13px</value>
+    <value>Segoe UI, 9pt</value>
   </data>
   <data name="labelVersion.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 157</value>
+    <value>3, 183</value>
   </data>
   <data name="labelVersion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 17</value>
+    <value>57, 20</value>
   </data>
   <data name="labelVersion.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -570,14 +351,17 @@
   <data name="&gt;&gt;labelVersion.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="textBoxApplicationName.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="textBoxApplicationName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 115</value>
+    <value>120, 135</value>
   </data>
   <data name="textBoxApplicationName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="textBoxApplicationName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>510, 25</value>
+    <value>582, 27</value>
   </data>
   <data name="textBoxApplicationName.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -598,13 +382,13 @@
     <value>True</value>
   </data>
   <data name="labelApplication.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 13px</value>
+    <value>Segoe UI, 9pt</value>
   </data>
   <data name="labelApplication.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 118</value>
+    <value>3, 139</value>
   </data>
   <data name="labelApplication.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 17</value>
+    <value>86, 20</value>
   </data>
   <data name="labelApplication.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -624,11 +408,14 @@
   <data name="&gt;&gt;labelApplication.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
+  <data name="textBoxExceptionMessage.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="textBoxExceptionMessage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 7</value>
+    <value>120, 8</value>
   </data>
   <data name="textBoxExceptionMessage.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="textBoxExceptionMessage.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -637,7 +424,7 @@
     <value>Vertical</value>
   </data>
   <data name="textBoxExceptionMessage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>510, 101</value>
+    <value>582, 119</value>
   </data>
   <data name="textBoxExceptionMessage.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -655,13 +442,13 @@
     <value>10</value>
   </data>
   <data name="pictureBoxError.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 7</value>
+    <value>7, 8</value>
   </data>
   <data name="pictureBoxError.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="pictureBoxError.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 84</value>
+    <value>106, 99</value>
   </data>
   <data name="pictureBoxError.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>CenterImage</value>
@@ -681,140 +468,47 @@
   <data name="&gt;&gt;pictureBoxError.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="&gt;&gt;textBoxException.Name" xml:space="preserve">
-    <value>textBoxException</value>
+  <data name="tabPageGeneral.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 29</value>
   </data>
-  <data name="&gt;&gt;textBoxException.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="tabPageGeneral.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 5, 3, 5</value>
   </data>
-  <data name="&gt;&gt;textBoxException.Parent" xml:space="preserve">
-    <value>tabPageExceptions</value>
+  <data name="tabPageGeneral.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 5, 3, 5</value>
   </data>
-  <data name="&gt;&gt;textBoxException.ZOrder" xml:space="preserve">
+  <data name="tabPageGeneral.Size" type="System.Drawing.Size, System.Drawing">
+    <value>711, 496</value>
+  </data>
+  <data name="tabPageGeneral.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;labelExceptionType.Name" xml:space="preserve">
-    <value>labelExceptionType</value>
+  <data name="tabPageGeneral.Text" xml:space="preserve">
+    <value>General</value>
   </data>
-  <data name="&gt;&gt;labelExceptionType.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;tabPageGeneral.Name" xml:space="preserve">
+    <value>tabPageGeneral</value>
   </data>
-  <data name="&gt;&gt;labelExceptionType.Parent" xml:space="preserve">
-    <value>tabPageExceptions</value>
-  </data>
-  <data name="&gt;&gt;labelExceptionType.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;textBoxSource.Name" xml:space="preserve">
-    <value>textBoxSource</value>
-  </data>
-  <data name="&gt;&gt;textBoxSource.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxSource.Parent" xml:space="preserve">
-    <value>tabPageExceptions</value>
-  </data>
-  <data name="&gt;&gt;textBoxSource.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;labelSource.Name" xml:space="preserve">
-    <value>labelSource</value>
-  </data>
-  <data name="&gt;&gt;labelSource.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelSource.Parent" xml:space="preserve">
-    <value>tabPageExceptions</value>
-  </data>
-  <data name="&gt;&gt;labelSource.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;textBoxStackTrace.Name" xml:space="preserve">
-    <value>textBoxStackTrace</value>
-  </data>
-  <data name="&gt;&gt;textBoxStackTrace.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxStackTrace.Parent" xml:space="preserve">
-    <value>tabPageExceptions</value>
-  </data>
-  <data name="&gt;&gt;textBoxStackTrace.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;labelStackTrace.Name" xml:space="preserve">
-    <value>labelStackTrace</value>
-  </data>
-  <data name="&gt;&gt;labelStackTrace.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelStackTrace.Parent" xml:space="preserve">
-    <value>tabPageExceptions</value>
-  </data>
-  <data name="&gt;&gt;labelStackTrace.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;textBoxMessage.Name" xml:space="preserve">
-    <value>textBoxMessage</value>
-  </data>
-  <data name="&gt;&gt;textBoxMessage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxMessage.Parent" xml:space="preserve">
-    <value>tabPageExceptions</value>
-  </data>
-  <data name="&gt;&gt;textBoxMessage.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;labelExceptionMessage.Name" xml:space="preserve">
-    <value>labelExceptionMessage</value>
-  </data>
-  <data name="&gt;&gt;labelExceptionMessage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelExceptionMessage.Parent" xml:space="preserve">
-    <value>tabPageExceptions</value>
-  </data>
-  <data name="&gt;&gt;labelExceptionMessage.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="tabPageExceptions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 26</value>
-  </data>
-  <data name="tabPageExceptions.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="tabPageExceptions.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="tabPageExceptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>621, 420</value>
-  </data>
-  <data name="tabPageExceptions.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tabPageExceptions.Text" xml:space="preserve">
-    <value>Exceptions</value>
-  </data>
-  <data name="&gt;&gt;tabPageExceptions.Name" xml:space="preserve">
-    <value>tabPageExceptions</value>
-  </data>
-  <data name="&gt;&gt;tabPageExceptions.Type" xml:space="preserve">
+  <data name="&gt;&gt;tabPageGeneral.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabPageExceptions.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tabPageGeneral.Parent" xml:space="preserve">
     <value>tabControl</value>
   </data>
-  <data name="&gt;&gt;tabPageExceptions.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;tabPageGeneral.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="textBoxException.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
   </data>
   <data name="textBoxException.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 30</value>
+    <value>7, 35</value>
   </data>
   <data name="textBoxException.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="textBoxException.Size" type="System.Drawing.Size, System.Drawing">
-    <value>609, 25</value>
+    <value>695, 27</value>
   </data>
   <data name="textBoxException.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -834,11 +528,14 @@
   <data name="labelExceptionType.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="labelExceptionType.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="labelExceptionType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 7</value>
+    <value>3, 8</value>
   </data>
   <data name="labelExceptionType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 17</value>
+    <value>109, 20</value>
   </data>
   <data name="labelExceptionType.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -858,14 +555,17 @@
   <data name="&gt;&gt;labelExceptionType.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="textBoxSource.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="textBoxSource.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 170</value>
+    <value>7, 200</value>
   </data>
   <data name="textBoxSource.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="textBoxSource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>609, 25</value>
+    <value>695, 27</value>
   </data>
   <data name="textBoxSource.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -885,11 +585,14 @@
   <data name="labelSource.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="labelSource.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="labelSource.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 147</value>
+    <value>3, 173</value>
   </data>
   <data name="labelSource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 17</value>
+    <value>54, 20</value>
   </data>
   <data name="labelSource.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -909,11 +612,14 @@
   <data name="&gt;&gt;labelSource.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="textBoxStackTrace.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="textBoxStackTrace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 222</value>
+    <value>7, 261</value>
   </data>
   <data name="textBoxStackTrace.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="textBoxStackTrace.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -922,7 +628,7 @@
     <value>Vertical</value>
   </data>
   <data name="textBoxStackTrace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>609, 190</value>
+    <value>695, 223</value>
   </data>
   <data name="textBoxStackTrace.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -942,11 +648,14 @@
   <data name="labelStackTrace.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="labelStackTrace.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="labelStackTrace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 199</value>
+    <value>3, 235</value>
   </data>
   <data name="labelStackTrace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 17</value>
+    <value>83, 20</value>
   </data>
   <data name="labelStackTrace.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -966,11 +675,14 @@
   <data name="&gt;&gt;labelStackTrace.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="textBoxMessage.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="textBoxMessage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 82</value>
+    <value>7, 97</value>
   </data>
   <data name="textBoxMessage.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="textBoxMessage.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -979,7 +691,7 @@
     <value>Vertical</value>
   </data>
   <data name="textBoxMessage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>609, 61</value>
+    <value>695, 71</value>
   </data>
   <data name="textBoxMessage.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -999,11 +711,14 @@
   <data name="labelExceptionMessage.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="labelExceptionMessage.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="labelExceptionMessage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 59</value>
+    <value>2, 69</value>
   </data>
   <data name="labelExceptionMessage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 17</value>
+    <value>67, 20</value>
   </data>
   <data name="labelExceptionMessage.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1023,80 +738,47 @@
   <data name="&gt;&gt;labelExceptionMessage.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="&gt;&gt;linkLabelView.Name" xml:space="preserve">
-    <value>linkLabelView</value>
+  <data name="tabPageExceptions.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 29</value>
   </data>
-  <data name="&gt;&gt;linkLabelView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="tabPageExceptions.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 5, 3, 5</value>
   </data>
-  <data name="&gt;&gt;linkLabelView.Parent" xml:space="preserve">
-    <value>tabPageScreenshot</value>
+  <data name="tabPageExceptions.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 5, 3, 5</value>
   </data>
-  <data name="&gt;&gt;linkLabelView.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="tabPageExceptions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>711, 496</value>
   </data>
-  <data name="&gt;&gt;groupBoxScreenshot.Name" xml:space="preserve">
-    <value>groupBoxScreenshot</value>
-  </data>
-  <data name="&gt;&gt;groupBoxScreenshot.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBoxScreenshot.Parent" xml:space="preserve">
-    <value>tabPageScreenshot</value>
-  </data>
-  <data name="&gt;&gt;groupBoxScreenshot.ZOrder" xml:space="preserve">
+  <data name="tabPageExceptions.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;checkBoxIncludeScreenshot.Name" xml:space="preserve">
-    <value>checkBoxIncludeScreenshot</value>
+  <data name="tabPageExceptions.Text" xml:space="preserve">
+    <value>Exceptions</value>
   </data>
-  <data name="&gt;&gt;checkBoxIncludeScreenshot.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;tabPageExceptions.Name" xml:space="preserve">
+    <value>tabPageExceptions</value>
   </data>
-  <data name="&gt;&gt;checkBoxIncludeScreenshot.Parent" xml:space="preserve">
-    <value>tabPageScreenshot</value>
-  </data>
-  <data name="&gt;&gt;checkBoxIncludeScreenshot.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="tabPageScreenshot.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 26</value>
-  </data>
-  <data name="tabPageScreenshot.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="tabPageScreenshot.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="tabPageScreenshot.Size" type="System.Drawing.Size, System.Drawing">
-    <value>621, 420</value>
-  </data>
-  <data name="tabPageScreenshot.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="tabPageScreenshot.Text" xml:space="preserve">
-    <value>Screenshot</value>
-  </data>
-  <data name="&gt;&gt;tabPageScreenshot.Name" xml:space="preserve">
-    <value>tabPageScreenshot</value>
-  </data>
-  <data name="&gt;&gt;tabPageScreenshot.Type" xml:space="preserve">
+  <data name="&gt;&gt;tabPageExceptions.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabPageScreenshot.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tabPageExceptions.Parent" xml:space="preserve">
     <value>tabControl</value>
   </data>
-  <data name="&gt;&gt;tabPageScreenshot.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;tabPageExceptions.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="linkLabelView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
+  <data name="linkLabelView.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="linkLabelView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>415, 13</value>
+    <value>474, 15</value>
   </data>
   <data name="linkLabelView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 17</value>
+    <value>229, 20</value>
   </data>
   <data name="linkLabelView.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1119,59 +801,17 @@
   <data name="&gt;&gt;linkLabelView.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;pictureBoxScreenshot.Name" xml:space="preserve">
-    <value>pictureBoxScreenshot</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxScreenshot.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxScreenshot.Parent" xml:space="preserve">
-    <value>groupBoxScreenshot</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxScreenshot.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="groupBoxScreenshot.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 41</value>
-  </data>
-  <data name="groupBoxScreenshot.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="groupBoxScreenshot.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="groupBoxScreenshot.Size" type="System.Drawing.Size, System.Drawing">
-    <value>609, 371</value>
-  </data>
-  <data name="groupBoxScreenshot.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="groupBoxScreenshot.Text" xml:space="preserve">
-    <value>Screenshot</value>
-  </data>
-  <data name="&gt;&gt;groupBoxScreenshot.Name" xml:space="preserve">
-    <value>groupBoxScreenshot</value>
-  </data>
-  <data name="&gt;&gt;groupBoxScreenshot.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBoxScreenshot.Parent" xml:space="preserve">
-    <value>tabPageScreenshot</value>
-  </data>
-  <data name="&gt;&gt;groupBoxScreenshot.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="pictureBoxScreenshot.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="pictureBoxScreenshot.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 22</value>
+    <value>3, 25</value>
   </data>
   <data name="pictureBoxScreenshot.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="pictureBoxScreenshot.Size" type="System.Drawing.Size, System.Drawing">
-    <value>603, 345</value>
+    <value>690, 407</value>
   </data>
   <data name="pictureBoxScreenshot.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>StretchImage</value>
@@ -1191,23 +831,56 @@
   <data name="&gt;&gt;pictureBoxScreenshot.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>146, 17</value>
-  </metadata>
+  <data name="groupBoxScreenshot.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="groupBoxScreenshot.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 48</value>
+  </data>
+  <data name="groupBoxScreenshot.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 5, 3, 5</value>
+  </data>
+  <data name="groupBoxScreenshot.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 5, 3, 5</value>
+  </data>
+  <data name="groupBoxScreenshot.Size" type="System.Drawing.Size, System.Drawing">
+    <value>696, 437</value>
+  </data>
+  <data name="groupBoxScreenshot.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="groupBoxScreenshot.Text" xml:space="preserve">
+    <value>Screenshot</value>
+  </data>
+  <data name="&gt;&gt;groupBoxScreenshot.Name" xml:space="preserve">
+    <value>groupBoxScreenshot</value>
+  </data>
+  <data name="&gt;&gt;groupBoxScreenshot.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxScreenshot.Parent" xml:space="preserve">
+    <value>tabPageScreenshot</value>
+  </data>
+  <data name="&gt;&gt;groupBoxScreenshot.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="checkBoxIncludeScreenshot.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="checkBoxIncludeScreenshot.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
   </data>
+  <data name="checkBoxIncludeScreenshot.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="checkBoxIncludeScreenshot.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 12</value>
+    <value>3, 13</value>
   </data>
   <data name="checkBoxIncludeScreenshot.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="checkBoxIncludeScreenshot.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 21</value>
+    <value>155, 24</value>
   </data>
   <data name="checkBoxIncludeScreenshot.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1215,6 +888,9 @@
   <data name="checkBoxIncludeScreenshot.Text" xml:space="preserve">
     <value>Include Screenshot</value>
   </data>
+  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>146, 17</value>
+  </metadata>
   <data name="checkBoxIncludeScreenshot.ToolTip" xml:space="preserve">
     <value>Add screenshot of error screen in your crash report.</value>
   </data>
@@ -1230,14 +906,74 @@
   <data name="&gt;&gt;checkBoxIncludeScreenshot.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="tabPageScreenshot.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 29</value>
+  </data>
+  <data name="tabPageScreenshot.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 5, 3, 5</value>
+  </data>
+  <data name="tabPageScreenshot.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 5, 3, 5</value>
+  </data>
+  <data name="tabPageScreenshot.Size" type="System.Drawing.Size, System.Drawing">
+    <value>711, 496</value>
+  </data>
+  <data name="tabPageScreenshot.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tabPageScreenshot.Text" xml:space="preserve">
+    <value>Screenshot</value>
+  </data>
+  <data name="&gt;&gt;tabPageScreenshot.Name" xml:space="preserve">
+    <value>tabPageScreenshot</value>
+  </data>
+  <data name="&gt;&gt;tabPageScreenshot.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageScreenshot.Parent" xml:space="preserve">
+    <value>tabControl</value>
+  </data>
+  <data name="&gt;&gt;tabPageScreenshot.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tabControl.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="tabControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 17</value>
+  </data>
+  <data name="tabControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 5, 3, 5</value>
+  </data>
+  <data name="tabControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>719, 529</value>
+  </data>
+  <data name="tabControl.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tabControl.Name" xml:space="preserve">
+    <value>tabControl</value>
+  </data>
+  <data name="&gt;&gt;tabControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabControl.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tabControl.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="buttonSave.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="buttonSave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>358, 472</value>
+    <value>405, 557</value>
   </data>
   <data name="buttonSave.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="buttonSave.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 56</value>
+    <value>159, 67</value>
   </data>
   <data name="buttonSave.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -1263,14 +999,17 @@
   <data name="&gt;&gt;buttonSave.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="buttonCancel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>503, 472</value>
+    <value>570, 557</value>
   </data>
   <data name="buttonCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 56</value>
+    <value>159, 67</value>
   </data>
   <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -1296,14 +1035,17 @@
   <data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="buttonSendReport.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="buttonSendReport.Location" type="System.Drawing.Point, System.Drawing">
-    <value>213, 472</value>
+    <value>239, 557</value>
   </data>
   <data name="buttonSendReport.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="buttonSendReport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 56</value>
+    <value>159, 67</value>
   </data>
   <data name="buttonSendReport.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1332,9 +1074,6 @@
   <metadata name="saveFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>146, 17</value>
-  </metadata>
   <metadata name="errorProviderEmail.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>236, 17</value>
   </metadata>
@@ -1342,16 +1081,16 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>7, 17</value>
+    <value>8, 20</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>654, 541</value>
+    <value>747, 641</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 13px</value>
+    <value>Segoe UI, 9pt</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>

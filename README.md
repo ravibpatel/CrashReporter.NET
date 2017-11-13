@@ -47,10 +47,9 @@ internal static class Program
 
     public static void ReportCrash(Exception exception,  string developerMessage = "")
     {
-        var reportCrash = new ReportCrash
+        var reportCrash = new ReportCrash("Email where you want to receive crash reports.")
         {
-            DeveloperMessage = developerMessage,
-            ToEmail = "Email address where you want to receive crash reports"
+            DeveloperMessage = developerMessage
         };
 
         reportCrash.Send(exception);
@@ -113,10 +112,9 @@ public partial class App : Application
 
     public static void ReportCrash(Exception exception, string developerMessage = "")
     {
-        var reportCrash = new ReportCrash
+        var reportCrash = new ReportCrash("Email where you want to receive crash reports.")
         {
-            DeveloperMessage = developerMessage,
-            ToEmail = "Email where you want to receive crash reports."
+            DeveloperMessage = developerMessage
         };
         reportCrash.Send(exception);
     }
@@ -144,16 +142,6 @@ catch (Exception exception)
 ````
 
 ## Configuration Options
-### Change Language
-
-You can change the language of the crash report dialog by adding following line in ReportCrash method of Program.cs file.
-
-````csharp
-reportCrash.CurrentCulture = CultureInfo.CreateSpecificCulture("ru");
-````
-
-In above example CrashReporter.NET will show crash report dialog in russian language.
-
 ### Send reports to your DrDump account
 
 You can send crash report to you doctor dump account by adding following line in ReportCrash method of Program.cs file.
