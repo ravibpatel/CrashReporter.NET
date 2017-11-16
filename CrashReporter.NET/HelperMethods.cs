@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Drawing;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 using Microsoft.Win32;
 
 namespace CrashReporterDotNET
@@ -33,8 +30,7 @@ namespace CrashReporterDotNET
                 IntPtr processAddress = GetProcAddress(moduleHandle, "IsWow64Process");
                 if (processAddress != IntPtr.Zero)
                 {
-                    bool result;
-                    if (IsWow64Process(GetCurrentProcess(), out result) && result)
+                    if (IsWow64Process(GetCurrentProcess(), out var result) && result)
                         return true;
                 }
             }

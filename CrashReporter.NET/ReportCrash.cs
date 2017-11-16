@@ -1,8 +1,6 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing.Imaging;
-using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Threading;
