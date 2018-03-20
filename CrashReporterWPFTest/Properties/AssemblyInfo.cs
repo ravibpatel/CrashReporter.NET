@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("CrashReporterWPFTest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("RBSoft")]
 [assembly: AssemblyProduct("CrashReporterWPFTest")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCopyright("Copyright © 2017-2018 RBSoft")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -27,17 +27,18 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\$(TargetFrameworkVersion)\</OutputPath>
+    <OutputPath>build\lib\net20\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\$(TargetFrameworkVersion)\CrashReporter.NET.XML</DocumentationFile>
+    <DocumentationFile>build\lib\net20\CrashReporter.NET.XML</DocumentationFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>CrashReporter.NET.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>CrashReporter.NET.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -177,7 +178,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="CrashReporter.NET.pfx" />
+    <None Include="build\CrashReporter.NET.Official.nuspec" />
+    <None Include="CrashReporter.NET.snk" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -229,6 +231,7 @@
   <ItemGroup>
     <None Include="Web References\com.drdump\CrashReporterReportUploader.disco" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
