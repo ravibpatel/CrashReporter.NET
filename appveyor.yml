@@ -17,7 +17,7 @@ before_build:
 
 after_build:
 - cmd: 7z a CrashReporter.NET-%my_version%.zip %APPVEYOR_BUILD_FOLDER%\CrashReporter.NET\build\lib\net20\*
-- nuget pack "c:\projects\CrashReporter.NET\CrashReporter.NET\build\CrashReporter.NET.nuspec"
+- nuget pack "c:\projects\CrashReporter.NET\CrashReporter.NET\build\CrashReporter.NET.Official.nuspec"
 
 artifacts:
 - path: CrashReporter.NET-%my_version%.zip

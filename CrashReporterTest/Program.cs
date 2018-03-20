@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Windows.Forms;
 using CrashReporterDotNET;
 
@@ -35,7 +34,6 @@ namespace CrashReporterTest
                     OpenReportInBrowser = true
                 }
             };
-
             reportCrash.Send(exception);
         }
     }

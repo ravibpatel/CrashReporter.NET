@@ -99,10 +99,17 @@ namespace CrashReporterDotNET.DrDump
             {
                 e = new SendRequestCompletedEventArgs(null, ex, false);
             }
-            if (control != null)
-                control.BeginInvoke(SendRequestCompleted, new object[] { this, e });
-            else
-                SendRequestCompleted(this, e);
+            if (SendRequestCompleted != null)
+            {
+                if (control != null)
+                {
+                    control.BeginInvoke(SendRequestCompleted, new object[] { this, e });
+                }
+                else
+                {
+                    SendRequestCompleted.Invoke(this, e);
+                }
+            }
         }
 
         private void OnSendAnonymousReportCompleted(object sender, SendAnonymousReportCompletedEventArgs e)
@@ -127,18 +134,20 @@ namespace CrashReporterDotNET.DrDump
             try
             {
                 if (e.Error != null || e.Cancelled)
-                    SendRequestCompleted(this, new SendRequestCompletedEventArgs(null, e.Error, e.Cancelled));
+                {
+                    SendRequestCompleted?.Invoke(this, new SendRequestCompletedEventArgs(null, e.Error, e.Cancelled));
+                }
 
                 Response response = e.Result;
                 var errorResponse = response as ErrorResponse;
                 if (errorResponse != null)
                     throw new Exception(errorResponse.Error);
 
-                SendRequestCompleted(this, new SendRequestCompletedEventArgs(response, null, false));
+                SendRequestCompleted?.Invoke(this, new SendRequestCompletedEventArgs(response, null, false));
             }
             catch (Exception ex)
             {
-                SendRequestCompleted(this, new SendRequestCompletedEventArgs(null, ex, false));
+                SendRequestCompleted?.Invoke(this, new SendRequestCompletedEventArgs(null, ex, false));
             }
         }
 

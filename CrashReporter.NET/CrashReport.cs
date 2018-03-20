@@ -39,9 +39,15 @@ namespace CrashReporterDotNET
                 pictureBoxScreenshot.ImageLocation = _reportCrash.ScreenShot;
                 pictureBoxScreenshot.Show();
             }
-
-            if (_reportCrash.DoctorDumpSettings != null && _reportCrash.DoctorDumpSettings.SendAnonymousReportSilently)
-                SendAnonymousReport();
+            if (_reportCrash.Silent)
+            {
+                ButtonSendReportClick(null, null);
+            }
+            else
+            {
+                if (_reportCrash.DoctorDumpSettings != null && _reportCrash.DoctorDumpSettings.SendAnonymousReportSilently)
+                    SendAnonymousReport();
+            }
         }
 
         public sealed override string Text
@@ -158,12 +164,18 @@ namespace CrashReporterDotNET
                     message.Attachments.Add(new Attachment(_reportCrash.ScreenShot));
                 }
 
-                smtpClient.SendCompleted += SmtpClientSendCompleted;
+                if (!_reportCrash.Silent)
+                {
+                    smtpClient.SendCompleted += SmtpClientSendCompleted;
+                }
                 smtpClient.SendAsync(message, "Crash Report");
             }
 
-            _progressDialog = new ProgressDialog();
-            _progressDialog.ShowDialog();
+            if (!_reportCrash.Silent)
+            {
+                _progressDialog = new ProgressDialog();
+                _progressDialog.ShowDialog();
+            }
         }
 
         private void SmtpClientSendCompleted(object sender, AsyncCompletedEventArgs e)
@@ -366,12 +378,15 @@ namespace CrashReporterDotNET
         private void SendAnonymousReport()
         {
             _doctorDumpService = new DrDumpService();
-            _doctorDumpService.SendRequestCompleted += SendRequestCompleted;
+            if (!_reportCrash.Silent)
+            {
+                _doctorDumpService.SendRequestCompleted += SendRequestCompleted;
+            }
 
             _doctorDumpService.SendAnonymousReportAsync(
                 _reportCrash.Exception,
                 _reportCrash.ToEmail,
-                _reportCrash.DoctorDumpSettings != null ? _reportCrash.DoctorDumpSettings.ApplicationID : null);
+                _reportCrash.DoctorDumpSettings?.ApplicationID);
         }
 
         private void SendFullReport()

@@ -1,7 +1,9 @@
 # CrashReporter.NET  [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](http://paypal.me/rbsoft)
+
 Send crash reports of your classic desktop application developed using .NET Framework directly to your mail's inbox with full exception report, stack trace and screenshot.
 
 ## The nuget package  [![NuGet](https://img.shields.io/nuget/v/CrashReporter.NET.Official.svg)](https://www.nuget.org/packages/CrashReporter.NET.Official/)
+
 https://www.nuget.org/packages/CrashReporter.NET.Official/
 
     PM> Install-Package CrashReporter.NET.Official
@@ -142,6 +144,15 @@ catch (Exception exception)
 ````
 
 ## Configuration Options
+
+### Send reports Silently
+
+You can send crash reports silently by setting Silent property to true.
+
+````csharp
+reportCrash.Silent = true;
+````
+
 ### Send reports to your DrDump account
 
 You can send crash report to you doctor dump account by adding following line in ReportCrash method of Program.cs file.

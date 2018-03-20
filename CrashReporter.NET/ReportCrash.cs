@@ -14,6 +14,11 @@ namespace CrashReporterDotNET
     public class ReportCrash
     {
         /// <summary>
+        /// Set it to true if you want
+        /// </summary>
+        public bool Silent = false;
+
+        /// <summary>
         /// Gets or Sets name or IP address of the Host used for SMTP transactions.
         /// </summary>
         public String SmtpHost;
@@ -136,17 +141,24 @@ namespace CrashReporterDotNET
                 Application.EnableVisualStyles();
             }
             CrashReport crashReport = new CrashReport(this);
-            if (Thread.CurrentThread.GetApartmentState().Equals(ApartmentState.MTA))
+            if (Silent)
             {
-                var thread = new Thread(() => crashReport.ShowDialog()) {IsBackground = false};
-                thread.CurrentCulture = thread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
-                thread.SetApartmentState(ApartmentState.STA);
-                thread.Start();
-                thread.Join();
+                crashReport.Close();
             }
             else
             {
-                crashReport.ShowDialog();
+                if (Thread.CurrentThread.GetApartmentState().Equals(ApartmentState.MTA))
+                {
+                    var thread = new Thread(() => crashReport.ShowDialog()) { IsBackground = false };
+                    thread.CurrentCulture = thread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
+                    thread.SetApartmentState(ApartmentState.STA);
+                    thread.Start();
+                    thread.Join();
+                }
+                else
+                {
+                    crashReport.ShowDialog();
+                }
             }
         }
     }
