@@ -13,6 +13,8 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition="$(Configuration.Contains('Debug'))">
     <DebugSymbols>true</DebugSymbols>
@@ -226,8 +228,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="build\CrashReporter.NET.Official.nuspec" />
+    <None Include="build\CrashReporter.NET.Official.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="CrashReporter.NET.snk" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -281,6 +286,13 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Resource.Embedder.1.2.5\build\Resource.Embedder.targets" Condition="Exists('..\packages\Resource.Embedder.1.2.5\build\Resource.Embedder.targets') And '$(TargetFrameworkVersion)' != 'v2.0' And '$(TargetFrameworkVersion)' != 'v3.0' And '$(TargetFrameworkVersion)' != 'v3.5'" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Resource.Embedder.1.2.5\build\Resource.Embedder.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Resource.Embedder.1.2.5\build\Resource.Embedder.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

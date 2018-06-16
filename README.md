@@ -1,10 +1,9 @@
 # CrashReporter.NET  
-[![AppVeyor branch](https://img.shields.io/appveyor/ci/gruntjs/grunt/master.svg)](https://ci.appveyor.com/project/ravibpatel/crashreporter-net)
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](http://paypal.me/rbsoft)
+[![AppVeyor branch](https://img.shields.io/appveyor/ci/gruntjs/grunt/master.svg)](https://ci.appveyor.com/project/ravibpatel/crashreporter-net) [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](http://paypal.me/rbsoft)
 
 Send crash reports of your classic desktop application developed using .NET Framework directly to your mail's inbox with full exception report, stack trace and screenshot.
 
-## The nuget package  [![NuGet](https://img.shields.io/nuget/v/CrashReporter.NET.Official.svg)](https://www.nuget.org/packages/CrashReporter.NET.Official/)
+## The nuget package  [![NuGet](https://img.shields.io/nuget/v/CrashReporter.NET.Official.svg)](https://www.nuget.org/packages/CrashReporter.NET.Official/) [![NuGet](https://img.shields.io/nuget/dt/CrashReporter.NET.Official.svg)](https://www.nuget.org/packages/CrashReporter.NET.Official/)
 
 https://www.nuget.org/packages/CrashReporter.NET.Official/
 
