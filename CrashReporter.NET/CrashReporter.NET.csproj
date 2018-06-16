@@ -10,29 +10,76 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CrashReporterDotNET</RootNamespace>
     <AssemblyName>CrashReporter.NET</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition="$(Configuration.Contains('Debug'))">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\$(TargetFrameworkVersion)</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\$(TargetFrameworkVersion)\CrashReporter.NET.XML</DocumentationFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition="$(Configuration.Contains('Release'))">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>build\lib\net20\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>build\lib\net20\CrashReporter.NET.XML</DocumentationFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <OutputPath>bin\Debug\net20</OutputPath>
+    <DocumentationFile>bin\Debug\net20\CrashReporter.NET.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <OutputPath>build\lib\net20</OutputPath>
+    <DocumentationFile>build\lib\net20\CrashReporter.NET.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug-NET35' ">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <OutputPath>bin\Debug\net35</OutputPath>
+    <DocumentationFile>bin\Debug\net35\CrashReporter.NET.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release-NET35' ">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <OutputPath>build\lib\net35</OutputPath>
+    <DocumentationFile>build\lib\net35\CrashReporter.NET.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug-NET40' ">
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <OutputPath>bin\Debug\net40</OutputPath>
+    <DocumentationFile>bin\Debug\net40\CrashReporter.NET.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release-NET40' ">
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <OutputPath>build\lib\net40</OutputPath>
+    <DocumentationFile>build\lib\net40\CrashReporter.NET.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug-NET452' ">
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <OutputPath>bin\Debug\net452</OutputPath>
+    <DocumentationFile>bin\Debug\net452\CrashReporter.NET.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release-NET452' ">
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <OutputPath>build\lib\net452</OutputPath>
+    <DocumentationFile>build\lib\net452\CrashReporter.NET.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug-NET462' ">
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <OutputPath>bin\Debug\net462</OutputPath>
+    <DocumentationFile>bin\Debug\net462\CrashReporter.NET.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release-NET462' ">
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <OutputPath>build\lib\net462</OutputPath>
+    <DocumentationFile>build\lib\net462\CrashReporter.NET.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -43,6 +90,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web" />

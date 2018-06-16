@@ -15,8 +15,8 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{67912BDA-1572-46B0-8623-5872D9DADBC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{67912BDA-1572-46B0-8623-5872D9DADBC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67912BDA-1572-46B0-8623-5872D9DADBC8}.Debug|Any CPU.ActiveCfg = Debug-NET40|Any CPU
+		{67912BDA-1572-46B0-8623-5872D9DADBC8}.Debug|Any CPU.Build.0 = Debug-NET40|Any CPU
 		{67912BDA-1572-46B0-8623-5872D9DADBC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67912BDA-1572-46B0-8623-5872D9DADBC8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{895AE503-6920-4BFF-9D47-3A91F90E8606}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -30,6 +30,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F4BDF3BA-3ADC-49E3-8B21-7179CB6D5250}
 	EndGlobalSection
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True

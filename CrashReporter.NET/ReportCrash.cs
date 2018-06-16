@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Deployment.Application;
 using System.Diagnostics;
 using System.Drawing.Imaging;
 using System.IO;
@@ -119,8 +120,7 @@ namespace CrashReporterDotNET
                 appTitle = ((AssemblyTitleAttribute) attributes[0]).Title;
             }
             ApplicationTitle = !string.IsNullOrEmpty(appTitle) ? appTitle : mainAssembly.GetName().Name;
-            ApplicationVersion = mainAssembly.GetName().Version.ToString();
-
+            ApplicationVersion = ApplicationDeployment.IsNetworkDeployed ? ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString() : mainAssembly.GetName().Version.ToString();
             try
             {
                 ScreenShot = $@"{Path.GetTempPath()}\{ApplicationTitle} Crash Screenshot.png";
