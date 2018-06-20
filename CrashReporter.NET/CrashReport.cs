@@ -3,10 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Net;
-using System.Net.Mail;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Windows.Forms;
 using CrashReporterDotNET.DrDump;
 using CrashReporterDotNET.Properties;
@@ -18,8 +15,6 @@ namespace CrashReporterDotNET
         private readonly ReportCrash _reportCrash;
 
         private ProgressDialog _progressDialog;
-
-        private DrDumpService _doctorDumpService;
 
         #region Form Events
 
@@ -39,15 +34,9 @@ namespace CrashReporterDotNET
                 pictureBoxScreenshot.ImageLocation = _reportCrash.ScreenShot;
                 pictureBoxScreenshot.Show();
             }
-            if (_reportCrash.Silent)
-            {
-                ButtonSendReportClick(null, null);
-            }
-            else
-            {
-                if (_reportCrash.DoctorDumpSettings != null && _reportCrash.DoctorDumpSettings.SendAnonymousReportSilently)
-                    SendAnonymousReport();
-            }
+            if (_reportCrash.DoctorDumpSettings != null &&
+                _reportCrash.DoctorDumpSettings.SendAnonymousReportSilently)
+                _reportCrash.SendAnonymousReport(SendRequestCompleted);
         }
 
         public sealed override string Text
@@ -95,14 +84,10 @@ namespace CrashReporterDotNET
 
         private void ButtonSendReportClick(object sender, EventArgs e)
         {
-            var fromAddress = !string.IsNullOrEmpty(_reportCrash.FromEmail) ? new MailAddress(_reportCrash.FromEmail) : null;
-            var toAddress = new MailAddress(_reportCrash.ToEmail);
-
-            const string r0To255 = @"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])";
-            var regexEmail = new Regex(@"^(([\w-]+\.)+[\w-]+|([a-zA-Z]{1}|[\w-]{2,}))@"
-                                       + @"((" + r0To255 + @"\." + r0To255 + @"\." + r0To255 + @"\." + r0To255 + @"){1}|"
-                                       + @"([a-zA-Z]+[\w-]+\.)+[a-zA-Z]{2,4})$");
-            var subject = "";
+            var regexEmail = new Regex(
+                @"^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$");
+            string from = String.Empty;
+            string subject = String.Empty;
 
             if (string.IsNullOrEmpty(textBoxEmail.Text.Trim()))
             {
@@ -126,68 +111,16 @@ namespace CrashReporterDotNET
                 else
                 {
                     errorProviderEmail.SetError(textBoxEmail, "");
-                    fromAddress = new MailAddress(textBoxEmail.Text.Trim());
+                    from = textBoxEmail.Text.Trim();
                     subject =
                         $"{_reportCrash.ApplicationTitle} {_reportCrash.ApplicationVersion} Crash Report by {textBoxEmail.Text.Trim()}";
                 }
             }
-            if (string.IsNullOrEmpty(subject.Trim()))
-            {
-                subject = $"{_reportCrash.ApplicationTitle} {_reportCrash.ApplicationVersion} Crash Report";
-            }
 
-            if (_reportCrash.AnalyzeWithDoctorDump)
-            {
-                SendFullReport();
-            }
-            else
-            {
-                var smtpClient = new SmtpClient
-                {
-                    Host = _reportCrash.SmtpHost,
-                    Port = _reportCrash.Port,
-                    EnableSsl = _reportCrash.EnableSSL,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential(_reportCrash.UserName, _reportCrash.Password),
-                };
-
-                var message = new MailMessage(fromAddress, toAddress)
-                {
-                    IsBodyHtml = true,
-                    Subject = subject,
-                    Body = HtmlReport(),
-                };
-
-                if (File.Exists(_reportCrash.ScreenShot) && checkBoxIncludeScreenshot.Checked)
-                {
-                    message.Attachments.Add(new Attachment(_reportCrash.ScreenShot));
-                }
-
-                if (!_reportCrash.Silent)
-                {
-                    smtpClient.SendCompleted += SmtpClientSendCompleted;
-                }
-                smtpClient.SendAsync(message, "Crash Report");
-            }
-
-            if (!_reportCrash.Silent)
-            {
-                _progressDialog = new ProgressDialog();
-                _progressDialog.ShowDialog();
-            }
-        }
-
-        private void SmtpClientSendCompleted(object sender, AsyncCompletedEventArgs e)
-        {
-            if (e.Error != null)
-            {
-                ReportFailure(e.Error);
-            }
-            else
-            {
-                ReportSuccess();
-            }
+            _reportCrash.SendReport(checkBoxIncludeScreenshot.Checked, SendRequestCompleted, SmtpClientSendCompleted, this, from, subject, textBoxUserMessage.Text.Trim());
+            
+            _progressDialog = new ProgressDialog();
+            _progressDialog.ShowDialog();
         }
 
         private void ButtonSaveClick(object sender, EventArgs e)
@@ -197,7 +130,7 @@ namespace CrashReporterDotNET
 
         private void SaveFileDialogFileOk(object sender, CancelEventArgs e)
         {
-            File.WriteAllText(saveFileDialog.FileName, HtmlReport());
+            File.WriteAllText(saveFileDialog.FileName, _reportCrash.CreateHtmlReport(textBoxUserMessage.Text.Trim()));
         }
 
         private void LinkLabelViewLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -222,185 +155,8 @@ namespace CrashReporterDotNET
 
         #endregion
 
-        #region HTML Report Generator
+        #region Events
 
-        private string HtmlReport()
-        {
-            string report =
-                string.Format(@"<!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 1.0 Transitional//EN"" ""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"">
-                    <html xmlns=""http://www.w3.org/1999/xhtml"">
-                    <head>
-                    <meta http-equiv=""Content-Type"" content=""text/html; charset=utf-8"" />
-                    <title>{0} {1} Crash Report</title>
-                    <style type=""text/css"">
-                    .message {{
-                    padding-top:5px;
-                    padding-bottom:5px;
-                    padding-right:20px;
-                    padding-left:20px;
-                    font-family:Sans-serif;
-                    }}
-                    .content
-                    {{
-                    border-style:dashed;
-                    border-width:1px;
-                    }}
-                    .title
-                    {{
-                    padding-top:1px;
-                    padding-bottom:1px;
-                    padding-right:10px;
-                    padding-left:10px;
-                    font-family:Arial;
-                    }}
-                    </style>
-                    </head>
-                    <body>
-                    <div class=""title"" style=""background-color: #FFCC99"">
-                    <h2>{0} {1} Crash Report</h2>
-                    </div>
-                    <br/>
-                    <div class=""content"">
-                    <div class=""title"" style=""background-color: #66CCFF;"">
-                    <h3>Windows Version</h3>
-                    </div>
-                    <div class=""message"">
-                    <p>{2}</p>
-                    </div>
-                    </div>
-                    <br/>
-                    <div class=""content"">
-                    <div class=""title"" style=""background-color: #66CCFF;"">
-                    <h3>CLR Version</h3>
-                    </div>
-                    <div class=""message"">
-                    <p>{3}</p>
-                    </div>
-                    </div>
-                    <br/>    
-                    <div class=""content"">
-                    <div class=""title"" style=""background-color: #66CCFF;"">
-                    <h3>Exception</h3>
-                    </div>
-                    <div class=""message"">
-                    {4}
-                    </div>
-                    </div>", HttpUtility.HtmlEncode(_reportCrash.ApplicationTitle),
-                    HttpUtility.HtmlEncode(_reportCrash.ApplicationVersion),
-                    HttpUtility.HtmlEncode(HelperMethods.GetWindowsVersion()),
-                    HttpUtility.HtmlEncode(Environment.Version.ToString()),
-                    CreateReport(_reportCrash.Exception));
-            if (!String.IsNullOrEmpty(textBoxUserMessage.Text.Trim()))
-            {
-                report += $@"<br/>
-                            <div class=""content"">
-                            <div class=""title"" style=""background-color: #66FF99;"">
-                            <h3>User Comment</h3>
-                            </div>
-                            <div class=""message"">
-                            <p>{HttpUtility.HtmlEncode(textBoxUserMessage.Text.Trim())}</p>
-                            </div>
-                            </div>";
-            }
-            if (!String.IsNullOrEmpty(_reportCrash.DeveloperMessage.Trim()))
-            {
-                report += $@"<br/>
-                            <div class=""content"">
-                            <div class=""title"" style=""background-color: #66FF99;"">
-                            <h3>Developer Message</h3>
-                            </div>
-                            <div class=""message"">
-                            <p>{HttpUtility.HtmlEncode(_reportCrash.DeveloperMessage.Trim())}</p>
-                            </div>
-                            </div>";
-            }
-            report += "</body></html>";
-            return report;
-        }
-
-        private string CreateReport(Exception exception)
-        {
-            string report = $@"<br/>
-                        <div class=""content"">
-                        <div class=""title"" style=""background-color: #66CCFF;"">
-                        <h3>Exception Type</h3>
-                        </div>
-                        <div class=""message"">
-                        <p>{HttpUtility.HtmlEncode(exception.GetType().ToString())}</p>
-                        </div>
-                        </div><br/>
-                        <div class=""content"">
-                        <div class=""title"" style=""background-color: #66CCFF;"">
-                        <h3>Error Message</h3>
-                        </div>
-                        <div class=""message"">
-                        <p>{HttpUtility.HtmlEncode(exception.Message)}</p>
-                        </div>
-                        </div><br/>
-                        <div class=""content"">
-                        <div class=""title"" style=""background-color: #66CCFF;"">
-                        <h3>Source</h3>
-                        </div>
-                        <div class=""message"">
-                        <p>{HttpUtility.HtmlEncode(exception.Source ?? "No source")}</p>
-                        </div>
-                        </div><br/>
-                        <div class=""content"">
-                        <div class=""title"" style=""background-color: #66CCFF;"">
-                        <h3>Stack Trace</h3>
-                        </div>
-                        <div class=""message"">
-                        <p>{
-                    HttpUtility.HtmlEncode(exception.StackTrace ?? "No stack trace").Replace("\r\n", "<br/>")
-                }</p>
-                        </div>
-                        </div>";
-            if (exception.InnerException != null)
-            {
-                report += $@"<br/>
-                        <div class=""content"">
-                        <div class=""title"" style=""background-color: #66CCFF;"">
-                        <h3>Inner Exception</h3>
-                        </div>
-                        <div class=""message"">
-                        {CreateReport(exception.InnerException)}
-                        </div>
-                        </div>";
-            }
-            report += "<br/>";
-            return report;
-        }
-
-        #endregion
-
-        #region DrDump Functions
-
-        private void SendAnonymousReport()
-        {
-            _doctorDumpService = new DrDumpService();
-            if (!_reportCrash.Silent)
-            {
-                _doctorDumpService.SendRequestCompleted += SendRequestCompleted;
-            }
-
-            _doctorDumpService.SendAnonymousReportAsync(
-                _reportCrash.Exception,
-                _reportCrash.ToEmail,
-                _reportCrash.DoctorDumpSettings?.ApplicationID);
-        }
-
-        private void SendFullReport()
-        {
-            var sendScreenshot = File.Exists(_reportCrash.ScreenShot) && checkBoxIncludeScreenshot.Checked;
-            var screenshot = sendScreenshot ? File.ReadAllBytes(_reportCrash.ScreenShot) : null;
-
-            if (_doctorDumpService == null)
-            {
-                SendAnonymousReport();
-            }
-            _doctorDumpService.SendAdditionalDataAsync(this, _reportCrash.DeveloperMessage, textBoxEmail.Text.Trim(),
-                    textBoxUserMessage.Text.Trim(), screenshot);
-        }
         private void SendRequestCompleted(object sender, DrDumpService.SendRequestCompletedEventArgs e)
         {
             if (e.Error != null)
@@ -416,6 +172,18 @@ namespace CrashReporterDotNET
                     if (!string.IsNullOrEmpty(e.Result.UrlToProblem))
                         Process.Start(e.Result.UrlToProblem);
                 }
+            }
+        }
+
+        private void SmtpClientSendCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                ReportFailure(e.Error);
+            }
+            else
+            {
+                ReportSuccess();
             }
         }
 

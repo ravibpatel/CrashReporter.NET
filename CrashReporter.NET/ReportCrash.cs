@@ -3,9 +3,14 @@ using System.Deployment.Application;
 using System.Diagnostics;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Net;
+using System.Net.Mail;
 using System.Reflection;
 using System.Threading;
+using System.Web;
 using System.Windows.Forms;
+using CrashReporterDotNET.DrDump;
+using Application = System.Windows.Forms.Application;
 
 namespace CrashReporterDotNET
 {
@@ -95,6 +100,8 @@ namespace CrashReporterDotNET
 
         internal string ScreenShot;
 
+        private DrDumpService _doctorDumpService;
+
         /// <summary>
         /// Object use to send exception report to your Inbox.
         /// </summary>
@@ -119,8 +126,11 @@ namespace CrashReporterDotNET
             {
                 appTitle = ((AssemblyTitleAttribute) attributes[0]).Title;
             }
+
             ApplicationTitle = !string.IsNullOrEmpty(appTitle) ? appTitle : mainAssembly.GetName().Name;
-            ApplicationVersion = ApplicationDeployment.IsNetworkDeployed ? ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString() : mainAssembly.GetName().Version.ToString();
+            ApplicationVersion = ApplicationDeployment.IsNetworkDeployed
+                ? ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString()
+                : mainAssembly.GetName().Version.ToString();
             try
             {
                 ScreenShot = $@"{Path.GetTempPath()}\{ApplicationTitle} Crash Screenshot.png";
@@ -133,23 +143,32 @@ namespace CrashReporterDotNET
             {
                 Debug.Write(e.Message);
             }
-            if (String.IsNullOrEmpty(ToEmail) || !AnalyzeWithDoctorDump && (String.IsNullOrEmpty(FromEmail) || String.IsNullOrEmpty(SmtpHost)))
-                return;
+
+            if (!AnalyzeWithDoctorDump)
+            {
+                if (string.IsNullOrEmpty(FromEmail))
+                {
+                    throw new ArgumentNullException(@"FromEmail");
+                }
+                if (string.IsNullOrEmpty(SmtpHost))
+                {
+                    throw new ArgumentNullException("SmtpHost");
+                }
+            }
 
             if (!Application.MessageLoop)
             {
                 Application.EnableVisualStyles();
             }
-            CrashReport crashReport = new CrashReport(this);
             if (Silent)
             {
-                crashReport.Close();
+                SendReport(IncludeScreenshot);
             }
             else
             {
                 if (Thread.CurrentThread.GetApartmentState().Equals(ApartmentState.MTA))
                 {
-                    var thread = new Thread(() => crashReport.ShowDialog()) { IsBackground = false };
+                    var thread = new Thread(() => new CrashReport(this).ShowDialog()) {IsBackground = false};
                     thread.CurrentCulture = thread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
                     thread.SetApartmentState(ApartmentState.STA);
                     thread.Start();
@@ -157,12 +176,264 @@ namespace CrashReporterDotNET
                 }
                 else
                 {
-                    crashReport.ShowDialog();
+                    new CrashReport(this).ShowDialog();
                 }
             }
         }
+
+        internal void SendReport(bool includeScreenshot,
+            DrDumpService.SendRequestCompletedEventHandler sendRequestCompleted = null,
+            SendCompletedEventHandler smtpClientSendCompleted = null, Control form = null, string from = "",
+            string subject = "", string userMessage = "")
+        {
+            if (string.IsNullOrEmpty(from))
+            {
+                from = !string.IsNullOrEmpty(FromEmail)
+                    ? FromEmail
+                    : null;
+            }
+
+            if (AnalyzeWithDoctorDump)
+            {
+                SendFullReport(includeScreenshot, sendRequestCompleted, form, from, userMessage);
+            }
+            else
+            {
+                SendEmail(includeScreenshot, smtpClientSendCompleted, from, subject, userMessage);
+            }
+        }
+
+        #region Send Email Using SMTP
+
+        private void SendEmail(bool includeScreenshot, SendCompletedEventHandler smtpClientSendCompleted, string from, string subject, string userMessage)
+        {
+            if (string.IsNullOrEmpty(subject))
+            {
+                subject = $"{ApplicationTitle} {ApplicationVersion} Crash Report";
+            }
+
+            var smtpClient = new SmtpClient
+            {
+                Host = SmtpHost,
+                Port = Port,
+                EnableSsl = EnableSSL,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(UserName, Password),
+            };
+
+            var message = new MailMessage(new MailAddress(from), new MailAddress(ToEmail))
+            {
+                IsBodyHtml = true,
+                Subject = subject,
+                Body = CreateHtmlReport(userMessage)
+            };
+
+            if (File.Exists(ScreenShot) && includeScreenshot)
+            {
+                message.Attachments.Add(new Attachment(ScreenShot));
+            }
+
+            if (smtpClientSendCompleted != null)
+            {
+                smtpClient.SendCompleted += smtpClientSendCompleted;
+            }
+
+            smtpClient.SendAsync(message, "Crash Report");
+        }
+
+        #endregion
+
+        #region HTML Report Generator
+
+        internal string CreateHtmlReport(string userMessage)
+        {
+            string report =
+                string.Format(
+                    @"<!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 1.0 Transitional//EN"" ""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"">
+                    <html xmlns=""http://www.w3.org/1999/xhtml"">
+                    <head>
+                    <meta http-equiv=""Content-Type"" content=""text/html; charset=utf-8"" />
+                    <title>{0} {1} Crash Report</title>
+                    <style type=""text/css"">
+                    .message {{
+                    padding-top:5px;
+                    padding-bottom:5px;
+                    padding-right:20px;
+                    padding-left:20px;
+                    font-family:Sans-serif;
+                    }}
+                    .content
+                    {{
+                    border-style:dashed;
+                    border-width:1px;
+                    }}
+                    .title
+                    {{
+                    padding-top:1px;
+                    padding-bottom:1px;
+                    padding-right:10px;
+                    padding-left:10px;
+                    font-family:Arial;
+                    }}
+                    </style>
+                    </head>
+                    <body>
+                    <div class=""title"" style=""background-color: #FFCC99"">
+                    <h2>{0} {1} Crash Report</h2>
+                    </div>
+                    <br/>
+                    <div class=""content"">
+                    <div class=""title"" style=""background-color: #66CCFF;"">
+                    <h3>Windows Version</h3>
+                    </div>
+                    <div class=""message"">
+                    <p>{2}</p>
+                    </div>
+                    </div>
+                    <br/>
+                    <div class=""content"">
+                    <div class=""title"" style=""background-color: #66CCFF;"">
+                    <h3>CLR Version</h3>
+                    </div>
+                    <div class=""message"">
+                    <p>{3}</p>
+                    </div>
+                    </div>
+                    <br/>    
+                    <div class=""content"">
+                    <div class=""title"" style=""background-color: #66CCFF;"">
+                    <h3>Exception</h3>
+                    </div>
+                    <div class=""message"">
+                    {4}
+                    </div>
+                    </div>", HttpUtility.HtmlEncode(ApplicationTitle),
+                    HttpUtility.HtmlEncode(ApplicationVersion),
+                    HttpUtility.HtmlEncode(HelperMethods.GetWindowsVersion()),
+                    HttpUtility.HtmlEncode(Environment.Version.ToString()),
+                    CreateReport(Exception));
+            if (!String.IsNullOrEmpty(userMessage))
+            {
+                report += $@"<br/>
+                            <div class=""content"">
+                            <div class=""title"" style=""background-color: #66FF99;"">
+                            <h3>User Comment</h3>
+                            </div>
+                            <div class=""message"">
+                            <p>{HttpUtility.HtmlEncode(userMessage)}</p>
+                            </div>
+                            </div>";
+            }
+
+            if (!String.IsNullOrEmpty(DeveloperMessage.Trim()))
+            {
+                report += $@"<br/>
+                            <div class=""content"">
+                            <div class=""title"" style=""background-color: #66FF99;"">
+                            <h3>Developer Message</h3>
+                            </div>
+                            <div class=""message"">
+                            <p>{HttpUtility.HtmlEncode(DeveloperMessage.Trim())}</p>
+                            </div>
+                            </div>";
+            }
+
+            report += "</body></html>";
+            return report;
+        }
+
+        private string CreateReport(Exception exception)
+        {
+            string report = $@"<br/>
+                        <div class=""content"">
+                        <div class=""title"" style=""background-color: #66CCFF;"">
+                        <h3>Exception Type</h3>
+                        </div>
+                        <div class=""message"">
+                        <p>{HttpUtility.HtmlEncode(exception.GetType().ToString())}</p>
+                        </div>
+                        </div><br/>
+                        <div class=""content"">
+                        <div class=""title"" style=""background-color: #66CCFF;"">
+                        <h3>Error Message</h3>
+                        </div>
+                        <div class=""message"">
+                        <p>{HttpUtility.HtmlEncode(exception.Message)}</p>
+                        </div>
+                        </div><br/>
+                        <div class=""content"">
+                        <div class=""title"" style=""background-color: #66CCFF;"">
+                        <h3>Source</h3>
+                        </div>
+                        <div class=""message"">
+                        <p>{HttpUtility.HtmlEncode(exception.Source ?? "No source")}</p>
+                        </div>
+                        </div><br/>
+                        <div class=""content"">
+                        <div class=""title"" style=""background-color: #66CCFF;"">
+                        <h3>Stack Trace</h3>
+                        </div>
+                        <div class=""message"">
+                        <p>{
+                    HttpUtility.HtmlEncode(exception.StackTrace ?? "No stack trace").Replace("\r\n", "<br/>")
+                }</p>
+                        </div>
+                        </div>";
+            if (exception.InnerException != null)
+            {
+                report += $@"<br/>
+                        <div class=""content"">
+                        <div class=""title"" style=""background-color: #66CCFF;"">
+                        <h3>Inner Exception</h3>
+                        </div>
+                        <div class=""message"">
+                        {CreateReport(exception.InnerException)}
+                        </div>
+                        </div>";
+            }
+
+            report += "<br/>";
+            return report;
+        }
+
+        #endregion
+
+        #region DrDump Functions
+
+        internal void SendAnonymousReport(DrDumpService.SendRequestCompletedEventHandler sendRequestCompleted)
+        {
+            _doctorDumpService = new DrDumpService();
+            if (sendRequestCompleted != null)
+            {
+                _doctorDumpService.SendRequestCompleted += sendRequestCompleted;
+            }
+
+            _doctorDumpService.SendAnonymousReportAsync(
+                Exception,
+                ToEmail,
+                DoctorDumpSettings?.ApplicationID);
+        }
+
+        private void SendFullReport(bool includeScreenshot,
+            DrDumpService.SendRequestCompletedEventHandler sendRequestCompleted, Control form, string from,
+            string userMessage)
+        {
+            var sendScreenshot = File.Exists(ScreenShot) && includeScreenshot;
+            var screenshot = sendScreenshot ? File.ReadAllBytes(ScreenShot) : null;
+
+            if (_doctorDumpService == null)
+            {
+                SendAnonymousReport(sendRequestCompleted);
+            }
+
+            _doctorDumpService.SendAdditionalDataAsync(form, DeveloperMessage, from,
+                userMessage, screenshot);
+        }
+
+        #endregion
     }
-    
+
     /// <summary>
     /// Set Doctor Dump processing settings.
     /// </summary>
@@ -184,5 +455,5 @@ namespace CrashReporterDotNET
         /// Specify whether CrashReporter.NET should open the web page in browser about crash report that contains report ID and may contain steps to fix the problem.
         /// </summary>
         public bool OpenReportInBrowser = true;
-    } 
+    }
 }

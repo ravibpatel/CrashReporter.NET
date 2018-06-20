@@ -40,7 +40,7 @@ namespace CrashReporterWPFTest
                 }
                 catch (Exception exception)
                 {
-                    App.ReportCrash(exception, "Value of path variable is " + path);
+                    App.SendReport(exception, "Value of path variable is " + path);
                 }
             }
         }

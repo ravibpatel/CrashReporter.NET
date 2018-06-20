@@ -42,7 +42,7 @@ namespace CrashReporterTest
                 }
                 catch (Exception exception)
                 {
-                    Program.SendCrashReport(exception, "Value of path variable is " + path);
+                    Program.SendReport(exception, "Value of path variable is " + path);
                 }
             }
         }

@@ -18,18 +18,20 @@ namespace CrashReporterDotNET.DrDump
         public DrDumpService()
         {
             _uploader = new HttpsCrashReporterReportUploader();
-            var configOverride = Microsoft.Win32.Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Idol Software\DumpUploader", "ServiceURL", null) as string;
+            var configOverride =
+                Microsoft.Win32.Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Idol Software\DumpUploader",
+                    "ServiceURL", null) as string;
             if (!string.IsNullOrEmpty(configOverride))
             {
                 var t = new Uri(configOverride);
                 var newUrl = new UriBuilder(_uploader.Url)
                 {
-                    Scheme = t.Scheme, 
-                    Host = t.Host, 
+                    Scheme = t.Scheme,
+                    Host = t.Host,
                     Port = t.Port
                 };
                 _uploader.Url = newUrl.ToString();
-            }            
+            }
         }
 
         public void SendAnonymousReportAsync(Exception exception, string toEmail, Guid? applicationId)
@@ -45,10 +47,12 @@ namespace CrashReporterDotNET.DrDump
             };
 
             _uploader.SendAnonymousReportCompleted += OnSendAnonymousReportCompleted;
-            _uploader.SendAnonymousReportAsync(SendRequestState.GetClientLib(), _sendRequestState.GetApplication(), _sendRequestState.GetExceptionDescription(anonymous: true), _sendRequestState);
+            _uploader.SendAnonymousReportAsync(SendRequestState.GetClientLib(), _sendRequestState.GetApplication(),
+                _sendRequestState.GetExceptionDescription(true), _sendRequestState);
         }
 
-        public void SendAdditionalDataAsync(Control control, string developerMessage, string userEmail, string userMessage, byte[] screenshot)
+        public void SendAdditionalDataAsync(Control control, string developerMessage, string userEmail,
+            string userMessage, byte[] screenshot)
         {
             bool needToSend;
             lock (_sendRequestState)
@@ -88,7 +92,8 @@ namespace CrashReporterDotNET.DrDump
                     if (response is NeedReportResponse)
                     {
                         _uploader.SendAdditionalDataCompleted += OnSendAdditionalDataCompleted;
-                        _uploader.SendAdditionalDataAsync(response.Context, sendRequestState.GetDetailedExceptionDescription(), sendRequestState);
+                        _uploader.SendAdditionalDataAsync(response.Context,
+                            sendRequestState.GetDetailedExceptionDescription(), sendRequestState);
                         return;
                     }
 
@@ -99,11 +104,12 @@ namespace CrashReporterDotNET.DrDump
             {
                 e = new SendRequestCompletedEventArgs(null, ex, false);
             }
+
             if (SendRequestCompleted != null)
             {
                 if (control != null)
                 {
-                    control.BeginInvoke(SendRequestCompleted, new object[] { this, e });
+                    control.BeginInvoke(SendRequestCompleted, new object[] {this, e});
                 }
                 else
                 {
@@ -114,14 +120,14 @@ namespace CrashReporterDotNET.DrDump
 
         private void OnSendAnonymousReportCompleted(object sender, SendAnonymousReportCompletedEventArgs e)
         {
-            var state = (SendRequestState)e.UserState;
+            var state = (SendRequestState) e.UserState;
 
             bool needToSend;
 
             lock (state)
             {
                 state.SendAnonymousReportResult = e;
-                    
+
                 needToSend = state.PrivateData != null;
             }
 

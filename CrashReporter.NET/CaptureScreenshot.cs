@@ -35,6 +35,7 @@ namespace CrashReporterDotNET
                 {
                     graphics.CopyFromScreen(new Point(bounds.Left, bounds.Top), Point.Empty, bounds.Size);
                 }
+
                 bitmap.Save(location, imageFormat);
             }
         }
@@ -66,6 +67,7 @@ namespace CrashReporterDotNET
                 {
                     graphics.CopyFromScreen(new Point(bounds.Left, bounds.Top), Point.Empty, bounds.Size);
                 }
+
                 bitmap.Save(location, imageFormat);
             }
         }

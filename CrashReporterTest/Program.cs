@@ -12,10 +12,10 @@ namespace CrashReporterTest
         [STAThread]
         static void Main()
         {
-            Application.ThreadException += (sender, args) => SendCrashReport(args.Exception);
+            Application.ThreadException += (sender, args) => SendReport(args.Exception);
             AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
                 {
-                    SendCrashReport((Exception) args.ExceptionObject);
+                    SendReport((Exception) args.ExceptionObject);
                     Environment.Exit(0);
                 };
             Application.EnableVisualStyles();
@@ -23,7 +23,7 @@ namespace CrashReporterTest
             Application.Run(new FormMain());
         }
 
-        public static void SendCrashReport(Exception exception, string developerMessage = "")
+        public static void SendReport(Exception exception, string developerMessage = "")
         {
             var reportCrash = new ReportCrash("Email where you want to receive crash reports.")
             {

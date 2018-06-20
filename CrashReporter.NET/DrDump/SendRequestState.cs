@@ -31,7 +31,7 @@ namespace CrashReporterDotNET.DrDump
         private static System.Net.NetworkInformation.PhysicalAddress GetMacAddress()
         {
             var googleDns = new System.Net.Sockets.UdpClient("8.8.8.8", 53);
-            IPAddress localAddress = ((IPEndPoint)googleDns.Client.LocalEndPoint).Address;
+            IPAddress localAddress = ((IPEndPoint) googleDns.Client.LocalEndPoint).Address;
 
             foreach (var netInterface in System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces())
             {
@@ -41,13 +41,16 @@ namespace CrashReporterDotNET.DrDump
                         return netInterface.GetPhysicalAddress();
                 }
             }
+
             return null;
         }
 
         private int GetAnonymousMachineID()
         {
             System.Net.NetworkInformation.PhysicalAddress mac = GetMacAddress();
-            return mac != null ? BitConverter.ToInt32(System.Security.Cryptography.MD5.Create().ComputeHash(mac.GetAddressBytes()), 0) : 0;
+            return mac != null
+                ? BitConverter.ToInt32(System.Security.Cryptography.MD5.Create().ComputeHash(mac.GetAddressBytes()), 0)
+                : 0;
         }
 
         internal DetailedExceptionDescription GetDetailedExceptionDescription()
@@ -61,9 +64,7 @@ namespace CrashReporterDotNET.DrDump
                 PngScreenShot = PrivateData.Screenshot
             };
         }
-
-
-
+        
         internal ExceptionDescription GetExceptionDescription(bool anonymous)
         {
             var oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
@@ -97,10 +98,14 @@ namespace CrashReporterDotNET.DrDump
             string moduleName = mainAssembly.GetName().Name;
 
             var attributes = mainAssembly.GetCustomAttributes(typeof(System.Reflection.AssemblyCompanyAttribute), true);
-            string appCompany = (attributes.Length > 0) ? ((System.Reflection.AssemblyCompanyAttribute)attributes[0]).Company : AnonymousData.ToEmail;
+            string appCompany = attributes.Length > 0
+                ? ((System.Reflection.AssemblyCompanyAttribute) attributes[0]).Company
+                : AnonymousData.ToEmail;
 
             var attributes2 = mainAssembly.GetCustomAttributes(typeof(System.Reflection.AssemblyTitleAttribute), true);
-            string appTitle = (attributes2.Length > 0) ? ((System.Reflection.AssemblyTitleAttribute)attributes2[0]).Title : moduleName;
+            string appTitle = attributes2.Length > 0
+                ? ((System.Reflection.AssemblyTitleAttribute) attributes2[0]).Title
+                : moduleName;
 
             var appVersion = mainAssembly.GetName().Version;
 
@@ -110,10 +115,10 @@ namespace CrashReporterDotNET.DrDump
                 AppName = appTitle,
                 CompanyName = appCompany,
                 Email = AnonymousData.ToEmail,
-                V1 = (ushort)appVersion.Major,
-                V2 = (ushort)appVersion.Minor,
-                V3 = (ushort)appVersion.Build,
-                V4 = (ushort)appVersion.Revision,
+                V1 = (ushort) appVersion.Major,
+                V2 = (ushort) appVersion.Minor,
+                V3 = (ushort) appVersion.Build,
+                V4 = (ushort) appVersion.Revision,
                 MainModule = moduleName
             };
         }
@@ -123,10 +128,10 @@ namespace CrashReporterDotNET.DrDump
             var clientVersion = typeof(CrashReport).Assembly.GetName().Version;
             return new ClientLib
             {
-                V1 = (ushort)clientVersion.Major,
-                V2 = (ushort)clientVersion.Minor,
-                V3 = (ushort)clientVersion.Build,
-                V4 = (ushort)clientVersion.Revision
+                V1 = (ushort) clientVersion.Major,
+                V2 = (ushort) clientVersion.Minor,
+                V3 = (ushort) clientVersion.Build,
+                V4 = (ushort) clientVersion.Revision
             };
         }
     }

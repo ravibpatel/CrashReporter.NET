@@ -34,6 +34,7 @@ namespace CrashReporterDotNET
                         return true;
                 }
             }
+
             // The environment must be an x86 environment.
             return false;
         }
@@ -53,12 +54,15 @@ namespace CrashReporterDotNET
 
         public static string GetOSVersion()
         {
-            if (!string.IsNullOrEmpty(HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentMajorVersionNumber")))
+            if (!string.IsNullOrEmpty(HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion",
+                "CurrentMajorVersionNumber")))
             {
                 return
                     $"{HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentMajorVersionNumber")}.{HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentMinorVersionNumber")}.{HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuildNumber")}.0";
             }
-            return $"{HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentVersion")}.{HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuildNumber")}.0";
+
+            return
+                $"{HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentVersion")}.{HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuildNumber")}.0";
         }
 
         public static string GetWindowsVersion()
@@ -72,6 +76,7 @@ namespace CrashReporterDotNET
             {
                 osArchitecture = "32/64-bit (Undetermined)";
             }
+
             string productName = HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName");
             string csdVersion = HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CSDVersion");
             string currentBuild = HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuildNumber");
@@ -80,6 +85,7 @@ namespace CrashReporterDotNET
                 return
                     $"{(productName.StartsWith("Microsoft") ? "" : "Microsoft ")}{productName}{(!string.IsNullOrEmpty(csdVersion) ? " " + csdVersion : String.Empty)} {osArchitecture} (OS Build {currentBuild})";
             }
+
             return String.Empty;
         }
     }
