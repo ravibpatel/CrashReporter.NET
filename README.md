@@ -39,16 +39,16 @@ internal static class Program
 
     private static void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs)
     {
-        ReportCrash((Exception)unhandledExceptionEventArgs.ExceptionObject);
+        SendReport((Exception)unhandledExceptionEventArgs.ExceptionObject);
         Environment.Exit(0);
     }
 
     private static void ApplicationThreadException(object sender, ThreadExceptionEventArgs e)
     {
-        ReportCrash(e.Exception);
+        SendReport(e.Exception);
     }
 
-    public static void ReportCrash(Exception exception,  string developerMessage = "")
+    public static void SendReport(Exception exception,  string developerMessage = "")
     {
         var reportCrash = new ReportCrash("Email where you want to receive crash reports.")
         {
@@ -76,7 +76,7 @@ try
 }
 catch (Exception exception)
 {
-    Program.ReportCrash(exception, "Value of path variable is " + path);
+    Program.SendReport(exception, "Value of path variable is " + path);
 }
 ````
 
@@ -97,23 +97,23 @@ public partial class App : Application
 
     private void TaskSchedulerOnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs unobservedTaskExceptionEventArgs)
     {
-        ReportCrash(unobservedTaskExceptionEventArgs.Exception);
+        SendReport(unobservedTaskExceptionEventArgs.Exception);
         Environment.Exit(0);
     }
 
     private void DispatcherOnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs dispatcherUnhandledExceptionEventArgs)
     {
-        ReportCrash(dispatcherUnhandledExceptionEventArgs.Exception);
+        SendReport(dispatcherUnhandledExceptionEventArgs.Exception);
         Environment.Exit(0);
     }
 
     private static void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs)
     {
-        ReportCrash((Exception)unhandledExceptionEventArgs.ExceptionObject);
+        SendReport((Exception)unhandledExceptionEventArgs.ExceptionObject);
         Environment.Exit(0);
     }
 
-    public static void ReportCrash(Exception exception, string developerMessage = "")
+    public static void SendReport(Exception exception, string developerMessage = "")
     {
         var reportCrash = new ReportCrash("Email where you want to receive crash reports.")
         {
@@ -140,7 +140,7 @@ try
 }
 catch (Exception exception)
 {
-    App.ReportCrash(exception, "Value of path variable is " + path);
+    App.SendReport(exception, "Value of path variable is " + path);
 }
 ````
 

@@ -150,6 +150,7 @@ namespace CrashReporterDotNET
                 {
                     throw new ArgumentNullException(@"FromEmail");
                 }
+
                 if (string.IsNullOrEmpty(SmtpHost))
                 {
                     throw new ArgumentNullException("SmtpHost");
@@ -160,6 +161,7 @@ namespace CrashReporterDotNET
             {
                 Application.EnableVisualStyles();
             }
+
             if (Silent)
             {
                 SendReport(IncludeScreenshot);
@@ -184,13 +186,18 @@ namespace CrashReporterDotNET
         internal void SendReport(bool includeScreenshot,
             DrDumpService.SendRequestCompletedEventHandler sendRequestCompleted = null,
             SendCompletedEventHandler smtpClientSendCompleted = null, Control form = null, string from = "",
-            string subject = "", string userMessage = "")
+            string userMessage = "")
         {
+            string subject = String.Empty;
             if (string.IsNullOrEmpty(from))
             {
                 from = !string.IsNullOrEmpty(FromEmail)
                     ? FromEmail
                     : null;
+            }
+            else
+            {
+                subject = $"{ApplicationTitle} {ApplicationVersion} Crash Report by {from}";
             }
 
             if (AnalyzeWithDoctorDump)
@@ -205,7 +212,8 @@ namespace CrashReporterDotNET
 
         #region Send Email Using SMTP
 
-        private void SendEmail(bool includeScreenshot, SendCompletedEventHandler smtpClientSendCompleted, string from, string subject, string userMessage)
+        private void SendEmail(bool includeScreenshot, SendCompletedEventHandler smtpClientSendCompleted, string from,
+            string subject, string userMessage)
         {
             if (string.IsNullOrEmpty(subject))
             {
