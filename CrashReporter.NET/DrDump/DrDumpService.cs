@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 using CrashReporterDotNET.com.drdump;
+using Microsoft.Win32;
 
 namespace CrashReporterDotNET.DrDump
 {
@@ -19,7 +20,7 @@ namespace CrashReporterDotNET.DrDump
         {
             _uploader = new HttpsCrashReporterReportUploader();
             var configOverride =
-                Microsoft.Win32.Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Idol Software\DumpUploader",
+                Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Idol Software\DumpUploader",
                     "ServiceURL", null) as string;
             if (!string.IsNullOrEmpty(configOverride))
             {
@@ -42,7 +43,7 @@ namespace CrashReporterDotNET.DrDump
                 {
                     Exception = exception,
                     ToEmail = toEmail,
-                    ApplicationID = applicationId
+                    ApplicationId = applicationId
                 }
             };
 
@@ -85,8 +86,7 @@ namespace CrashReporterDotNET.DrDump
                 else
                 {
                     Response response = res.Result;
-                    var errorResponse = response as ErrorResponse;
-                    if (errorResponse != null)
+                    if (response is ErrorResponse errorResponse)
                         throw new Exception(errorResponse.Error);
 
                     if (response is NeedReportResponse)
@@ -109,7 +109,7 @@ namespace CrashReporterDotNET.DrDump
             {
                 if (control != null)
                 {
-                    control.BeginInvoke(SendRequestCompleted, new object[] {this, e});
+                    control.BeginInvoke(SendRequestCompleted, this, e);
                 }
                 else
                 {
@@ -120,7 +120,7 @@ namespace CrashReporterDotNET.DrDump
 
         private void OnSendAnonymousReportCompleted(object sender, SendAnonymousReportCompletedEventArgs e)
         {
-            var state = (SendRequestState) e.UserState;
+            var state = (SendRequestState)e.UserState;
 
             bool needToSend;
 
@@ -145,8 +145,7 @@ namespace CrashReporterDotNET.DrDump
                 }
 
                 Response response = e.Result;
-                var errorResponse = response as ErrorResponse;
-                if (errorResponse != null)
+                if (response is ErrorResponse errorResponse)
                     throw new Exception(errorResponse.Error);
 
                 SendRequestCompleted?.Invoke(this, new SendRequestCompletedEventArgs(response, null, false));

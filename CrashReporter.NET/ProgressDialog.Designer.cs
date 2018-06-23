@@ -1,11 +1,14 @@
-﻿namespace CrashReporterDotNET
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace CrashReporterDotNET
 {
     partial class ProgressDialog
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -67,7 +70,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBoxIcon;
-        private System.Windows.Forms.Label labelMessage;
+        private PictureBox pictureBoxIcon;
+        private Label labelMessage;
     }
 }

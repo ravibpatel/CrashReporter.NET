@@ -1,6 +1,6 @@
 ﻿namespace CrashReporterDotNET.DrDump
 {
-    class PrivateData
+    internal class PrivateData
     {
         public string UserEmail { get; set; }
         public string UserMessage { get; set; }

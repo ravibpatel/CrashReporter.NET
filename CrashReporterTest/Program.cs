@@ -30,7 +30,7 @@ namespace CrashReporterTest
                 DeveloperMessage = developerMessage,
                 DoctorDumpSettings = new DoctorDumpSettings
                 {
-                    ApplicationID = new Guid("Application ID you received from DrDump.com"),
+                    ApplicationId = new Guid("Application ID you received from DrDump.com"),
                     OpenReportInBrowser = true
                 }
             };
