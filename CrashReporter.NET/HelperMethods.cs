@@ -7,16 +7,16 @@ namespace CrashReporterDotNET
     internal static class HelperMethods
     {
         [DllImport("kernel32.dll")]
-        static extern IntPtr GetCurrentProcess();
+        private static extern IntPtr GetCurrentProcess();
 
         [DllImport("kernel32.dll")]
-        static extern IntPtr GetModuleHandle(string moduleName);
+        private static extern IntPtr GetModuleHandle(string moduleName);
 
         [DllImport("kernel32")]
-        static extern IntPtr GetProcAddress(IntPtr hModule, string procName);
+        private static extern IntPtr GetProcAddress(IntPtr hModule, string procName);
 
         [DllImport("kernel32.dll")]
-        static extern bool IsWow64Process(IntPtr hProcess, out bool wow64Process);
+        private static extern bool IsWow64Process(IntPtr hProcess, out bool wow64Process);
 
         private static bool Is64BitOperatingSystem()
         {
@@ -52,7 +52,7 @@ namespace CrashReporterDotNET
             }
         }
 
-        public static string GetOSVersion()
+        public static string GetOsVersion()
         {
             if (!string.IsNullOrEmpty(HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion",
                 "CurrentMajorVersionNumber")))

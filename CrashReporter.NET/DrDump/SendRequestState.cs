@@ -1,6 +1,12 @@
 ﻿using System;
 using System.Globalization;
 using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography;
+using System.Threading;
 using CrashReporterDotNET.com.drdump;
 
 namespace CrashReporterDotNET.DrDump
@@ -20,7 +26,7 @@ namespace CrashReporterDotNET.DrDump
             return new ExceptionInfo
             {
                 Type = e.GetType().ToString(),
-                HResult = System.Runtime.InteropServices.Marshal.GetHRForException(e),
+                HResult = Marshal.GetHRForException(e),
                 StackTrace = e.StackTrace,
                 Source = e.Source,
                 Message = anonymous ? null : e.Message,
@@ -28,12 +34,12 @@ namespace CrashReporterDotNET.DrDump
             };
         }
 
-        private static System.Net.NetworkInformation.PhysicalAddress GetMacAddress()
+        private static PhysicalAddress GetMacAddress()
         {
-            var googleDns = new System.Net.Sockets.UdpClient("8.8.8.8", 53);
+            var googleDns = new UdpClient("8.8.8.8", 53);
             IPAddress localAddress = ((IPEndPoint) googleDns.Client.LocalEndPoint).Address;
 
-            foreach (var netInterface in System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces())
+            foreach (var netInterface in NetworkInterface.GetAllNetworkInterfaces())
             {
                 foreach (var addr in netInterface.GetIPProperties().UnicastAddresses)
                 {
@@ -45,11 +51,11 @@ namespace CrashReporterDotNET.DrDump
             return null;
         }
 
-        private int GetAnonymousMachineID()
+        private int GetAnonymousMachineId()
         {
-            System.Net.NetworkInformation.PhysicalAddress mac = GetMacAddress();
+            PhysicalAddress mac = GetMacAddress();
             return mac != null
-                ? BitConverter.ToInt32(System.Security.Cryptography.MD5.Create().ComputeHash(mac.GetAddressBytes()), 0)
+                ? BitConverter.ToInt32(MD5.Create().ComputeHash(mac.GetAddressBytes()), 0)
                 : 0;
         }
 
@@ -67,51 +73,51 @@ namespace CrashReporterDotNET.DrDump
         
         internal ExceptionDescription GetExceptionDescription(bool anonymous)
         {
-            var oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
-            var oldUICulture = System.Threading.Thread.CurrentThread.CurrentUICulture;
-            System.Threading.Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-            System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+            var oldCulture = Thread.CurrentThread.CurrentCulture;
+            var oldUiCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
 
             var osVersion = Environment.OSVersion;
-            var os = $"os={osVersion.Platform};v={HelperMethods.GetOSVersion()};spname={osVersion.ServicePack}";
+            var os = $"os={osVersion.Platform};v={HelperMethods.GetOsVersion()};spname={osVersion.ServicePack}";
 
             var exceptionDescription = new ExceptionDescription
             {
                 ClrVersion = Environment.Version.ToString(),
                 OS = os,
                 CrashDate = DateTime.UtcNow,
-                PCID = GetAnonymousMachineID(),
+                PCID = GetAnonymousMachineId(),
                 Exception = ConvertToExceptionInfo(AnonymousData.Exception, anonymous),
-                ExceptionString = anonymous ? null : AnonymousData.Exception.ToString(),
+                ExceptionString = anonymous ? null : AnonymousData.Exception.ToString()
             };
 
-            System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
-            System.Threading.Thread.CurrentThread.CurrentUICulture = oldUICulture;
+            Thread.CurrentThread.CurrentCulture = oldCulture;
+            Thread.CurrentThread.CurrentUICulture = oldUiCulture;
 
             return exceptionDescription;
         }
 
         internal Application GetApplication()
         {
-            var mainAssembly = System.Reflection.Assembly.GetEntryAssembly();
+            var mainAssembly = Assembly.GetEntryAssembly();
 
             string moduleName = mainAssembly.GetName().Name;
 
-            var attributes = mainAssembly.GetCustomAttributes(typeof(System.Reflection.AssemblyCompanyAttribute), true);
+            var attributes = mainAssembly.GetCustomAttributes(typeof(AssemblyCompanyAttribute), true);
             string appCompany = attributes.Length > 0
-                ? ((System.Reflection.AssemblyCompanyAttribute) attributes[0]).Company
+                ? ((AssemblyCompanyAttribute) attributes[0]).Company
                 : AnonymousData.ToEmail;
 
-            var attributes2 = mainAssembly.GetCustomAttributes(typeof(System.Reflection.AssemblyTitleAttribute), true);
+            var attributes2 = mainAssembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), true);
             string appTitle = attributes2.Length > 0
-                ? ((System.Reflection.AssemblyTitleAttribute) attributes2[0]).Title
+                ? ((AssemblyTitleAttribute) attributes2[0]).Title
                 : moduleName;
 
             var appVersion = mainAssembly.GetName().Version;
 
             return new Application
             {
-                ApplicationGUID = AnonymousData.ApplicationID?.ToString("D"),
+                ApplicationGUID = AnonymousData.ApplicationId?.ToString("D"),
                 AppName = appTitle,
                 CompanyName = appCompany,
                 Email = AnonymousData.ToEmail,

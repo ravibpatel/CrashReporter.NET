@@ -1,11 +1,14 @@
-﻿namespace CrashReporterDotNET
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace CrashReporterDotNET
 {
     partial class CrashReport
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -350,39 +353,39 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage tabPageGeneral;
-        private System.Windows.Forms.TabPage tabPageExceptions;
-        private System.Windows.Forms.Button buttonSendReport;
-        private System.Windows.Forms.Button buttonCancel;
-        private System.Windows.Forms.PictureBox pictureBoxError;
-        private System.Windows.Forms.TextBox textBoxExceptionMessage;
-        private System.Windows.Forms.TextBox textBoxApplicationVersion;
-        private System.Windows.Forms.Label labelVersion;
-        private System.Windows.Forms.TextBox textBoxApplicationName;
-        private System.Windows.Forms.Label labelApplication;
-        private System.Windows.Forms.Label labelTime;
-        private System.Windows.Forms.TextBox textBoxTime;
-        private System.Windows.Forms.Label labelMessage;
-        private System.Windows.Forms.TextBox textBoxUserMessage;
-        private System.Windows.Forms.TextBox textBoxStackTrace;
-        private System.Windows.Forms.Label labelStackTrace;
-        private System.Windows.Forms.TextBox textBoxMessage;
-        private System.Windows.Forms.Label labelExceptionMessage;
-        private System.Windows.Forms.TextBox textBoxSource;
-        private System.Windows.Forms.Label labelSource;
-        private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog;
-        private System.Windows.Forms.TextBox textBoxEmail;
-        private System.Windows.Forms.Label labelEmail;
-        private System.Windows.Forms.TextBox textBoxException;
-        private System.Windows.Forms.Label labelExceptionType;
-        private System.Windows.Forms.ToolTip toolTip;
-        private System.Windows.Forms.TabPage tabPageScreenshot;
-        private System.Windows.Forms.PictureBox pictureBoxScreenshot;
-        private System.Windows.Forms.GroupBox groupBoxScreenshot;
-        private System.Windows.Forms.CheckBox checkBoxIncludeScreenshot;
-        private System.Windows.Forms.LinkLabel linkLabelView;
-        private System.Windows.Forms.ErrorProvider errorProviderEmail;
+        private TabControl tabControl;
+        private TabPage tabPageGeneral;
+        private TabPage tabPageExceptions;
+        private Button buttonSendReport;
+        private Button buttonCancel;
+        private PictureBox pictureBoxError;
+        private TextBox textBoxExceptionMessage;
+        private TextBox textBoxApplicationVersion;
+        private Label labelVersion;
+        private TextBox textBoxApplicationName;
+        private Label labelApplication;
+        private Label labelTime;
+        private TextBox textBoxTime;
+        private Label labelMessage;
+        private TextBox textBoxUserMessage;
+        private TextBox textBoxStackTrace;
+        private Label labelStackTrace;
+        private TextBox textBoxMessage;
+        private Label labelExceptionMessage;
+        private TextBox textBoxSource;
+        private Label labelSource;
+        private Button buttonSave;
+        private SaveFileDialog saveFileDialog;
+        private TextBox textBoxEmail;
+        private Label labelEmail;
+        private TextBox textBoxException;
+        private Label labelExceptionType;
+        private ToolTip toolTip;
+        private TabPage tabPageScreenshot;
+        private PictureBox pictureBoxScreenshot;
+        private GroupBox groupBoxScreenshot;
+        private CheckBox checkBoxIncludeScreenshot;
+        private LinkLabel linkLabelView;
+        private ErrorProvider errorProviderEmail;
     }
 }

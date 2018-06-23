@@ -10,7 +10,6 @@ using System.Threading;
 using System.Web;
 using System.Windows.Forms;
 using CrashReporterDotNET.DrDump;
-using Application = System.Windows.Forms.Application;
 
 namespace CrashReporterDotNET
 {
@@ -32,7 +31,7 @@ namespace CrashReporterDotNET
         /// <summary>
         /// Specify whether the SMTP client uses the Secure Socket Layer (SSL) to encrypt the connection.
         /// </summary>
-        public Boolean EnableSSL;
+        public Boolean EnableSsl;
 
         /// <summary>
         /// Gets or Sets the port used for SMTP transactions.
@@ -224,10 +223,10 @@ namespace CrashReporterDotNET
             {
                 Host = SmtpHost,
                 Port = Port,
-                EnableSsl = EnableSSL,
+                EnableSsl = EnableSsl,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(UserName, Password),
+                Credentials = new NetworkCredential(UserName, Password)
             };
 
             var message = new MailMessage(new MailAddress(from), new MailAddress(ToEmail))
@@ -420,7 +419,7 @@ namespace CrashReporterDotNET
             _doctorDumpService.SendAnonymousReportAsync(
                 Exception,
                 ToEmail,
-                DoctorDumpSettings?.ApplicationID);
+                DoctorDumpSettings?.ApplicationId);
         }
 
         private void SendFullReport(bool includeScreenshot,
@@ -450,7 +449,7 @@ namespace CrashReporterDotNET
         /// <summary>
         /// Gets or Sets application ID.
         /// </summary>
-        public Guid? ApplicationID;
+        public Guid? ApplicationId;
 
         /// <summary>
         /// Specify whether CrashReporter.NET should send anonymous crash report to Doctor Dump that doesn't contain private information.
