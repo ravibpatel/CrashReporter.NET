@@ -28,6 +28,7 @@ namespace CrashReporterTest
             var reportCrash = new ReportCrash("Email where you want to receive crash reports.")
             {
                 DeveloperMessage = developerMessage,
+                WebProxyURL = "Web proxy address, if needed",
                 DoctorDumpSettings = new DoctorDumpSettings
                 {
                     ApplicationID = new Guid("Application ID you received from DrDump.com"),

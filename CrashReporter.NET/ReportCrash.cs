@@ -94,6 +94,11 @@ namespace CrashReporterDotNET
         /// </summary>
         public DoctorDumpSettings DoctorDumpSettings = new DoctorDumpSettings();
 
+        /// <summary>
+        /// Specify a SSL proxy for any web calls.
+        /// </summary>
+        public string WebProxyURL = null;
+
         internal string ApplicationTitle;
 
         internal string ApplicationVersion;
@@ -411,7 +416,7 @@ namespace CrashReporterDotNET
 
         internal void SendAnonymousReport(DrDumpService.SendRequestCompletedEventHandler sendRequestCompleted)
         {
-            _doctorDumpService = new DrDumpService();
+            _doctorDumpService = new DrDumpService(WebProxyURL);
             if (sendRequestCompleted != null)
             {
                 _doctorDumpService.SendRequestCompleted += sendRequestCompleted;
