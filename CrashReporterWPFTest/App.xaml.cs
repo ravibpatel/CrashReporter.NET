@@ -37,11 +37,12 @@ namespace CrashReporterWPFTest
             Environment.Exit(0);
         }
 
-        public static void SendReport(Exception exception, string developerMessage = "")
+        public static void SendReport(Exception exception, string developerMessage = "", bool silent = false)
         {
             var reportCrash = new ReportCrash("Email where you want to receive crash reports.")
             {
-                DeveloperMessage = developerMessage
+                DeveloperMessage = developerMessage,
+                Silent = silent
             };
             reportCrash.Send(exception);
         }
