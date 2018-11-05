@@ -20,7 +20,7 @@ namespace CrashReporterDotNET
     public class ReportCrash
     {
         /// <summary>
-        /// Set it to true if you want
+        /// Set it to true if you want to send whole crash report silently.
         /// </summary>
         public bool Silent = false;
 
@@ -112,10 +112,24 @@ namespace CrashReporterDotNET
         }
 
         /// <summary>
+        /// Sends exception report silently to receiver email address provided in ToEmail.
+        /// </summary>
+        /// <param name="exception">Exception object that contains details of the exception.</param>
+        public void SendSilently(Exception exception)
+        {
+            Send(exception, true);
+        }
+
+        /// <summary>
         /// Sends exception report directly to receiver email address provided in ToEmail.
         /// </summary>
         /// <param name="exception">Exception object that contains details of the exception.</param>
         public void Send(Exception exception)
+        {
+            Send(exception, Silent);
+        }
+
+        private void Send(Exception exception, bool silent)
         {
             Exception = exception;
 
@@ -162,7 +176,7 @@ namespace CrashReporterDotNET
                 Application.EnableVisualStyles();
             }
 
-            if (Silent)
+            if (silent)
             {
                 SendReport(IncludeScreenshot);
             }
