@@ -1,6 +1,6 @@
-version: 1.5.5.{build}
+version: 1.5.6.{build}
 environment:
-  my_version: 1.5.5
+  my_version: 1.5.6
   my_secret:
     secure: eXAIysIG8npt2tVMYQpGwTLj47CK9lUB/NyEfVGgc90=
 skip_branch_with_pr: true
@@ -13,13 +13,15 @@ install:
 - nuget install secure-file -ExcludeVersion
 - cmd: nuget restore
 - secure-file\tools\secure-file -decrypt "c:\projects\CrashReporter.NET\CrashReporter.NET\CrashReporter.NET.snk.enc" -secret %my_secret%
+
+build_script:
 - msbuild "c:\projects\CrashReporter.NET\CrashReporter.NET\CrashReporter.NET.csproj" /p:Configuration=Release /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 - msbuild "c:\projects\CrashReporter.NET\CrashReporter.NET\CrashReporter.NET.csproj" /p:Configuration=Release-NET35 /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 - msbuild "c:\projects\CrashReporter.NET\CrashReporter.NET\CrashReporter.NET.csproj" /p:Configuration=Release-NET40 /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 - msbuild "c:\projects\CrashReporter.NET\CrashReporter.NET\CrashReporter.NET.csproj" /p:Configuration=Release-NET452 /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 - msbuild "c:\projects\CrashReporter.NET\CrashReporter.NET\CrashReporter.NET.csproj" /p:Configuration=Release-NET462 /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 - nuget pack "c:\projects\CrashReporter.NET\CrashReporter.NET\build\CrashReporter.NET.Official.nuspec"
-- cmd: 7z a CrashReporter.NET-%my_version%.zip %APPVEYOR_BUILD_FOLDER%\CrashReporter.NET\build\lib\*
+- cmd: 7z a CrashReporter.NET-%my_version%.zip %APPVEYOR_BUILD_FOLDER%\CrashReporter.NET\build\lib\* 
 
 artifacts:
 - path: CrashReporter.NET-%my_version%.zip
