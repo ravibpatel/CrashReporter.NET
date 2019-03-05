@@ -142,7 +142,7 @@ namespace CrashReporterDotNET
             }
 
             ApplicationTitle = !string.IsNullOrEmpty(appTitle) ? appTitle : mainAssembly.GetName().Name;
-            ApplicationVersion = ApplicationDeployment.IsNetworkDeployed
+            ApplicationVersion = ((Type.GetType("Mono.Runtime") == null) && ApplicationDeployment.IsNetworkDeployed)
                 ? ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString()
                 : mainAssembly.GetName().Version.ToString();
             try
