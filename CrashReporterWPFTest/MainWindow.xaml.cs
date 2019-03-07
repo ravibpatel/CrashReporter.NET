@@ -30,17 +30,11 @@ namespace CrashReporterWPFTest
             catch (ArgumentException argumentException)
             {
                 const string path = "test.txt";
-                try
+
+                if (!File.Exists(path))
                 {
-                    if (!File.Exists(path))
-                    {
-                        throw new FileNotFoundException(
-                            "File Not found when trying to write argument exception to the file", argumentException);
-                    }
-                }
-                catch (Exception exception)
-                {
-                    App.SendReport(exception, "Value of path variable is " + path);
+                    throw new FileNotFoundException(
+                        "File Not found when trying to write argument exception to the file", argumentException);
                 }
             }
         }

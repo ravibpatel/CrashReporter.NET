@@ -426,10 +426,8 @@ namespace CrashReporterDotNET
         internal void SendAnonymousReport(DrDumpService.SendRequestCompletedEventHandler sendRequestCompleted)
         {
             _doctorDumpService = new DrDumpService();
-            if (sendRequestCompleted != null)
-            {
-                _doctorDumpService.SendRequestCompleted += sendRequestCompleted;
-            }
+
+            _doctorDumpService.SendRequestCompleted += sendRequestCompleted;
 
             _doctorDumpService.SendAnonymousReportAsync(
                 Exception,
@@ -444,13 +442,26 @@ namespace CrashReporterDotNET
             var sendScreenshot = File.Exists(ScreenShot) && includeScreenshot;
             var screenshot = sendScreenshot ? File.ReadAllBytes(ScreenShot) : null;
 
-            if (_doctorDumpService == null)
+            if (sendRequestCompleted != null)
             {
-                SendAnonymousReport(sendRequestCompleted);
-            }
+                if (_doctorDumpService == null)
+                {
+                    SendAnonymousReport(sendRequestCompleted);
+                }
 
-            _doctorDumpService.SendAdditionalDataAsync(form, DeveloperMessage, from,
-                userMessage, screenshot);
+                _doctorDumpService.SendAdditionalDataAsync(form, DeveloperMessage, from,
+                    userMessage, screenshot);
+            }
+            else
+            {
+                _doctorDumpService = new DrDumpService();
+                var reportUrl =_doctorDumpService.SendReportSilently(Exception, ToEmail, DoctorDumpSettings?.ApplicationID, DeveloperMessage, from, userMessage, screenshot);
+                if (DoctorDumpSettings != null && DoctorDumpSettings.OpenReportInBrowser)
+                {
+                    if (!string.IsNullOrEmpty(reportUrl))
+                        Process.Start(reportUrl);
+                }
+            }
         }
 
         #endregion

@@ -1,6 +1,6 @@
-version: 1.5.6.{build}
+version: 1.5.7.{build}
 environment:
-  my_version: 1.5.6
+  my_version: 1.5.7
   my_secret:
     secure: eXAIysIG8npt2tVMYQpGwTLj47CK9lUB/NyEfVGgc90=
 skip_branch_with_pr: true

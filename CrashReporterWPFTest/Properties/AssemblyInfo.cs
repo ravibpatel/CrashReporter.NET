@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("RBSoft")]
 [assembly: AssemblyProduct("CrashReporterWPFTest")]
-[assembly: AssemblyCopyright("Copyright © 2017-2018 RBSoft")]
+[assembly: AssemblyCopyright("Copyright © 2017-2019 RBSoft")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

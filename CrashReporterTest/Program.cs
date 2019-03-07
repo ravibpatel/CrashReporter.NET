@@ -16,7 +16,6 @@ namespace CrashReporterTest
             AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
                 {
                     SendReport((Exception) args.ExceptionObject);
-                    Environment.Exit(0);
                 };
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
