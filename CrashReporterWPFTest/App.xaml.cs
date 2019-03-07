@@ -36,7 +36,7 @@ namespace CrashReporterWPFTest
 
         public static void SendReport(Exception exception, string developerMessage = "", bool silent = true)
         {
-            var reportCrash = new ReportCrash("support@rbsoft.org")
+            var reportCrash = new ReportCrash("Email where you want to receive crash reports.")
             {
                 DeveloperMessage = developerMessage,
                 Silent = silent
