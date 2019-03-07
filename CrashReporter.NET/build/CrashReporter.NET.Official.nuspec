@@ -6,7 +6,7 @@
         <title>CrashReporter.NET</title>
         <authors>RBSoft</authors>
         <owners>rbsoft</owners>
-        <licenseUrl>https://github.com/ravibpatel/CrashReporter.NET/blob/master/LICENSE</licenseUrl>
+        <license type="expression">MIT</license>
         <projectUrl>https://github.com/ravibpatel/CrashReporter.NET</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Send crash reports of your classic desktop application developed using .NET Framework directly to your mail's inbox with full exception report, stack trace and screenshot.</description>
