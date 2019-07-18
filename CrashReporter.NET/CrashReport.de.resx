@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="buttonCancel.Text" xml:space="preserve">
-    <value>Stornieren</value>
+    <value>Abbrechen</value>
   </data>
   <data name="buttonSave.Text" xml:space="preserve">
     <value>Speichern</value>
@@ -148,7 +148,7 @@
     <value>Ausnahmetyp</value>
   </data>
   <data name="labelMessage.Text" xml:space="preserve">
-    <value>Bitte sagen Sie uns, wie die Anwendung abgestürztist, so dass wir den Fehler beheben können.</value>
+    <value>Bitte sagen Sie uns wie die Anwendung abgestürzt ist, so dass wir den Fehler beheben können.</value>
   </data>
   <data name="labelSource.Text" xml:space="preserve">
     <value>Quelle</value>

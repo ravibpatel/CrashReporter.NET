@@ -16,18 +16,18 @@ namespace CrashReporterTest
             AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
                 {
                     SendReport((Exception) args.ExceptionObject);
-                    Environment.Exit(0);
                 };
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormMain());
         }
 
-        public static void SendReport(Exception exception, string developerMessage = "")
+        public static void SendReport(Exception exception, string developerMessage = "", bool silent = false)
         {
             var reportCrash = new ReportCrash("Email where you want to receive crash reports.")
             {
                 DeveloperMessage = developerMessage,
+                Silent = silent,
                 WebProxyURL = "Web proxy address, if needed",
                 DoctorDumpSettings = new DoctorDumpSettings
                 {

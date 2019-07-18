@@ -53,6 +53,43 @@ namespace CrashReporterDotNET.DrDump
                 _sendRequestState.GetExceptionDescription(true), _sendRequestState);
         }
 
+        public string SendReportSilently(Exception exception, string toEmail, Guid? applicationId, string developerMessage, string from,
+            string userMessage, byte[] screenshot)
+        {
+            _sendRequestState = new SendRequestState
+            {
+                AnonymousData = new AnonymousData
+                {
+                    Exception = exception,
+                    ToEmail = toEmail,
+                    ApplicationID = applicationId
+                },
+                PrivateData = new PrivateData
+                {
+                    UserEmail = from,
+                    UserMessage = userMessage,
+                    DeveloperMessage = developerMessage,
+                    Screenshot = screenshot
+                }
+            };
+
+            var response = _uploader.SendAnonymousReport(SendRequestState.GetClientLib(), _sendRequestState.GetApplication(),
+                _sendRequestState.GetExceptionDescription(true));
+            if (response is ErrorResponse errorResponse)
+                throw new Exception(errorResponse.Error);
+
+            if (response is NeedReportResponse)
+            {
+                var additionalDataResponse = _uploader.SendAdditionalData(response.Context,
+                    _sendRequestState.GetDetailedExceptionDescription());
+                if (additionalDataResponse is ErrorResponse errorAdditionalDataResponse)
+                    throw new Exception(errorAdditionalDataResponse.Error);
+                return additionalDataResponse.UrlToProblem;
+            }
+
+            return response.UrlToProblem;
+        }
+
         public void SendAdditionalDataAsync(Control control, string developerMessage, string userEmail,
             string userMessage, byte[] screenshot)
         {

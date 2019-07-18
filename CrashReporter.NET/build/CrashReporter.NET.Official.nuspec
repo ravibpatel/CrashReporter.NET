@@ -2,11 +2,11 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>CrashReporter.NET.Official</id>
-        <version>1.5.5</version>
+        <version>1.5.7</version>
         <title>CrashReporter.NET</title>
         <authors>RBSoft</authors>
         <owners>rbsoft</owners>
-        <licenseUrl>https://github.com/ravibpatel/CrashReporter.NET/blob/master/LICENSE</licenseUrl>
+        <license type="expression">MIT</license>
         <projectUrl>https://github.com/ravibpatel/CrashReporter.NET</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Send crash reports of your classic desktop application developed using .NET Framework directly to your mail's inbox with full exception report, stack trace and screenshot.</description>

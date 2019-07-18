@@ -1,17 +1,16 @@
-# CrashReporter.NET  
+# CrashReporter.NET
+
 [![AppVeyor branch](https://img.shields.io/appveyor/ci/gruntjs/grunt/master.svg)](https://ci.appveyor.com/project/ravibpatel/crashreporter-net) [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](http://paypal.me/rbsoft)
 
 Send crash reports of your classic desktop application developed using .NET Framework directly to your mail's inbox with full exception report, stack trace and screenshot.
 
 ## The nuget package  [![NuGet](https://img.shields.io/nuget/v/CrashReporter.NET.Official.svg)](https://www.nuget.org/packages/CrashReporter.NET.Official/) [![NuGet](https://img.shields.io/nuget/dt/CrashReporter.NET.Official.svg)](https://www.nuget.org/packages/CrashReporter.NET.Official/)
 
-https://www.nuget.org/packages/CrashReporter.NET.Official/
-
     PM> Install-Package CrashReporter.NET.Official
 
 ## How it works
 
-CrashReporter.NET uses the exception information like stack trace, exception type, message, source, .NET CLR version, OS version and application version to generate the crash report and send it to developer using email. It uses DoctorDump service (http://drdump.com) to send email to developer. Developers can use their SMTP server to send email too.
+CrashReporter.NET uses the exception information like stack trace, exception type, message, source, .NET CLR version, OS version and application version to generate the crash report and send it to developer using email. It uses [DoctorDump](https://drdump.com/crash-reporting-system) service to send email to developer. Developers can use their SMTP server to send email too.
 
 ## Using the code
 
@@ -40,7 +39,6 @@ internal static class Program
     private static void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs)
     {
         SendReport((Exception)unhandledExceptionEventArgs.ExceptionObject);
-        Environment.Exit(0);
     }
 
     private static void ApplicationThreadException(object sender, ThreadExceptionEventArgs e)
@@ -48,13 +46,13 @@ internal static class Program
         SendReport(e.Exception);
     }
 
-    public static void SendReport(Exception exception,  string developerMessage = "")
+    public static void SendReport(Exception exception,  string developerMessage = "", bool silent = false)
     {
         var reportCrash = new ReportCrash("Email where you want to receive crash reports.")
         {
             DeveloperMessage = developerMessage
         };
-
+        reportCrash.Silent = silent;
         reportCrash.Send(exception);
     }
 }
@@ -98,27 +96,25 @@ public partial class App : Application
     private void TaskSchedulerOnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs unobservedTaskExceptionEventArgs)
     {
         SendReport(unobservedTaskExceptionEventArgs.Exception);
-        Environment.Exit(0);
     }
 
     private void DispatcherOnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs dispatcherUnhandledExceptionEventArgs)
     {
         SendReport(dispatcherUnhandledExceptionEventArgs.Exception);
-        Environment.Exit(0);
     }
 
     private static void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs)
     {
         SendReport((Exception)unhandledExceptionEventArgs.ExceptionObject);
-        Environment.Exit(0);
     }
 
-    public static void SendReport(Exception exception, string developerMessage = "")
+    public static void SendReport(Exception exception, string developerMessage = "", bool silent = false)
     {
         var reportCrash = new ReportCrash("Email where you want to receive crash reports.")
         {
             DeveloperMessage = developerMessage
         };
+        reportCrash.Silent = silent;
         reportCrash.Send(exception);
     }
 }

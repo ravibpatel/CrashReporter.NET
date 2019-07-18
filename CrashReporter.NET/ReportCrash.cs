@@ -20,7 +20,7 @@ namespace CrashReporterDotNET
     public class ReportCrash
     {
         /// <summary>
-        /// Set it to true if you want
+        /// Set it to true if you want to send whole crash report silently.
         /// </summary>
         public bool Silent = false;
 
@@ -117,10 +117,24 @@ namespace CrashReporterDotNET
         }
 
         /// <summary>
+        /// Sends exception report silently to receiver email address provided in ToEmail.
+        /// </summary>
+        /// <param name="exception">Exception object that contains details of the exception.</param>
+        public void SendSilently(Exception exception)
+        {
+            Send(exception, true);
+        }
+
+        /// <summary>
         /// Sends exception report directly to receiver email address provided in ToEmail.
         /// </summary>
         /// <param name="exception">Exception object that contains details of the exception.</param>
         public void Send(Exception exception)
+        {
+            Send(exception, Silent);
+        }
+
+        private void Send(Exception exception, bool silent)
         {
             Exception = exception;
 
@@ -133,7 +147,7 @@ namespace CrashReporterDotNET
             }
 
             ApplicationTitle = !string.IsNullOrEmpty(appTitle) ? appTitle : mainAssembly.GetName().Name;
-            ApplicationVersion = ApplicationDeployment.IsNetworkDeployed
+            ApplicationVersion = ((Type.GetType("Mono.Runtime") == null) && ApplicationDeployment.IsNetworkDeployed)
                 ? ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString()
                 : mainAssembly.GetName().Version.ToString();
             try
@@ -167,7 +181,7 @@ namespace CrashReporterDotNET
                 Application.EnableVisualStyles();
             }
 
-            if (Silent)
+            if (silent)
             {
                 SendReport(IncludeScreenshot);
             }
@@ -250,9 +264,12 @@ namespace CrashReporterDotNET
             if (smtpClientSendCompleted != null)
             {
                 smtpClient.SendCompleted += smtpClientSendCompleted;
+                smtpClient.SendAsync(message, "Crash Report");
             }
-
-            smtpClient.SendAsync(message, "Crash Report");
+            else
+            {
+                smtpClient.Send(message);
+            }
         }
 
         #endregion
@@ -416,11 +433,9 @@ namespace CrashReporterDotNET
 
         internal void SendAnonymousReport(DrDumpService.SendRequestCompletedEventHandler sendRequestCompleted)
         {
-            _doctorDumpService = new DrDumpService(WebProxyURL);
-            if (sendRequestCompleted != null)
-            {
-                _doctorDumpService.SendRequestCompleted += sendRequestCompleted;
-            }
+            _doctorDumpService = new DrDumpService();
+
+            _doctorDumpService.SendRequestCompleted += sendRequestCompleted;
 
             _doctorDumpService.SendAnonymousReportAsync(
                 Exception,
@@ -435,13 +450,26 @@ namespace CrashReporterDotNET
             var sendScreenshot = File.Exists(ScreenShot) && includeScreenshot;
             var screenshot = sendScreenshot ? File.ReadAllBytes(ScreenShot) : null;
 
-            if (_doctorDumpService == null)
+            if (sendRequestCompleted != null)
             {
-                SendAnonymousReport(sendRequestCompleted);
-            }
+                if (_doctorDumpService == null)
+                {
+                    SendAnonymousReport(sendRequestCompleted);
+                }
 
-            _doctorDumpService.SendAdditionalDataAsync(form, DeveloperMessage, from,
-                userMessage, screenshot);
+                _doctorDumpService.SendAdditionalDataAsync(form, DeveloperMessage, from,
+                    userMessage, screenshot);
+            }
+            else
+            {
+                _doctorDumpService = new DrDumpService();
+                var reportUrl =_doctorDumpService.SendReportSilently(Exception, ToEmail, DoctorDumpSettings?.ApplicationID, DeveloperMessage, from, userMessage, screenshot);
+                if (DoctorDumpSettings != null && DoctorDumpSettings.OpenReportInBrowser)
+                {
+                    if (!string.IsNullOrEmpty(reportUrl))
+                        Process.Start(reportUrl);
+                }
+            }
         }
 
         #endregion

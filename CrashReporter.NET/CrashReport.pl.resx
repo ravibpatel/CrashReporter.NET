@@ -127,16 +127,16 @@
     <value>Wyślij zgłoszenie</value>
   </data>
   <data name="checkBoxIncludeScreenshot.Text" xml:space="preserve">
-    <value>Obejmują Screenshot</value>
+    <value>Dołącz zrzut ekranu</value>
   </data>
   <data name="checkBoxIncludeScreenshot.ToolTip" xml:space="preserve">
-    <value>Dodaj zrzut ekranu błędu w raporcie katastrofy.</value>
+    <value>Dołącz zrzut ekranu błędu w raporcie awarii.</value>
   </data>
   <data name="groupBoxScreenshot.Text" xml:space="preserve">
     <value>Zrzut ekranu</value>
   </data>
   <data name="labelApplication.Text" xml:space="preserve">
-    <value>Zastosowanie</value>
+    <value>Aplikacja</value>
   </data>
   <data name="labelEmail.Text" xml:space="preserve">
     <value>Email</value>
@@ -148,7 +148,7 @@
     <value>Typ wyjątku</value>
   </data>
   <data name="labelMessage.Text" xml:space="preserve">
-    <value>Proszę nam powiedzieć, jak aplikacja zawieszała się, więc możemy go naprawić.</value>
+    <value>Proszę nam powiedzieć, jak się aplikacja zawiesiła, żebyśmy mogli ją naprawić.</value>
   </data>
   <data name="labelSource.Text" xml:space="preserve">
     <value>Źródło</value>
@@ -163,7 +163,7 @@
     <value>Wersja</value>
   </data>
   <data name="linkLabelView.Text" xml:space="preserve">
-    <value>View Full Screenshot</value>
+    <value>Podgląd zrzutu ekranu</value>
   </data>
   <data name="tabPageExceptions.Text" xml:space="preserve">
     <value>Wyjątki</value>
