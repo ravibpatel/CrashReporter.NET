@@ -48,7 +48,7 @@ internal static class Program
 
     public static void SendReport(Exception exception,  string developerMessage = "", bool silent = false)
     {
-        var reportCrash = new ReportCrash("Email where you want to receive crash reports.")
+        var reportCrash = new ReportCrash("Email where you want to receive crash reports")
         {
             DeveloperMessage = developerMessage
         };
@@ -110,7 +110,7 @@ public partial class App : Application
 
     public static void SendReport(Exception exception, string developerMessage = "", bool silent = false)
     {
-        var reportCrash = new ReportCrash("Email where you want to receive crash reports.")
+        var reportCrash = new ReportCrash("Email where you want to receive crash reports")
         {
             DeveloperMessage = developerMessage
         };
@@ -150,9 +150,17 @@ You can send crash reports silently by setting Silent property to true.
 reportCrash.Silent = true;
 ````
 
+### Send reports using WebProxy
+
+You can send crash report using a web proxy by adding following line in SendReport method of Program.cs file.
+
+````csharp
+reportCrash.WebProxy = new WebProxy("Web proxy address"),
+````
+
 ### Send reports to your DrDump account
 
-You can send crash report to you doctor dump account by adding following line in ReportCrash method of Program.cs file.
+You can send crash report to you doctor dump account by adding following line in SendReport method of Program.cs file.
 
 ````csharp
 reportCrash.DoctorDumpSettings = new DoctorDumpSettings
@@ -165,7 +173,7 @@ Just set the ApplicationID to ID you received from DrDump.com.
 
 ### Capture whole screen instead of Application screen
 
-You can take screenshot of whole screen instead of only application when application crashes by adding following line in ReportCrash method of Program.cs file.
+You can take screenshot of whole screen instead of only application when application crashes by adding following line in SendReport method of Program.cs file.
 
 ````csharp
 reportCrash.CaptureScreen = true;
