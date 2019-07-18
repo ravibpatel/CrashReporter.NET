@@ -150,9 +150,9 @@ You can send crash reports silently by setting Silent property to true.
 reportCrash.Silent = true;
 ````
 
-### Send reports using WebProxy
+### Send reports using a web proxy
 
-You can send crash report using a web proxy by adding following line in SendReport method of Program.cs file.
+You can send crash report using a web proxy by adding following line in SendReport method.
 
 ````csharp
 reportCrash.WebProxy = new WebProxy("Web proxy address"),
@@ -160,7 +160,7 @@ reportCrash.WebProxy = new WebProxy("Web proxy address"),
 
 ### Send reports to your DrDump account
 
-You can send crash report to you doctor dump account by adding following line in SendReport method of Program.cs file.
+You can send crash report to you doctor dump account by adding following line in SendReport method.
 
 ````csharp
 reportCrash.DoctorDumpSettings = new DoctorDumpSettings
@@ -173,7 +173,7 @@ Just set the ApplicationID to ID you received from DrDump.com.
 
 ### Capture whole screen instead of Application screen
 
-You can take screenshot of whole screen instead of only application when application crashes by adding following line in SendReport method of Program.cs file.
+You can take screenshot of whole screen instead of only application when application crashes by adding following line in SendReport method.
 
 ````csharp
 reportCrash.CaptureScreen = true;
