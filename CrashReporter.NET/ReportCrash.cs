@@ -259,9 +259,12 @@ namespace CrashReporterDotNET
             if (smtpClientSendCompleted != null)
             {
                 smtpClient.SendCompleted += smtpClientSendCompleted;
+                smtpClient.SendAsync(message, "Crash Report");
             }
-
-            smtpClient.SendAsync(message, "Crash Report");
+            else
+            {
+                smtpClient.Send(message);
+            }
         }
 
         #endregion
