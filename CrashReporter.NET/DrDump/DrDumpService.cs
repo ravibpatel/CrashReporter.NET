@@ -16,10 +16,15 @@ namespace CrashReporterDotNET.DrDump
 
         private readonly HttpsCrashReporterReportUploader _uploader;
 
-        public DrDumpService(string webProxyURL = null)
+        public DrDumpService(IWebProxy webProxy = null)
         {
             _uploader = new HttpsCrashReporterReportUploader();
-            _uploader.Proxy = string.IsNullOrEmpty(webProxyURL) ? null : new WebProxy(webProxyURL, true);
+
+            if (webProxy != null)
+            {
+                _uploader.Proxy = webProxy;
+            }
+
             var configOverride =
                 Microsoft.Win32.Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Idol Software\DumpUploader",
                     "ServiceURL", null) as string;
