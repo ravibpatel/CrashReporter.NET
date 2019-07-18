@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Windows.Forms;
 using CrashReporterDotNET;
 
@@ -30,6 +31,7 @@ namespace CrashReporterTest
                 Silent = silent,
                 DoctorDumpSettings = new DoctorDumpSettings
                 {
+                    WebProxy = new WebProxy("Web proxy address, if needed"),
                     ApplicationID = new Guid("Application ID you received from DrDump.com"),
                     OpenReportInBrowser = true
                 }
