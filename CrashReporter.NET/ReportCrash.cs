@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
+using System.Net.Sockets;
 using System.Reflection;
 using System.Threading;
 using System.Web;
@@ -433,14 +434,21 @@ namespace CrashReporterDotNET
 
         internal void SendAnonymousReport(DrDumpService.SendRequestCompletedEventHandler sendRequestCompleted)
         {
-            _doctorDumpService = new DrDumpService(WebProxy);
+            try
+            {
+                _doctorDumpService = new DrDumpService(WebProxy);
 
-            _doctorDumpService.SendRequestCompleted += sendRequestCompleted;
+                _doctorDumpService.SendRequestCompleted += sendRequestCompleted;
 
-            _doctorDumpService.SendAnonymousReportAsync(
-                Exception,
-                ToEmail,
-                DoctorDumpSettings?.ApplicationID);
+                _doctorDumpService.SendAnonymousReportAsync(
+                    Exception,
+                    ToEmail,
+                    DoctorDumpSettings?.ApplicationID);
+            }
+            catch (SocketException)
+            {
+                _doctorDumpService = null;
+            }
         }
 
         private void SendFullReport(bool includeScreenshot,
@@ -455,6 +463,11 @@ namespace CrashReporterDotNET
                 if (_doctorDumpService == null)
                 {
                     SendAnonymousReport(sendRequestCompleted);
+                }
+
+                if (_doctorDumpService == null)
+                {
+                    throw new SocketException();
                 }
 
                 _doctorDumpService.SendAdditionalDataAsync(form, DeveloperMessage, from,

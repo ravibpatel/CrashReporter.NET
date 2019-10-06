@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Net.Sockets;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using CrashReporterDotNET.DrDump;
@@ -114,11 +115,19 @@ namespace CrashReporterDotNET
                 }
             }
 
-            _reportCrash.SendReport(checkBoxIncludeScreenshot.Checked, SendRequestCompleted, SmtpClientSendCompleted,
-                this, from, textBoxUserMessage.Text.Trim());
+            try
+            {
+                _reportCrash.SendReport(checkBoxIncludeScreenshot.Checked, SendRequestCompleted,
+                    SmtpClientSendCompleted,
+                    this, from, textBoxUserMessage.Text.Trim());
 
-            _progressDialog = new ProgressDialog();
-            _progressDialog.ShowDialog();
+                _progressDialog = new ProgressDialog();
+                _progressDialog.ShowDialog();
+            }
+            catch (SocketException)
+            {
+                MessageBox.Show(Resources.NoConnectionMessage, Resources.NoConnectionCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ButtonSaveClick(object sender, EventArgs e)

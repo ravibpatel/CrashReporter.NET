@@ -19,7 +19,7 @@ namespace CrashReporterDotNET.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -131,6 +131,24 @@ namespace CrashReporterDotNET.Properties {
         internal static string MessageSentMessage {
             get {
                 return ResourceManager.GetString("MessageSentMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Connection!.
+        /// </summary>
+        internal static string NoConnectionCaption {
+            get {
+                return ResourceManager.GetString("NoConnectionCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is no internet connection. Please save the error report and send it manually..
+        /// </summary>
+        internal static string NoConnectionMessage {
+            get {
+                return ResourceManager.GetString("NoConnectionMessage", resourceCulture);
             }
         }
         

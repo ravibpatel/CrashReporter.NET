@@ -166,4 +166,10 @@
   <data name="ToolTipTitle" xml:space="preserve">
     <value>Include application screenshot</value>
   </data>
+  <data name="NoConnectionMessage" xml:space="preserve">
+    <value>There is no internet connection. Please save the error report and send it manually.</value>
+  </data>
+  <data name="NoConnectionCaption" xml:space="preserve">
+    <value>No Connection!</value>
+  </data>
 </root>
