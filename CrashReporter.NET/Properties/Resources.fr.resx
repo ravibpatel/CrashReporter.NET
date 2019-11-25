@@ -99,25 +99,25 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
   <data name="EmailRequiredError" xml:space="preserve">
-    <value>Une adresse électronique valide est nécessaire pour envoyer le rapport d'accident. Cela garantit que vous en serez informé par le développeur lors de bug est corrigé</value>
+    <value>Une adresse électronique valide est nécessaire pour envoyer le rapport d'accident. Cela garantit que vous serez informé par le développeur lorsque le bug sera corrigé.</value>
   </data>
   <data name="ErrorCapturingImageCaption" xml:space="preserve">
     <value>Aucune image capturée</value>
   </data>
   <data name="ErrorCapturingImageMessage" xml:space="preserve">
-    <value>Il ya une erreur lors de la capture d'image. Vous pouvez soumettre un rapport d'état sans écran.</value>
+    <value>Il ya une erreur lors de la capture d'écran. Vous pouvez soumettre un rapport d'erreur sans capture d'écran.</value>
   </data>
   <data name="InvalidEmailAddressError" xml:space="preserve">
-    <value>Adresse e-mail n'est pas valide. S'il vous plaît fournir l'adresse e-mail valide</value>
+    <value>Adresse e-mail invalide. Merci de  fournir une adresse e-mail valide svp.</value>
   </data>
   <data name="MessageSentCaption" xml:space="preserve">
-    <value>rapport d'accident envoyé</value>
+    <value>Rapport d'incident envoyé</value>
   </data>
   <data name="MessageSentMessage" xml:space="preserve">
-    <value>Accident rapport de {0} {1} est envoyé au promoteur. Merci pour votre soutien.</value>
+    <value>Accident rapport de {0} {1} est envoyé au développeur. Merci pour votre aide.</value>
   </data>
   <data name="NoImageShownCaption" xml:space="preserve">
-    <value>image d'ouverture d'erreur</value>
+    <value>Erreur lors de l'ouverture de la capture</value>
   </data>
   <data name="NoImageShownMessage" xml:space="preserve">
     <value>Une erreur s'est produite, aucune image ne sera affichée.</value>
@@ -126,9 +126,9 @@
     <value>{0} {1} rapport de crash</value>
   </data>
   <data name="TitleText" xml:space="preserve">
-    <value>{0} {1} s'est écrasé.</value>
+    <value>{0} {1} s'est crashé.</value>
   </data>
   <data name="ToolTipTitle" xml:space="preserve">
-    <value>Inclure l'application d'écran</value>
+    <value>Inclure une capture d'écran</value>
   </data>
 </root>
