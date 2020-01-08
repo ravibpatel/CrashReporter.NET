@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="labelEmail.Text" xml:space="preserve">
-    <value>Email</value>
+    <value>Votre e-mail</value>
   </data>
   <data name="labelMessage.Text" xml:space="preserve">
-    <value>S'il vous plaît dites-nous comment s'est écrasé demande afin que nous puissions le corriger.</value>
+    <value>S'il vous plaît, dites-nous comment l'application a crashé afin que nous puissions la corriger.</value>
   </data>
   <data name="labelTime.Text" xml:space="preserve">
     <value>Heure</value>
@@ -130,7 +130,7 @@
     <value>Version</value>
   </data>
   <data name="labelApplication.Text" xml:space="preserve">
-    <value>Demande</value>
+    <value>Application</value>
   </data>
   <data name="tabPageGeneral.Text" xml:space="preserve">
     <value>Général</value>
@@ -142,25 +142,25 @@
     <value>Source</value>
   </data>
   <data name="labelStackTrace.Text" xml:space="preserve">
-    <value>Trace de la pile</value>
+    <value>Pile des appels</value>
   </data>
   <data name="labelExceptionMessage.Text" xml:space="preserve">
-    <value>Un message</value>
+    <value>Message</value>
   </data>
   <data name="tabPageExceptions.Text" xml:space="preserve">
     <value>Exceptions</value>
   </data>
   <data name="linkLabelView.Text" xml:space="preserve">
-    <value>Voir en plein écran</value>
+    <value>Voir la capture d'écran</value>
   </data>
   <data name="groupBoxScreenshot.Text" xml:space="preserve">
     <value>Capture d'écran</value>
   </data>
   <data name="checkBoxIncludeScreenshot.Text" xml:space="preserve">
-    <value>Inclure Screenshot</value>
+    <value>Inclure une capture d'écran</value>
   </data>
   <data name="checkBoxIncludeScreenshot.ToolTip" xml:space="preserve">
-    <value>Ajouter capture d'écran de l'écran d'erreur dans votre rapport de crash.</value>
+    <value>Ajouter une capture d'écran dans votre rapport de crash.</value>
   </data>
   <data name="tabPageScreenshot.Text" xml:space="preserve">
     <value>Capture d'écran</value>
@@ -169,9 +169,9 @@
     <value>Sauvegarder</value>
   </data>
   <data name="buttonCancel.Text" xml:space="preserve">
-    <value>Résilier</value>
+    <value>Annuler</value>
   </data>
   <data name="buttonSendReport.Text" xml:space="preserve">
-    <value>Envoyer un rapport</value>
+    <value>Envoyer le rapport</value>
   </data>
 </root>
