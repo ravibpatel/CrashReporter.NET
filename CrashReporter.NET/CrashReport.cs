@@ -49,6 +49,8 @@ namespace CrashReporterDotNET
 
         private void CrashReportLoad(object sender, EventArgs e)
         {
+            if (!_reportCrash.showScreentshotTab)
+                tabControl.TabPages.RemoveAt(2);
             textBoxException.Text = _reportCrash.Exception.GetType().ToString();
             textBoxApplicationName.Text = _reportCrash.ApplicationTitle;
             textBoxApplicationVersion.Text = _reportCrash.ApplicationVersion;
