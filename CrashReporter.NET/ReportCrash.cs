@@ -24,6 +24,11 @@ namespace CrashReporterDotNET
         /// Set it to true if you want to send whole crash report silently.
         /// </summary>
         public bool Silent = false;
+        
+         /// <summary>
+        /// Set it to true if you want to show screenshot tab.
+        /// </summary>
+        public bool showScreentshotTab = false;
 
         /// <summary>
         /// Gets or Sets name or IP address of the Host used for SMTP transactions.
