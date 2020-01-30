@@ -39,6 +39,11 @@ namespace CrashReporterDotNET
             if (_reportCrash.DoctorDumpSettings != null &&
                 _reportCrash.DoctorDumpSettings.SendAnonymousReportSilently)
                 _reportCrash.SendAnonymousReport(SendRequestCompleted);
+
+            if (!_reportCrash.ShowScreenshotTab)
+            {
+                tabControl.TabPages.Remove(tabPageScreenshot);
+            }
         }
 
         public sealed override string Text

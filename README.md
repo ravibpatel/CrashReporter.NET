@@ -142,6 +142,21 @@ catch (Exception exception)
 
 ## Configuration Options
 
+### Show screenshot tab
+
+You can show screenshot tab by setting ShowScreenshotTab to true. It will be false by default.
+
+````csharp
+reportCrash.ShowScreenshotTab = true
+
+### Include screenshot with Crash Report
+
+You can set the IncludeScreenshot value to false if you don't want to include screenshot in the crash report. If you are showing the screenshot tab then user can still choose to include the screenshot even if you set it to false.
+
+````csharp
+reportCrash.IncludeScreenshot = false;
+````
+
 ### Send reports Silently
 
 You can send crash reports silently by setting Silent property to true.
