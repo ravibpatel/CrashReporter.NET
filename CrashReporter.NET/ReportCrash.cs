@@ -28,7 +28,7 @@ namespace CrashReporterDotNET
          /// <summary>
         /// Set it to true if you want to show screenshot tab.
         /// </summary>
-        public bool showScreentshotTab = false;
+        public bool ShowScreenshotTab = false;
 
         /// <summary>
         /// Gets or Sets name or IP address of the Host used for SMTP transactions.
