@@ -149,7 +149,7 @@ You can show screenshot tab by setting ShowScreenshotTab to true. It will be fal
 ````csharp
 reportCrash.ShowScreenshotTab = true
 
-### Include screenshot with Crash Report
+### Include screenshot with crash report
 
 You can set the IncludeScreenshot value to false if you don't want to include screenshot in the crash report. If you are showing the screenshot tab then user can still choose to include the screenshot even if you set it to false.
 
@@ -157,7 +157,7 @@ You can set the IncludeScreenshot value to false if you don't want to include sc
 reportCrash.IncludeScreenshot = false;
 ````
 
-### Send reports Silently
+### Send reports silently
 
 You can send crash reports silently by setting Silent property to true.
 
@@ -186,7 +186,7 @@ reportCrash.DoctorDumpSettings = new DoctorDumpSettings
 
 Just set the ApplicationID to ID you received from DrDump.com.
 
-### Capture whole screen instead of Application screen
+### Capture whole screen instead of application screen
 
 You can take screenshot of whole screen instead of only application when application crashes by adding following line in SendReport method.
 
