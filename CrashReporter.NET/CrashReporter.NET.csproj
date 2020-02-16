@@ -131,6 +131,12 @@
     </Compile>
     <Compile Include="ReportCrash.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screenshot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screenshot.Designer.cs">
+      <DependentUpon>Screenshot.cs</DependentUpon>
+    </Compile>
     <Compile Include="Web References\com.drdump\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -225,6 +231,9 @@
     <EmbeddedResource Include="Properties\Resources.ru.resx" />
     <EmbeddedResource Include="Properties\Resources.sv.resx" />
     <EmbeddedResource Include="Properties\Resources.tr.resx" />
+    <EmbeddedResource Include="Screenshot.resx">
+      <DependentUpon>Screenshot.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

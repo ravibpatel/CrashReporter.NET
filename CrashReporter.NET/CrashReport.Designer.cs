@@ -330,7 +330,6 @@
             this.MinimizeBox = false;
             this.Name = "CrashReport";
             this.ShowIcon = false;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CrashReport_FormClosing);
             this.Load += new System.EventHandler(this.CrashReportLoad);
             this.Shown += new System.EventHandler(this.CrashReport_Shown);
             this.tabControl.ResumeLayout(false);

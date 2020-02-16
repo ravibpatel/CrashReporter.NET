@@ -19,41 +19,43 @@ CrashReporter.NET uses the exception information like stack trace, exception typ
 First thing you need to do is subscribe to Application.ThreadException and AppDomain.CurrentDomain.UnhandledException in your Program.cs file as shown below.
 
 ````csharp
-internal static class Program
+static class Program
 {
+    private static ReportCrash _reportCrash;
+
     /// <summary>
-    ///     The main entry point for the application.
+    /// The main entry point for the application.
     /// </summary>
     [STAThread]
-    private static void Main()
+    static void Main()
     {
-        Application.ThreadException += ApplicationThreadException;
-
-        AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
-
+        Application.ThreadException += (sender, args) => SendReport(args.Exception);
+        AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
+            {
+                SendReport((Exception)args.ExceptionObject);
+            };
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
+        _reportCrash = new ReportCrash("Email where you want to receive crash reports")
+        {
+            DeveloperMessage = "Retry attempt",
+            Silent = true,
+            WebProxy = new WebProxy("Web proxy address, if needed"),
+            DoctorDumpSettings = new DoctorDumpSettings
+            {
+                ApplicationID = new Guid("Application ID you received from DrDump.com"),
+                OpenReportInBrowser = true
+            }
+        };
+        _reportCrash.RetryFailedReports();
         Application.Run(new FormMain());
     }
 
-    private static void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs)
+    public static void SendReport(Exception exception, string developerMessage = "", bool silent = false)
     {
-        SendReport((Exception)unhandledExceptionEventArgs.ExceptionObject);
-    }
-
-    private static void ApplicationThreadException(object sender, ThreadExceptionEventArgs e)
-    {
-        SendReport(e.Exception);
-    }
-
-    public static void SendReport(Exception exception,  string developerMessage = "", bool silent = false)
-    {
-        var reportCrash = new ReportCrash("Email where you want to receive crash reports")
-        {
-            DeveloperMessage = developerMessage
-        };
-        reportCrash.Silent = silent;
-        reportCrash.Send(exception);
+        _reportCrash.DeveloperMessage = developerMessage;
+        _reportCrash.Silent = silent;
+        _reportCrash.Send(exception);
     }
 }
 ````
@@ -85,12 +87,20 @@ First thing you need to do is subscribe to AppDomain.CurrentDomain.UnhandledExce
 ````csharp
 public partial class App : Application
 {
+    private static ReportCrash _reportCrash;
+
     protected override void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
         AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
         Application.Current.DispatcherUnhandledException += DispatcherOnUnhandledException;
         TaskScheduler.UnobservedTaskException += TaskSchedulerOnUnobservedTaskException;
+        _reportCrash = new ReportCrash("Email where you want to receive crash reports")
+        {
+            DeveloperMessage = "Retry attempt",
+            Silent = true
+        };
+        _reportCrash.RetryFailedReports();
     }
 
     private void TaskSchedulerOnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs unobservedTaskExceptionEventArgs)
@@ -108,14 +118,9 @@ public partial class App : Application
         SendReport((Exception)unhandledExceptionEventArgs.ExceptionObject);
     }
 
-    public static void SendReport(Exception exception, string developerMessage = "", bool silent = false)
+    public static void SendReport(Exception exception, string developerMessage = "", bool silent = true)
     {
-        var reportCrash = new ReportCrash("Email where you want to receive crash reports")
-        {
-            DeveloperMessage = developerMessage
-        };
-        reportCrash.Silent = silent;
-        reportCrash.Send(exception);
+        _reportCrash.Send(exception);
     }
 }
 ````
