@@ -29,10 +29,10 @@ namespace CrashReporterDotNET
             saveFileDialog.FileName = string.Format(Resources.ReportFileName,
                 _reportCrash.ApplicationTitle, _reportCrash.ApplicationVersion);
             saveFileDialog.Filter = @"HTML files(*.html)|*.html";
-            if (File.Exists(_reportCrash.ScreenShot))
+            if (_reportCrash.ScreenShotBinary?.Length > 0)
             {
                 checkBoxIncludeScreenshot.Checked = _reportCrash.IncludeScreenshot;
-                pictureBoxScreenshot.ImageLocation = _reportCrash.ScreenShot;
+                pictureBoxScreenshot.Image = System.Drawing.Image.FromStream(new MemoryStream(_reportCrash.ScreenShotBinary));
                 pictureBoxScreenshot.Show();
             }
 
@@ -69,22 +69,7 @@ namespace CrashReporterDotNET
             Activate();
             textBoxEmail.Select();
         }
-
-        private void CrashReport_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (File.Exists(_reportCrash.ScreenShot))
-            {
-                try
-                {
-                    File.Delete(_reportCrash.ScreenShot);
-                }
-                catch (Exception exception)
-                {
-                    Debug.Write(exception.Message);
-                }
-            }
-        }
-
+        
         #endregion
 
         #region Control Events
@@ -147,22 +132,14 @@ namespace CrashReporterDotNET
 
         private void LinkLabelViewLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            try
-            {
-                Process.Start(_reportCrash.ScreenShot);
-            }
-            catch (FileNotFoundException)
-            {
-                MessageBox.Show(
-                    Resources.ErrorCapturingImageMessage,
-                    Resources.ErrorCapturingImageCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show(
-                    Resources.NoImageShownMessage,
-                    Resources.NoImageShownCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            var screenShotDialog = new Screenshot(_reportCrash.ScreenShotBinary);
+            screenShotDialog.ShowDialog();
+            
+            /* EddieDemon - I removed the need for these captions.
+             Resources.ErrorCapturingImageMessage,
+             Resources.ErrorCapturingImageCaption
+             Resources.NoImageShownMessage
+             Resources.NoImageShownCaption*/
         }
 
         #endregion
@@ -212,7 +189,9 @@ namespace CrashReporterDotNET
 
         private void ReportFailure(Exception exception)
         {
-            _progressDialog.Close();
+            // Save crash report for later retry.
+            _reportCrash.SaveFailedReport();
+            _progressDialog?.Close();
             MessageBox.Show(exception.Message, exception.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 

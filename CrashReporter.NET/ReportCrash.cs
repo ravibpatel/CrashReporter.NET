@@ -3,6 +3,7 @@ using System.Deployment.Application;
 using System.Diagnostics;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Sockets;
@@ -18,14 +19,15 @@ namespace CrashReporterDotNET
     /// <summary>
     /// Set SMTP server details and receiver email fields of this class instance to send crash reports directly in your inbox.
     /// </summary>
+    [Serializable]
     public class ReportCrash
     {
         /// <summary>
         /// Set it to true if you want to send whole crash report silently.
         /// </summary>
         public bool Silent = false;
-        
-         /// <summary>
+
+        /// <summary>
         /// Set it to true if you want to show screenshot tab.
         /// </summary>
         public bool ShowScreenshotTab = false;
@@ -103,15 +105,19 @@ namespace CrashReporterDotNET
         /// <summary>
         /// Specify Doctor Dump processing settings. Used only when AnalyzeWithDoctorDump is true.
         /// </summary>
+        [NonSerialized]
         public DoctorDumpSettings DoctorDumpSettings = new DoctorDumpSettings();
 
         internal string ApplicationTitle;
 
         internal string ApplicationVersion;
+        
+        internal byte[] ScreenShotBinary;
 
-        internal string ScreenShot;
-
+        [NonSerialized]
         private DrDumpService _doctorDumpService;
+
+        private static readonly DirectoryInfo tempDirectory = new DirectoryInfo(Path.Combine(Path.GetTempPath(), "CrashReporterNET"));
 
         /// <summary>
         /// Object use to send exception report to your Inbox.
@@ -120,6 +126,78 @@ namespace CrashReporterDotNET
         public ReportCrash(string toEmail)
         {
             ToEmail = toEmail;
+        }
+        /// <summary>
+        /// Save the exception to the user's temporary directory for later retry.
+        /// </summary>
+        public void SaveFailedReport()
+        {
+            var serializer = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+            var fileName = $"failed-report-{DateTime.Now.ToString("yyyy-MM-ddTHH_mm_ss")}.bin";
+            var fileInfo = new FileInfo(Path.Combine(tempDirectory.FullName, fileName));
+            if (!tempDirectory.Exists)
+                tempDirectory.Create();
+            using (var fileStream = File.Create(fileInfo.FullName))
+            {
+                serializer.Serialize(fileStream, new LoadFailedReportResult() { Exception = Exception, ScreenShot = ScreenShotBinary });
+            }
+        }
+        /// <summary>
+        /// Retries any previously failed report silently. If the first fails, it will stop.
+        /// </summary>
+        /// <returns>Whether any report has been sent.</returns>
+        public bool RetryFailedReports() => RetryFailedReports(out var y, out var z);
+        /// <summary>
+        /// Retries any previously failed report silently. If the first fails, it will stop.
+        /// </summary>
+        /// <param name="failedReports">The amount of failed reports found.</param>
+        /// <param name="failedReportsSent">The amount of failed reports sent.</param>
+        /// <returns>Whether any report has been sent.</returns>
+        public bool RetryFailedReports(out int failedReports, out int failedReportsSent)
+        {
+            failedReports = 0;
+            failedReportsSent = 0;
+            if (!tempDirectory.Exists) return false;
+
+            var loadedFailedReports = tempDirectory.EnumerateFiles("failed-report-*.bin")
+                .Select(SelectFailedReport)
+                .Where(ex => ex.Exception != null);
+            failedReports = loadedFailedReports.Count();
+
+            foreach (var failedReport in loadedFailedReports)
+            {
+                try
+                {
+                    File.WriteAllBytes(Path.Combine(tempDirectory.FullName, "screenshot.png"), ScreenShotBinary = failedReport.ScreenShot);
+                    SendSilently(failedReport.Exception);
+                    failedReportsSent++;
+                    failedReport.FileInfo.Delete();
+                }
+                catch (Exception)
+                {
+                    break;
+                }
+            }
+            ScreenShotBinary = null;
+            return failedReportsSent > 0;
+        }
+
+        private LoadFailedReportResult SelectFailedReport(FileInfo fileInfo)
+        {
+            var serializer = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+            LoadFailedReportResult? deserializedObject;
+            using (var stream = fileInfo.OpenRead())
+            {
+                deserializedObject = serializer.Deserialize(stream) as LoadFailedReportResult?;
+            }
+            if (deserializedObject == null)
+            {
+                fileInfo.Delete();
+                return default;
+            }
+            var result = deserializedObject.Value;
+            result.FileInfo = fileInfo;
+            return result;
         }
 
         /// <summary>
@@ -149,7 +227,7 @@ namespace CrashReporterDotNET
             var attributes = mainAssembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), true);
             if (attributes.Length > 0)
             {
-                appTitle = ((AssemblyTitleAttribute) attributes[0]).Title;
+                appTitle = ((AssemblyTitleAttribute)attributes[0]).Title;
             }
 
             ApplicationTitle = !string.IsNullOrEmpty(appTitle) ? appTitle : mainAssembly.GetName().Name;
@@ -158,11 +236,10 @@ namespace CrashReporterDotNET
                 : mainAssembly.GetName().Version.ToString();
             try
             {
-                ScreenShot = $@"{Path.GetTempPath()}\{ApplicationTitle} Crash Screenshot.png";
                 if (CaptureScreen)
-                    CaptureScreenshot.CaptureScreen(ScreenShot, ImageFormat.Png);
+                    ScreenShotBinary = CaptureScreenshot.CaptureScreen(ImageFormat.Png);
                 else
-                    CaptureScreenshot.CaptureActiveWindow(ScreenShot, ImageFormat.Png);
+                    ScreenShotBinary = CaptureScreenshot.CaptureActiveWindow(ImageFormat.Png);
             }
             catch (Exception e)
             {
@@ -195,7 +272,7 @@ namespace CrashReporterDotNET
             {
                 if (Thread.CurrentThread.GetApartmentState().Equals(ApartmentState.MTA))
                 {
-                    var thread = new Thread(() => new CrashReport(this).ShowDialog()) {IsBackground = false};
+                    var thread = new Thread(() => new CrashReport(this).ShowDialog()) { IsBackground = false };
                     thread.CurrentCulture = thread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
                     thread.SetApartmentState(ApartmentState.STA);
                     thread.Start();
@@ -262,15 +339,22 @@ namespace CrashReporterDotNET
                 Body = CreateHtmlReport(userMessage)
             };
 
-            if (File.Exists(ScreenShot) && includeScreenshot)
+            if (ScreenShotBinary?.Length > 0 && includeScreenshot)
             {
-                message.Attachments.Add(new Attachment(ScreenShot));
+                message.Attachments.Add(new Attachment(new MemoryStream(ScreenShotBinary), "Screenshot.png", "image/png"));
             }
 
             if (smtpClientSendCompleted != null)
             {
-                smtpClient.SendCompleted += smtpClientSendCompleted;
-                smtpClient.SendAsync(message, "Crash Report");
+                try
+                {
+                    smtpClient.SendCompleted += smtpClientSendCompleted;
+                    smtpClient.SendAsync(message, "Crash Report");
+                }
+                catch (SmtpException smtpException)
+                {
+                    smtpClientSendCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(smtpException, true, null));
+                }
             }
             else
             {
@@ -460,8 +544,9 @@ namespace CrashReporterDotNET
             DrDumpService.SendRequestCompletedEventHandler sendRequestCompleted, Control form, string from,
             string userMessage)
         {
-            var sendScreenshot = File.Exists(ScreenShot) && includeScreenshot;
-            var screenshot = sendScreenshot ? File.ReadAllBytes(ScreenShot) : null;
+            byte[] screenshot = null;
+            if (ScreenShotBinary?.Length > 0 && includeScreenshot)
+                screenshot = ScreenShotBinary;
 
             if (sendRequestCompleted != null)
             {
@@ -481,7 +566,7 @@ namespace CrashReporterDotNET
             else
             {
                 _doctorDumpService = new DrDumpService(WebProxy);
-                var reportUrl =_doctorDumpService.SendReportSilently(Exception, ToEmail, DoctorDumpSettings?.ApplicationID, DeveloperMessage, from, userMessage, screenshot);
+                var reportUrl = _doctorDumpService.SendReportSilently(Exception, ToEmail, DoctorDumpSettings?.ApplicationID, DeveloperMessage, from, userMessage, screenshot);
                 if (DoctorDumpSettings != null && DoctorDumpSettings.OpenReportInBrowser)
                 {
                     if (!string.IsNullOrEmpty(reportUrl))
@@ -491,6 +576,14 @@ namespace CrashReporterDotNET
         }
 
         #endregion
+        [Serializable]
+        private struct LoadFailedReportResult
+        {
+            public Exception Exception;
+            public byte[] ScreenShot;
+            [NonSerialized]
+            public FileInfo FileInfo;
+        }
     }
 
     /// <summary>
