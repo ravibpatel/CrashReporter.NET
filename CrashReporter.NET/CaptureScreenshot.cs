@@ -8,7 +8,7 @@ namespace CrashReporterDotNET
 {
     internal static class CaptureScreenshot
     {
-        public static byte[] CaptureScreen(ImageFormat imageFormat)
+        public static void CaptureScreen(string location, ImageFormat imageFormat)
         {
             var screenLeft = SystemInformation.VirtualScreen.Left;
             var screenTop = SystemInformation.VirtualScreen.Top;
@@ -22,11 +22,21 @@ namespace CrashReporterDotNET
                     graphics.CopyFromScreen(screenLeft, screenTop, 0, 0, bitmap.Size);
                 }
 
-                using (var ms = new System.IO.MemoryStream())
+                bitmap.Save(location, imageFormat);
+            }
+        }
+
+        public static void CaptureWindow(Form currentWindow, string location, ImageFormat imageFormat)
+        {
+            Rectangle bounds = currentWindow.Bounds;
+            using (var bitmap = new Bitmap(bounds.Width, bounds.Height))
+            {
+                using (var graphics = Graphics.FromImage(bitmap))
                 {
-                    bitmap.Save(ms, imageFormat);
-                    return ms.ToArray();
+                    graphics.CopyFromScreen(new Point(bounds.Left, bounds.Top), Point.Empty, bounds.Size);
                 }
+
+                bitmap.Save(location, imageFormat);
             }
         }
 
@@ -45,7 +55,7 @@ namespace CrashReporterDotNET
             public int Bottom;
         }
 
-        public static byte[] CaptureActiveWindow( ImageFormat imageFormat)
+        public static void CaptureActiveWindow(string location, ImageFormat imageFormat)
         {
             var foregroundWindowHandle = GetForegroundWindow();
             var rect = new Rect();
@@ -58,11 +68,7 @@ namespace CrashReporterDotNET
                     graphics.CopyFromScreen(new Point(bounds.Left, bounds.Top), Point.Empty, bounds.Size);
                 }
 
-                using (var ms = new System.IO.MemoryStream())
-                {
-                    bitmap.Save(ms, imageFormat);
-                    return ms.ToArray();
-                }
+                bitmap.Save(location, imageFormat);
             }
         }
     }
