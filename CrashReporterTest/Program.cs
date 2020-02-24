@@ -26,6 +26,7 @@ namespace CrashReporterTest
             {
                 DeveloperMessage = "Retry attempt",
                 Silent = true,
+                ShowScreenshotTab = true,
                 WebProxy = new WebProxy("Web proxy address, if needed"),
                 DoctorDumpSettings = new DoctorDumpSettings
                 {

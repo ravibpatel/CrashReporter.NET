@@ -53,7 +53,7 @@
             this.buttonThreadException.TabIndex = 1;
             this.buttonThreadException.Text = "Thread Exception";
             this.buttonThreadException.UseVisualStyleBackColor = true;
-            this.buttonThreadException.Click += new System.EventHandler(this.buttonThreadException_Click);
+            this.buttonThreadException.Click += new System.EventHandler(this.ButtonThreadException_Click);
             // 
             // FormMain
             // 

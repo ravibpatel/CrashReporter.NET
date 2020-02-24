@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Deployment.Application;
 using System.Diagnostics;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Sockets;
@@ -146,7 +146,7 @@ namespace CrashReporterDotNET
         /// Retries any previously failed report silently. If the first fails, it will stop.
         /// </summary>
         /// <returns>Whether any report has been sent.</returns>
-        public bool RetryFailedReports() => RetryFailedReports(out var y, out var z);
+        public bool RetryFailedReports() => RetryFailedReports(out var failedReports, out var failedReportsSent);
         /// <summary>
         /// Retries any previously failed report silently. If the first fails, it will stop.
         /// </summary>
@@ -159,10 +159,20 @@ namespace CrashReporterDotNET
             failedReportsSent = 0;
             if (!tempDirectory.Exists) return false;
 
-            var loadedFailedReports = tempDirectory.EnumerateFiles("failed-report-*.bin")
-                .Select(SelectFailedReport)
-                .Where(ex => ex.Exception != null);
-            failedReports = loadedFailedReports.Count();
+            List<LoadFailedReportResult> loadedFailedReports = new List<LoadFailedReportResult>();
+            foreach (var fileInfo in tempDirectory.GetFiles())
+            {
+                if (fileInfo.Name.StartsWith("failed-report"))
+                {
+                    var loadedFailedReport = SelectFailedReport(fileInfo);
+                    if (loadedFailedReport.Exception != null)
+                    {
+                        loadedFailedReports.Add(loadedFailedReport);
+                    }
+                }
+            }
+
+            failedReports = loadedFailedReports.Count;
 
             foreach (var failedReport in loadedFailedReports)
             {
@@ -193,7 +203,7 @@ namespace CrashReporterDotNET
             if (deserializedObject == null)
             {
                 fileInfo.Delete();
-                return default;
+                return default(LoadFailedReportResult);
             }
             var result = deserializedObject.Value;
             result.FileInfo = fileInfo;
@@ -331,34 +341,29 @@ namespace CrashReporterDotNET
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(UserName, Password),
             };
-
-            var message = new MailMessage(new MailAddress(from), new MailAddress(ToEmail))
+            using (var message = new MailMessage(new MailAddress(@from), new MailAddress(ToEmail)) {IsBodyHtml = true, Subject = subject, Body = CreateHtmlReport(userMessage)})
             {
-                IsBodyHtml = true,
-                Subject = subject,
-                Body = CreateHtmlReport(userMessage)
-            };
-
-            if (ScreenShotBinary?.Length > 0 && includeScreenshot)
-            {
-                message.Attachments.Add(new Attachment(new MemoryStream(ScreenShotBinary), "Screenshot.png", "image/png"));
-            }
-
-            if (smtpClientSendCompleted != null)
-            {
-                try
+                if (ScreenShotBinary?.Length > 0 && includeScreenshot)
                 {
-                    smtpClient.SendCompleted += smtpClientSendCompleted;
-                    smtpClient.SendAsync(message, "Crash Report");
+                    message.Attachments.Add(new Attachment(new MemoryStream(ScreenShotBinary), "Screenshot.png", "image/png"));
                 }
-                catch (SmtpException smtpException)
+
+                if (smtpClientSendCompleted != null)
                 {
-                    smtpClientSendCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(smtpException, true, null));
+                    try
+                    {
+                        smtpClient.SendCompleted += smtpClientSendCompleted;
+                        smtpClient.SendAsync(message, "Crash Report");
+                    }
+                    catch (SmtpException smtpException)
+                    {
+                        smtpClientSendCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(smtpException, true, null));
+                    }
                 }
-            }
-            else
-            {
-                smtpClient.Send(message);
+                else
+                {
+                    smtpClient.Send(message);
+                }
             }
         }
 

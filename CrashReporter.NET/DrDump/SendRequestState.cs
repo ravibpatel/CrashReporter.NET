@@ -30,8 +30,11 @@ namespace CrashReporterDotNET.DrDump
 
         private static System.Net.NetworkInformation.PhysicalAddress GetMacAddress()
         {
-            var googleDns = new System.Net.Sockets.UdpClient("8.8.8.8", 53);
-            IPAddress localAddress = ((IPEndPoint) googleDns.Client.LocalEndPoint).Address;
+            IPAddress localAddress;
+            using (var googleDns = new System.Net.Sockets.UdpClient("8.8.8.8", 53))
+            {
+                localAddress = ((IPEndPoint) googleDns.Client.LocalEndPoint).Address;
+            }
 
             foreach (var netInterface in System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces())
             {

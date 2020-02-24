@@ -17,7 +17,7 @@ namespace CrashReporterTest
             ThrowException();
         }
 
-        private void buttonThreadException_Click(object sender, EventArgs e)
+        private void ButtonThreadException_Click(object sender, EventArgs e)
         {
             var thread = new Thread(ThrowException);
             thread.Start();

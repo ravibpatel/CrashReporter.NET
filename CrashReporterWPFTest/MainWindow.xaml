@@ -12,7 +12,7 @@
             <ColumnDefinition Width="87*"/>
             <ColumnDefinition Width="19*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="buttonCrash" Content="Crash this app" Margin="10,10,10,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Height="41" Click="buttonCrash_Click"/>
+        <Button x:Name="ButtonCrash" Content="Crash this app" Margin="10,10,10,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Height="41" Click="ButtonCrash_Click"/>
 
     </Grid>
 </Window>

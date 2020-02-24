@@ -129,8 +129,7 @@ namespace CrashReporterDotNET.DrDump
                 else
                 {
                     Response response = res.Result;
-                    var errorResponse = response as ErrorResponse;
-                    if (errorResponse != null)
+                    if (response is ErrorResponse errorResponse)
                         throw new Exception(errorResponse.Error);
 
                     if (response is NeedReportResponse)
@@ -189,8 +188,7 @@ namespace CrashReporterDotNET.DrDump
                 }
 
                 Response response = e.Result;
-                var errorResponse = response as ErrorResponse;
-                if (errorResponse != null)
+                if (response is ErrorResponse errorResponse)
                     throw new Exception(errorResponse.Error);
 
                 SendRequestCompleted?.Invoke(this, new SendRequestCompletedEventArgs(response, null, false));

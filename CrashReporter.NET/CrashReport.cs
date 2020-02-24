@@ -114,9 +114,9 @@ namespace CrashReporterDotNET
                 _progressDialog = new ProgressDialog();
                 _progressDialog.ShowDialog();
             }
-            catch (SocketException)
+            catch (SocketException exception)
             {
-                MessageBox.Show(Resources.NoConnectionMessage, Resources.NoConnectionCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ReportFailure(exception);
             }
         }
 
@@ -132,9 +132,11 @@ namespace CrashReporterDotNET
 
         private void LinkLabelViewLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var screenShotDialog = new Screenshot(_reportCrash.ScreenShotBinary);
-            screenShotDialog.ShowDialog();
-            
+            using (var screenShotDialog = new Screenshot(_reportCrash.ScreenShotBinary))
+            {
+                screenShotDialog.ShowDialog();
+            }
+
             /* EddieDemon - I removed the need for these captions.
              Resources.ErrorCapturingImageMessage,
              Resources.ErrorCapturingImageCaption

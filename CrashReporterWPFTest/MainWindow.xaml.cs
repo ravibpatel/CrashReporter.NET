@@ -15,7 +15,7 @@ namespace CrashReporterWPFTest
             InitializeComponent();
         }
 
-        private void buttonCrash_Click(object sender, RoutedEventArgs e)
+        private void ButtonCrash_Click(object sender, RoutedEventArgs e)
         {
             var thread = new Thread(ThrowException);
             thread.Start();
