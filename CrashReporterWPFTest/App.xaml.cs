@@ -11,12 +11,20 @@ namespace CrashReporterWPFTest
     /// </summary>
     public partial class App : Application
     {
+        private static ReportCrash _reportCrash;
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
             AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
             Application.Current.DispatcherUnhandledException += DispatcherOnUnhandledException;
             TaskScheduler.UnobservedTaskException += TaskSchedulerOnUnobservedTaskException;
+            _reportCrash = new ReportCrash("Email where you want to receive crash reports")
+            {
+                DeveloperMessage = "Retry attempt",
+                Silent = true
+            };
+            _reportCrash.RetryFailedReports();
         }
 
         private void TaskSchedulerOnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs unobservedTaskExceptionEventArgs)
@@ -36,12 +44,7 @@ namespace CrashReporterWPFTest
 
         public static void SendReport(Exception exception, string developerMessage = "", bool silent = true)
         {
-            var reportCrash = new ReportCrash("Email where you want to receive crash reports")
-            {
-                DeveloperMessage = developerMessage,
-                Silent = silent
-            };
-            reportCrash.Send(exception);
+            _reportCrash.Send(exception);
         }
     }
 }
