@@ -42,8 +42,15 @@ namespace CrashReporterWPFTest
             SendReport((Exception)unhandledExceptionEventArgs.ExceptionObject);
         }
 
-        public static void SendReport(Exception exception, string developerMessage = "", bool silent = true)
+        public static void SendReport(Exception exception, string developerMessage = "")
         {
+            _reportCrash.Silent = false;
+            _reportCrash.Send(exception);
+        }
+
+        public static void SendReportSilently(Exception exception, string developerMessage = "")
+        {
+            _reportCrash.Silent = true;
             _reportCrash.Send(exception);
         }
     }

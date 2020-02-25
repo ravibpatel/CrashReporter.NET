@@ -1,12 +1,14 @@
 # CrashReporter.NET
 
-[![AppVeyor branch](https://img.shields.io/appveyor/ci/gruntjs/grunt/master.svg)](https://ci.appveyor.com/project/ravibpatel/crashreporter-net) [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](http://paypal.me/rbsoft)
+[![AppVeyor branch](https://img.shields.io/appveyor/ci/gruntjs/grunt/master.svg)](https://ci.appveyor.com/project/ravibpatel/crashreporter-net)
 
 Send crash reports of your classic desktop application developed using .NET Framework directly to your mail's inbox with full exception report, stack trace and screenshot.
 
 ## The nuget package  [![NuGet](https://img.shields.io/nuget/v/CrashReporter.NET.Official.svg)](https://www.nuget.org/packages/CrashReporter.NET.Official/) [![NuGet](https://img.shields.io/nuget/dt/CrashReporter.NET.Official.svg)](https://www.nuget.org/packages/CrashReporter.NET.Official/)
 
-    PM> Install-Package CrashReporter.NET.Official
+````powershell
+PM> Install-Package CrashReporter.NET.Official
+````
 
 ## How it works
 
@@ -38,23 +40,34 @@ static class Program
         Application.SetCompatibleTextRenderingDefault(false);
         _reportCrash = new ReportCrash("Email where you want to receive crash reports")
         {
-            DeveloperMessage = "Retry attempt",
             Silent = true,
+            ShowScreenshotTab = true,
+            IncludeScreenshot = false,
+            #region Optional Configuration
             WebProxy = new WebProxy("Web proxy address, if needed"),
+            AnalyzeWithDoctorDump = true,
             DoctorDumpSettings = new DoctorDumpSettings
             {
                 ApplicationID = new Guid("Application ID you received from DrDump.com"),
                 OpenReportInBrowser = true
             }
+            #endregion
         };
         _reportCrash.RetryFailedReports();
         Application.Run(new FormMain());
     }
 
-    public static void SendReport(Exception exception, string developerMessage = "", bool silent = false)
+    public static void SendReport(Exception exception, string developerMessage = "")
     {
         _reportCrash.DeveloperMessage = developerMessage;
-        _reportCrash.Silent = silent;
+        _reportCrash.Silent = false;
+        _reportCrash.Send(exception);
+    }
+
+    public static void SendReportSilently(Exception exception, string developerMessage = "")
+    {
+        _reportCrash.DeveloperMessage = developerMessage;
+        _reportCrash.Silent = true;
         _reportCrash.Send(exception);
     }
 }
@@ -97,7 +110,6 @@ public partial class App : Application
         TaskScheduler.UnobservedTaskException += TaskSchedulerOnUnobservedTaskException;
         _reportCrash = new ReportCrash("Email where you want to receive crash reports")
         {
-            DeveloperMessage = "Retry attempt",
             Silent = true
         };
         _reportCrash.RetryFailedReports();
@@ -118,8 +130,15 @@ public partial class App : Application
         SendReport((Exception)unhandledExceptionEventArgs.ExceptionObject);
     }
 
-    public static void SendReport(Exception exception, string developerMessage = "", bool silent = true)
+    public static void SendReport(Exception exception, string developerMessage = "")
     {
+        _reportCrash.Silent = false;
+        _reportCrash.Send(exception);
+    }
+
+    public static void SendReportSilently(Exception exception, string developerMessage = "")
+    {
+        _reportCrash.Silent = true;
         _reportCrash.Send(exception);
     }
 }
@@ -153,6 +172,7 @@ You can show screenshot tab by setting ShowScreenshotTab to true. It will be fal
 
 ````csharp
 reportCrash.ShowScreenshotTab = true
+````
 
 ### Include screenshot with crash report
 
@@ -197,4 +217,22 @@ You can take screenshot of whole screen instead of only application when applica
 
 ````csharp
 reportCrash.CaptureScreen = true;
+````
+
+### Use SMTP to send crash reports directly to email
+
+You can use the SMTP server instead of DrDump service to send crash reports as shown below.
+
+````csharp
+var reportCrash = new ReportCrash
+{
+    AnalyzeWithDoctorDump = false,
+    SmtpHost = "smtp.gmail.com",
+    Port = 587,
+    EnableSSL = true,
+    UserName = "Your Gmail account email",
+    Password = "Your Gmail account password",
+    ToEmail = "Email address where you want receive crash reports",
+    FromEmail = "Your Gmail account email or alias"
+};
 ````

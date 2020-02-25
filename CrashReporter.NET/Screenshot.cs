@@ -10,7 +10,7 @@ namespace CrashReporterDotNET
         public Screenshot(byte[] image)
         {
             InitializeComponent();
-            webBrowser1.DocumentText = $@"
+            webBrowser.DocumentText = $@"
                 <!doctype html>
                 <html>
                    <head>
