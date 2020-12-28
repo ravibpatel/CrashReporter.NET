@@ -256,13 +256,13 @@ namespace CrashReporterDotNET
                 Debug.Write(e.Message);
             }
 
+            if (string.IsNullOrEmpty(FromEmail))
+            {
+                throw new ArgumentNullException(@"FromEmail");
+            }
+            
             if (!AnalyzeWithDoctorDump)
             {
-                if (string.IsNullOrEmpty(FromEmail))
-                {
-                    throw new ArgumentNullException(@"FromEmail");
-                }
-
                 if (string.IsNullOrEmpty(SmtpHost))
                 {
                     throw new ArgumentNullException("SmtpHost");
@@ -301,6 +301,7 @@ namespace CrashReporterDotNET
             string userMessage = "")
         {
             string subject = String.Empty;
+            
             if (string.IsNullOrEmpty(from))
             {
                 from = !string.IsNullOrEmpty(FromEmail)
@@ -318,14 +319,13 @@ namespace CrashReporterDotNET
             }
             else
             {
-                SendEmail(includeScreenshot, smtpClientSendCompleted, from, subject, userMessage);
+                SendEmail(includeScreenshot, smtpClientSendCompleted, subject, userMessage);
             }
         }
 
         #region Send Email Using SMTP
 
-        private void SendEmail(bool includeScreenshot, SendCompletedEventHandler smtpClientSendCompleted, string from,
-            string subject, string userMessage)
+        private void SendEmail(bool includeScreenshot, SendCompletedEventHandler smtpClientSendCompleted, string subject, string userMessage)
         {
             if (string.IsNullOrEmpty(subject))
             {
@@ -341,7 +341,8 @@ namespace CrashReporterDotNET
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(UserName, Password),
             };
-            using (var message = new MailMessage(new MailAddress(@from), new MailAddress(ToEmail)) {IsBodyHtml = true, Subject = subject, Body = CreateHtmlReport(userMessage)})
+            
+            using (var message = new MailMessage(new MailAddress(FromEmail), new MailAddress(ToEmail)) {IsBodyHtml = true, Subject = subject, Body = CreateHtmlReport(userMessage)})
             {
                 if (ScreenShotBinary?.Length > 0 && includeScreenshot)
                 {
