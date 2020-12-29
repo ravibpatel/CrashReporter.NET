@@ -339,32 +339,32 @@ namespace CrashReporterDotNET
                 EnableSsl = EnableSSL,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(UserName, Password),
+                Credentials = new NetworkCredential(UserName, Password)
             };
-            
-            using (var message = new MailMessage(new MailAddress(FromEmail), new MailAddress(ToEmail)) {IsBodyHtml = true, Subject = subject, Body = CreateHtmlReport(userMessage)})
-            {
-                if (ScreenShotBinary?.Length > 0 && includeScreenshot)
-                {
-                    message.Attachments.Add(new Attachment(new MemoryStream(ScreenShotBinary), "Screenshot.png", "image/png"));
-                }
 
-                if (smtpClientSendCompleted != null)
+            var message = new MailMessage(new MailAddress(FromEmail), new MailAddress(ToEmail))
+                {IsBodyHtml = true, Subject = subject, Body = CreateHtmlReport(userMessage)};
+            
+            if (ScreenShotBinary?.Length > 0 && includeScreenshot)
+            {
+                message.Attachments.Add(new Attachment(new MemoryStream(ScreenShotBinary), "Screenshot.png", "image/png"));
+            }
+
+            if (smtpClientSendCompleted != null)
+            {
+                try
                 {
-                    try
-                    {
-                        smtpClient.SendCompleted += smtpClientSendCompleted;
-                        smtpClient.SendAsync(message, "Crash Report");
-                    }
-                    catch (SmtpException smtpException)
-                    {
-                        smtpClientSendCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(smtpException, true, null));
-                    }
+                    smtpClient.SendCompleted += smtpClientSendCompleted;
+                    smtpClient.SendAsync(message, "Crash Report");
                 }
-                else
+                catch (SmtpException smtpException)
                 {
-                    smtpClient.Send(message);
+                    smtpClientSendCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(smtpException, true, null));
                 }
+            }
+            else
+            {
+                smtpClient.Send(message);
             }
         }
 

@@ -44,7 +44,7 @@ namespace CrashReporterDotNET
             try
             {
                 RegistryKey registryKey = Registry.LocalMachine.OpenSubKey(key);
-                return registryKey?.GetValue(value).ToString() ?? String.Empty;
+                return registryKey?.GetValue(value)?.ToString() ?? String.Empty;
             }
             catch
             {
