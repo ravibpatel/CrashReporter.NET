@@ -11,7 +11,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("RBSoft")]
 [assembly: AssemblyProduct("CrashReporter.NET")]
-[assembly: AssemblyCopyright("Copyright © 2012-2020 RBSoft")]
+[assembly: AssemblyCopyright("Copyright © 2012-2021 RBSoft")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

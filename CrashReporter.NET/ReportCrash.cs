@@ -255,14 +255,14 @@ namespace CrashReporterDotNET
             {
                 Debug.Write(e.Message);
             }
-
-            if (string.IsNullOrEmpty(FromEmail))
-            {
-                throw new ArgumentNullException(@"FromEmail");
-            }
             
             if (!AnalyzeWithDoctorDump)
             {
+                if (string.IsNullOrEmpty(FromEmail))
+                {
+                    throw new ArgumentNullException(@"FromEmail");
+                }
+                
                 if (string.IsNullOrEmpty(SmtpHost))
                 {
                     throw new ArgumentNullException("SmtpHost");
