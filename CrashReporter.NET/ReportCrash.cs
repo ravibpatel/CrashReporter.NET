@@ -123,7 +123,7 @@ namespace CrashReporterDotNET
         /// Object use to send exception report to your Inbox.
         /// </summary>
         /// <param name="toEmail">Email where you want to receive crash reports.</param>
-        public ReportCrash(string toEmail)
+        public ReportCrash(string toEmail="")
         {
             ToEmail = toEmail;
         }
@@ -327,6 +327,9 @@ namespace CrashReporterDotNET
 
         private void SendEmail(bool includeScreenshot, SendCompletedEventHandler smtpClientSendCompleted, string subject, string userMessage)
         {
+            if (string.IsNullOrEmpty(ToEmail))
+                return;
+
             if (string.IsNullOrEmpty(subject))
             {
                 subject = $"{ApplicationTitle} {ApplicationVersion} Crash Report";
